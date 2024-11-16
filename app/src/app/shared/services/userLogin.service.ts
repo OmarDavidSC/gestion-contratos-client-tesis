@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserLogin } from '../models/base/UserLogin';
 import { ApiResponse } from '../utils/response';
-import { ApiLoginResponse } from '../utils/responseLogin';
 
 @Injectable({
   providedIn: 'root'
