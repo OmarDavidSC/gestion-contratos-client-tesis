@@ -45,4 +45,5 @@ Thumbs.db
 /config
 
 #enveriment
-/src/environments
+/src/environments/*
+!/src/environments/*.ts
