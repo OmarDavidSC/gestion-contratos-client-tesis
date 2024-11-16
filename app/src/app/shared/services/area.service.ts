@@ -40,6 +40,8 @@ export class AreaService {
         return response.map(EArea.parseJsonLookup);
     }
 
+    //este es un cambio en mi rama omar-dev
+
     async addItem(datos: any): Promise<any> {
 
         const url = this.urlBase + 'registrar-area';
