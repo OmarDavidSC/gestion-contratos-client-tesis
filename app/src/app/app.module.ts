@@ -18,6 +18,7 @@ import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
@@ -72,6 +73,7 @@ import { AdministracionMetodoEntregaComponent } from './components/administracio
 import { ModalFormularioMetodoEntregaComponent } from './components/administracion/modals/modal-formulario-metodo-entrega/modal-formulario-metodo-entrega.component';
 import { ModalFormularioSistemaContratacionComponent } from './components/administracion/modals/modal-formulario-sistema-contratacion/modal-formulario-sistema-contratacion.component';
 import { AdministracionSistemaContratacionComponent } from './components/administracion/administracion-sistema-contratacion/administracion-sistema-contratacion.component';
+import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
 
 
 @NgModule({
@@ -127,7 +129,8 @@ import { AdministracionSistemaContratacionComponent } from './components/adminis
     AdministracionMetodoEntregaComponent,
     ModalFormularioMetodoEntregaComponent,
     ModalFormularioSistemaContratacionComponent,
-    AdministracionSistemaContratacionComponent
+    AdministracionSistemaContratacionComponent,
+    MiPerfilComponent
   ],
   imports: [
     ComunModule,
@@ -139,7 +142,8 @@ import { AdministracionSistemaContratacionComponent } from './components/adminis
     HttpClientModule,
     MatButtonToggleModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SweetAlert2Module.forRoot()
   ],
   exports: [
     HttpClientModule,

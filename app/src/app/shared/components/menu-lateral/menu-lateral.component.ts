@@ -67,6 +67,11 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login'])
   }
 
+  
+  irAPerfil() {
+    this.router.navigate(['/mi-perfil'])
+  }
+
   public getOpcionesMenu(): void {
     const modulo1 = new EModuloSeguridad();
     modulo1.Id = 1;

@@ -31,6 +31,7 @@ import { AdministracionTipoAdendaComponent } from './components/administracion/a
 import { AdministracionTipoContratoComponent } from './components/administracion/administracion-tipo-contrato/administracion-tipo-contrato.component';
 import { AdministracionMetodoEntregaComponent } from './components/administracion/administracion-metodo-entrega/administracion-metodo-entrega.component';
 import { AdministracionSistemaContratacionComponent } from './components/administracion/administracion-sistema-contratacion/administracion-sistema-contratacion.component';
+import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard]
   }, 
+  {
+    path: 'mi-perfil',
+    component: MiPerfilComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'administracion-usuarios',
     component: AdministracionUsuariosComponent,

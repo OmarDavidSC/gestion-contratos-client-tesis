@@ -8,7 +8,8 @@ import { UserLoginService } from '../../shared/services/userLogin.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-
+import { sweet2 } from 'src/app/shared/utils/sweet2';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,42 +36,52 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     const token = localStorage.getItem('token');
     if (token) {
       this.router.navigate(['/bandeja-documentos'])
     }
   }
 
-  login() {
+  async login() {
     if (this.Form.invalid) {
       this.toastr.error('Todos los campos son obligatorios', 'Error');
       return;
     }
-
     const item = this.Form.value;
-
     const user: UserLogin = {
       correo: item.username,
       clave: item.password
     };
-
     this.loading = true;
-    this._userService.login(user).subscribe({
-      next: (resultadoLogin: any) => {
-        localStorage.setItem('token', resultadoLogin.token);
-        this.userService.saveUserSession(resultadoLogin.id);
-
-        //window.location.href = "/#/bandeja-contratos";        
-        this.router.navigate(['/bandeja-contratos']).then(() => {
-          window.location.reload();
+    const response = await this._userService.login(user);
+    if (response.success) {
+      localStorage.setItem('token', response.data.token);
+      this.userService.saveUserSession(response.data.id);
+      sweet2.loading();
+      setTimeout(async () => {
+        sweet2.loading(false);
+        Swal.fire({
+          text: 'Ha iniciado sesión correctamente',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          customClass: {
+            confirmButton: 'btn btn-success',
+          },
+        }).then(() => {
+          this.router.navigate(['/bandeja-contratos']).then(() => {
+            window.location.reload();
+          });
         });
-        //window.location.reload();
-      },
-      error: (e: HttpErrorResponse) => {
-        this._errorService.msjError(e);
-        this.loading = false;
-      }
-    });
+      }, 3000);
+    } else {
+      Swal.fire({
+        text: response.message,
+        icon: 'error',
+        confirmButtonText: 'OK',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+        },
+      })
+    }
   }
 }

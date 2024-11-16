@@ -122,7 +122,6 @@ export class AdministracionUsuariosComponent extends FormularioBase implements O
   }
 
   async eventoMostrarPopupEditar(item: EUsuario): Promise<void> {
-
     const dialogRef = this.dialog.open(ModalFormularioUsuarioComponent, {
       width: '600px',
       disableClose: true,

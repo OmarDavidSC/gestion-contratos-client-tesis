@@ -61,6 +61,10 @@
             <mat-icon>account_circle</mat-icon>
           </button>
           <mat-menu #userMenu="matMenu">
+            <button mat-menu-item (click)="irAPerfil()">
+              <mat-icon>person_outline</mat-icon>
+              <span>Mi Perfil</span>
+            </button>
             <button mat-menu-item (click)="logOut()">
               <mat-icon>power_settings_new</mat-icon>
               <span>Cerrar sesión</span>
