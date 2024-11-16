@@ -48,7 +48,6 @@ export class ModalFormularioRolComponent implements OnInit {
     }
 
     this.spinnerService.show();
-    debugger;
     if (this.data) {
       await this.rolService.updateItem(item.Id, datos);
     } else {

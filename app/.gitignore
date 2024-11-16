@@ -43,3 +43,6 @@ Thumbs.db
 
 # Config Proxy
 /config
+
+#enveriment
+/src/environments

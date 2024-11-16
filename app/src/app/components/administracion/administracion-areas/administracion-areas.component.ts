@@ -66,10 +66,8 @@ export class AdministracionAreasComponent extends FormularioBase implements OnIn
     this.mostrarProgreso();
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
-      debugger;
       this.UsuarioActual = resultadoUsuario;
       this.buscarMaestros();      
-
       // if (resultadoAdmUsuario.Rol.Title !== "Administrador") {
       //   window.location.href = environment.webAbsoluteUrl;
       //   return;

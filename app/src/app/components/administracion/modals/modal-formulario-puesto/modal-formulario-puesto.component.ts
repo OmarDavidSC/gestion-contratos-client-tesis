@@ -49,7 +49,6 @@ export class ModalFormularioPuestoComponent implements OnInit {
     }
 
     this.spinnerService.show();
-    debugger;
     if (this.data) {
       await this.puestoService.updateItem(item.Id, datos);
     } else {

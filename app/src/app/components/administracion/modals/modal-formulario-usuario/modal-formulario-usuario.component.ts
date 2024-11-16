@@ -23,7 +23,7 @@ export class ModalFormularioUsuarioComponent implements OnInit {
   public TituloPopup: string;
   public UsuarioActual: EUsuario = new EUsuario();
   public ListaAdmArea: Lookup[] = [];
-  public ListaAdmRol: string[] = ["Administrador", "Colaborador"]
+  public ListaAdmRol: string[] = ["Master", "Administrador", "Colaborador"]
   public Form: FormGroup;
   public isLoading = false;
 
@@ -43,7 +43,6 @@ export class ModalFormularioUsuarioComponent implements OnInit {
     this.UsuarioActual = this.data.usuarioActual;
     this.TituloPopup = this.data.itemUsuario ? 'Editar Usuario' : 'Nuevo Usuario';
     this.ListaAdmArea = this.data.listaAdmArea;
-    debugger;
     this.Form = this.formBuilder.group({
       id: new FormControl(this.data.itemUsuario?.Id, []),
       nombre: new FormControl(this.data.itemUsuario?.Nombre, [Validators.required]),

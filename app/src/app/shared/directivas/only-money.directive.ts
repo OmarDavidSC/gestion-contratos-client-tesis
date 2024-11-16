@@ -42,7 +42,6 @@ export class OnlyMoneyDirective implements OnInit {
   @HostListener("blur", ["$event.target.value"])
   onBlur(value) {
     // on blur, add currency formatting
-    debugger
     this.el.value = this.currencyPipe.transform(value, 'USD', '', '', 'en_US');
   }
 
