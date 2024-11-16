@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{TituloPopup}}</h2>
+<div mat-dialog-content>
+    <div class="row" *ngIf="Form" [formGroup]="Form">
+        <div class="col-lg-12">
+           
+        </div>
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Título <span style="color:red;">(*)</span></mat-label>
+            <input matInput formControlName="Title" autocomplete="off" [maxlength]="255">
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('Title')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12" appearance="outline">
+            <mat-label>Área <span style="color:red;">(*)</span></mat-label>
+            <mat-select formControlName="Area">
+                <mat-option *ngFor="let Item of ListaAdmArea" [value]="Item.Id">{{ Item.Title }}</mat-option>
+            </mat-select>
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('Area')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Habilitado <span style="color:red;">(*)</span>
+            </mat-label>
+            <mat-select formControlName="Habilitado">
+                <mat-option [value]="true">Sí</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('Habilitado')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="text-center block-full-width" style="display: block;">
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="eventoGuardar()">Guardar</button>
+</div>

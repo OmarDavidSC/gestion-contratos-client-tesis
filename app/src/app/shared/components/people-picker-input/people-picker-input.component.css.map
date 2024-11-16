@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,0BAA0B,CAAC;EACvB,SAAS,EAAE,IAAI;CACd;;AACD,AAAA,iBAAiB,CAAC;EAClB,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,IAAI;CAClB;;AACD,AAAA,QAAQ,CAAC,GAAG,CAAC;EACb,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,IAAI;EACnB,WAAW,EAAE,KAAK;CACjB;;AACD,AAAA,WAAW,AAAA,aAAa,CAAA;EACpB,KAAK,EAAC,OAAO;CAChB",
+    "sources": [
+        "people-picker-input.component.scss"
+    ],
+    "names": [],
+    "file": "people-picker-input.component.css"
+}

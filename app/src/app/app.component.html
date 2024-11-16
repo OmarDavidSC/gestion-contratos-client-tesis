@@ -1,0 +1,9 @@
+<app-menu-lateral>
+  <ng-container Body>
+    <router-outlet *ngIf="Loginloaded"></router-outlet>
+  </ng-container>
+</app-menu-lateral>
+<ng-template #NoMenu>
+  <router-outlet></router-outlet>
+</ng-template>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>

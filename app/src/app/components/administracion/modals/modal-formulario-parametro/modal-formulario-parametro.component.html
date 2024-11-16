@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{TituloPopud}}</h2>
+<div mat-dialog-content>
+    <div class="row" *ngIf="Form" [formGroup]="Form">
+        <mat-form-field class="col-6" appearance="outline">
+            <mat-label>Indicador Verde <span style="color:red;">(*)</span></mat-label>
+            <input matInput formControlName="IndicadorVerde" autocomplete="off" [maxlength]="2" onlyNumber />
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('IndicadorVerde')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-6" appearance="outline">
+            <mat-label>Indicador Amarillo<span style="color:red;">(*)</span></mat-label>
+            <input matInput formControlName="IndicadorAmarillo" autocomplete="off" maxlength="2" onlyNumber />
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('IndicadorAmarillo')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-6" appearance="outline">
+            <mat-label>Indicador Rojo<span style="color:red;">(*)</span></mat-label>
+            <input matInput formControlName="IndicadorRojo" autocomplete="off" maxlength="2" onlyNumber />
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('IndicadorRojo')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-6" appearance="outline">
+            <mat-label>Días Antes Alerta<span style="color:red;">(*)</span></mat-label>
+            <input matInput formControlName="DiasAntesAlerta" autocomplete="off" maxlength="2" onlyNumber />
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('DiasAntesAlerta')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="text-center block-full-width" style="display: block;">
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="eventoGuardar()">Guardar</button>
+</div>

@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 mb-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button mat-icon-button aria-label="regresar" (click)="onClickRegresar()"  matTooltip="Regresar">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                    <span class="titulo-p">Administración de Áreas</span>
+                </div>
+                <div class="col-lg-6 text-end">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 ">
+            <div class="row">
+                <div class="col-lg-7 filtros-pg">
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                        <mat-label>Buscar...</mat-label>
+                        <input matInput placeholder="Buscar por nombre" [(ngModel)]="BusquedaRapida" (keydown.enter)="eventoBuscar()">
+                        <mat-icon matSuffix (click)="eventoBuscar()" style="cursor: pointer;">search</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-5 text-end">
+                    <div class="containerbtnPG">
+                        <button class="mt-2" mat-raised-button color="primary" (click)="eventoMostrarPopupRegistrar()">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="mat-elevation-z3 div-container" [hidden]="dataSource.data.length <= 0">
+                <div class="table-resp">
+                    <table class="table" mat-table [dataSource]="dataSource" matSort matSortActive="Nombre" matSortDirection="asc">
+                      
+                        <ng-container matColumnDef="Nombre">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="UsuarioResponsable">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Usuario Responsable</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.UsuarioResponsable.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Habilitado">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Habilitado</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TextoHabilitado }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="ModificadoPor">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Modificador Por</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.UsuarioModificacion.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Modificado">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Modificado</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TextoFechaModificacion }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Acciones">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef></th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">
+                                <button mat-icon-button (click)="eventoMostrarPopupEditar(element)" matTooltip="Editar">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <!--<button mat-icon-button (click)="eventoEliminar(element)" matTooltip="Eliminar">
+                                    <mat-icon>delete</mat-icon>
+                                </button>-->
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                    <mat-paginator showFirstLastButtons [pageSizeOptions]="[10, 20, 30]" itemsPerPageLabel="Cantidad por página" [pageSize]="10" [hidePageSize]="false">
+                    </mat-paginator>
+                </div>
+            </div>
+            <mat-card class="mat-elevation-z3 noResultado" [hidden]="dataSource.data.length > 0">
+                <span>No se han encontrado resultados</span>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,840 @@
+<div class="container">
+  <div class="col-md-12 mb-3">
+    <div class="row">
+      <div class="col-md-6 col-12 d-flex align-items-center">
+        <button mat-icon-button aria-label="regresar" matTooltip="Regresar">
+          <mat-icon>arrow_back</mat-icon>
+        </button> <span class="titulo-p">Nueva comunicación de entrada</span>
+      </div>
+      <div class="col-md-6 col-12 btn-mob text-end">
+        <button mat-raised-button color="primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-12">
+      <div class="d-flex flex-column btn-tab">
+        <button class="mb-2 active" mat-raised-button> Datos principales</button>
+        <button class="mb-2" mat-raised-button> Información adicional</button>
+        <button class="mb-2" mat-raised-button> Audiencia</button>
+      </div>
+    </div>
+    <div class="col-lg-10 col-12">
+      <div class="row">
+
+        <!--CARD1-datos principales-->
+        <div class="col-lg-12">
+          <mat-card class="mb-3">
+
+            <div class="subtitulo-p">Datos de Remitente</div>
+            <div class="row">
+
+              <mat-form-field class="col-lg-12" appearance="outline">
+                <mat-label>Remitente</mat-label>
+                <input matInput placeholder="Buscar por RUC, nombre o razón social" required>
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  Si no encuentra el remitente puede hacer el registro con el siguiente
+                  <a href="">enlace</a>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="subtitulo-s mb-3">
+                  Datos de contacto
+                </div>
+              </div>
+
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput placeholder="pat@example.com" required>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input matInput placeholder="Buscar por RUC, nombre o razón social" required>
+                <mat-icon matSuffix>phone</mat-icon>
+              </mat-form-field>
+
+            </div>
+          </mat-card>
+
+          <mat-card class="mb-3">
+
+            <div class="subtitulo-p">Destinatarios</div>
+            <div class="row">
+              <mat-form-field class="col-lg-8" appearance="outline">
+                <mat-label></mat-label>
+                <input matInput placeholder="Buscar por nombre o correo eléctronico">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+              <div class="col-lg-4">
+                <button mat-icon-button aria-label="regresar" matTooltip="Regresar">
+                  <mat-icon>assignment_ind</mat-icon>
+                </button>
+              </div>
+
+              <div class="col-lg-12">
+                <mat-card class="mb-3">
+                  <div class="d-flex justify-content-between">
+                    <div class="col-lg-9 d-flex align-items-center">
+                      <mat-icon class="mr-2">face</mat-icon> David Cueto
+                    </div>
+                    <div class="col-lg-3 d-flex align-items-center justify-content-between">
+                      <div>
+                        Responsable <span class="ml-2">
+                          <mat-slide-toggle></mat-slide-toggle>
+                        </span>
+                      </div>
+                      <div class="d-flex">
+                        <button mat-icon-button aria-label="regresar" matTooltip="Mover">
+                          <mat-icon>drag_handle</mat-icon>
+                        </button>
+                        <button mat-icon-button aria-label="regresar" matTooltip="Cerrar">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <hr>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="row align-items-center">
+                      <div class="col-lg-3 col-6">
+                        <dt>Puesto</dt>
+                        <dd>Jefe</dd>
+                      </div>
+
+                      <div class="col-lg-3 col-6">
+                        <dt>Sede</dt>
+                        <dd>Atocongo</dd>
+                      </div>
+                      <div class="col-lg-3 col-12">
+                        <dt>Área</dt>
+                        <dd>División de medio ambiente</dd>
+                      </div>
+
+                      <mat-form-field class="col-lg-3 mb-0" appearance="outline">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select>
+                          <mat-option value="option">Carta</mat-option>
+                          <mat-option value="option">Oficio</mat-option>
+                          <mat-option value="option">Informe</mat-option>
+                          <mat-option value="option">Plano</mat-option>
+                          <mat-option value="option">Transmital</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="d-flex flex-wrap align-items-center bg-card-destinatario">
+                  <div class="col-lg-2 col-6 d-flex align-items-center">
+                    <mat-icon class="mr-2">face</mat-icon> David Cueto
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <dt>Puesto</dt>
+                    <dd>Jefe</dd>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <dt>Área</dt>
+                    <dd>División de medio ambiente</dd>
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <dt>Sede</dt>
+                    <dd>Atocongo</dd>
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <dt>Responsable</dt>
+                    <dd>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </dd>
+                  </div>
+                  <div class="col-lg-1 col-6">
+                    <button mat-icon-button aria-label="regresar" matTooltip="Cerrar">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="d-flex flex-wrap align-items-center bg-card-destinatario">
+                  <div class="col-lg-2 col-6 d-flex align-items-center">
+                    <mat-icon class="mr-2">face</mat-icon> David Cueto
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <dt>Puesto</dt>
+                    <dd>Jefe</dd>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <dt>Área</dt>
+                    <dd>División de medio ambiente</dd>
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <dt>Sede</dt>
+                    <dd>Atocongo</dd>
+                  </div>
+                  <div class="col-lg-2 col-6">
+                    <dt>Responsable</dt>
+                    <dd>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </dd>
+                  </div>
+                  <div class="col-lg-1 col-6">
+                    <button mat-icon-button aria-label="regresar" matTooltip="Cerrar">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </mat-card>
+
+          <mat-card class="mb-3">
+            <div class="subtitulo-p">Datos del documento</div>
+            <div class="row">
+
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  <ul>
+                    <li>Sólo se permiten archivos con las siguientes extensiones: pdf, xls, xlsx,
+                      doc, docx, ppt, dwg, jpg, png, mp4, mp3, rar y zip</li>
+                    <li>El peso máximo por archivo es de 1 GB</li>
+                  </ul>
+                </div>
+              </div>
+
+              <mat-form-field class="col-lg-12" appearance="outline">
+                <mat-label>Asunto</mat-label>
+                <textarea matInput required></textarea>
+              </mat-form-field>
+
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Fecha de documento</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+              <div class="col-lg-8"></div>
+
+              <div class="col-lg-12">
+                <dt class="mb-2">Referencia</dt>
+                <dd class="row">
+                  <div class="col-lg-2">
+                    <mat-button-toggle-group name="fontStyle" aria-label="">
+                      <mat-button-toggle value="interna">Interna</mat-button-toggle>
+                      <mat-button-toggle value="externa">Externa</mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </div>
+
+                  <mat-form-field class="col-lg-10" appearance="outline">
+                    <mat-label></mat-label>
+                    <input matInput placeholder="Buscar por código o asunto de comunicación">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                </dd>
+              </div>
+
+              <div class="col-lg-12">
+                <dt class="mb-2">Proyecto o tema (*)</dt>
+                <dd class="row">
+                  <div class="col-lg-2">
+                    <mat-button-toggle-group name="fontStyle" aria-label="">
+                      <mat-button-toggle value="interna">Proyecto</mat-button-toggle>
+                      <mat-button-toggle value="externa">Tema</mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </div>
+
+                  <mat-form-field class="col-lg-10" appearance="outline">
+                    <mat-label></mat-label>
+                    <input matInput placeholder="Buscar por código o nombre del proyecto">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                </dd>
+              </div>
+
+              <div class="col-lg-12 d-flex justify-content-between align-items-center mb-4">
+                <div>
+
+                </div>
+                <div>
+                  <button mat-icon-button
+                    matTooltip="** Debe seleccionar el documento principal dirigido a la empresa (ej. Carta, Oficio)"
+                    aria-label="">
+                    <mat-icon>info</mat-icon>
+                  </button>
+                  <button mat-raised-button color="primary">Agregar Adjunto</button>
+                </div>
+
+              </div>
+
+              <!-- <div class="col-lg-12 table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Princ.**</th>
+                                            <th>Archivo</th>
+                                            <th>Cod. externo
+                                                <button mat-icon-button
+                                                    matTooltip="El número código con el que Ud. reconoce el documento"
+                                                    aria-label="">
+                                                    <mat-icon>info</mat-icon>
+                                                </button>
+                                            </th>
+                                            <th>Tipo</th>
+                                            <th>Título o Descripción</th>
+                                            <th>F. Caducidad</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <mat-radio-button value="1"></mat-radio-button>
+                                            </td>
+                                            <td>carta.pdf</td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label></mat-label>
+                                                    <input matInput placeholder="">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Seleccione</mat-label>
+                                                    <mat-select>
+                                                        <mat-option value="option">Carta</mat-option>
+                                                        <mat-option value="option">Oficio</mat-option>
+                                                        <mat-option value="option">Informe</mat-option>
+                                                        <mat-option value="option">Plano</mat-option>
+                                                        <mat-option value="option">Transmital</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label></mat-label>
+                                                    <input matInput placeholder="">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label></mat-label>
+                                                    <input matInput placeholder="">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <button mat-icon-button aria-label="regresar">
+                                                    <mat-icon>close</mat-icon>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <mat-radio-button value="1"></mat-radio-button>
+                                            </td>
+                                            <td>carta.pdf</td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label></mat-label>
+                                                    <input matInput placeholder="">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Seleccione</mat-label>
+                                                    <mat-select>
+                                                        <mat-option value="option">Carta</mat-option>
+                                                        <mat-option value="option">Oficio</mat-option>
+                                                        <mat-option value="option">Informe</mat-option>
+                                                        <mat-option value="option">Plano</mat-option>
+                                                        <mat-option value="option">Transmital</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label></mat-label>
+                                                    <input matInput placeholder="">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label></mat-label>
+                                                    <input matInput placeholder="">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <button mat-icon-button aria-label="regresar">
+                                                    <mat-icon>close</mat-icon>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> -->
+
+              <div class="col-lg-12">
+                <mat-card class="mb-3">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <mat-radio-button checked value="1"></mat-radio-button>
+                      <span>Carta.pdf</span>
+                    </div>
+                    <div>
+                      <span class="c-red"> <b>Principal</b> </span>
+                      <button mat-icon-button aria-label="regresar" matTooltip="Eliminar">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                      <mat-label>Título o Descripción</mat-label>
+                      <input matInput placeholder="">
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-3" appearance="outline">
+                      <mat-label>Tipo</mat-label>
+                      <mat-select>
+                        <mat-option value="option">Carta</mat-option>
+                        <mat-option value="option">Oficio</mat-option>
+                        <mat-option value="option">Informe</mat-option>
+                        <mat-option value="option">Plano</mat-option>
+                        <mat-option value="option">Transmital</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-3" appearance="outline">
+                      <mat-label>Fecha</mat-label>
+                      <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="Start date">
+                        <input matEndDate placeholder="End date">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="col-lg-3" appearance="outline">
+                      <mat-label>Cod. Externo</mat-label>
+                      <input matInput placeholder="">
+                      <mat-icon matSuffix matTooltip="El número código con el que Ud. reconoce el documento"
+                        aria-label="">
+                        info
+                      </mat-icon>
+                    </mat-form-field>
+
+                  </div>
+                </mat-card>
+                <mat-card class="mb-3">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <mat-radio-button value="1"></mat-radio-button>
+                      <span>Carta.pdf</span>
+                    </div>
+                    <div>
+                      <!-- <span class="c-red">Principal</span> -->
+                      <button mat-icon-button aria-label="regresar" matTooltip="Eliminar">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                      <mat-label>Título o Descripción</mat-label>
+                      <input matInput placeholder="">
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-3" appearance="outline">
+                      <mat-label>Tipo</mat-label>
+                      <mat-select>
+                        <mat-option value="option">Carta</mat-option>
+                        <mat-option value="option">Oficio</mat-option>
+                        <mat-option value="option">Informe</mat-option>
+                        <mat-option value="option">Plano</mat-option>
+                        <mat-option value="option">Transmital</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-3" appearance="outline">
+                      <mat-label>Fecha</mat-label>
+                      <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="Start date">
+                        <input matEndDate placeholder="End date">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="col-lg-3" appearance="outline">
+                      <mat-label>Cod. Externo</mat-label>
+                      <input matInput placeholder="">
+                      <mat-icon matSuffix matTooltip="El número código con el que Ud. reconoce el documento"
+                        aria-label="">
+                        info
+                      </mat-icon>
+                    </mat-form-field>
+
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+
+        <!--CARD2-informacion adicional-->
+        <div class="col-lg-12">
+          <mat-card class="mb-3">
+            <div class="subtitulo-p">Datos de remitente</div>
+            <div class="row">
+              <div class="col-lg-12">
+
+                <!--switch 1-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>Requiere respuesta</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- <mat-form-field class="col-lg-4" appearance="outline">
+                                            <mat-label>Fecha límite</mat-label>
+                                            <mat-date-range-input [rangePicker]="picker">
+                                                <input matStartDate placeholder="Start date">
+                                                <input matEndDate placeholder="End date">
+                                            </mat-date-range-input>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-date-range-picker #picker></mat-date-range-picker>
+                                        </mat-form-field> -->
+                    <div class="col-lg-4">
+                      <mat-checkbox class="mt-3">No aplica fecha límite</mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <!--switch 1 fin-->
+
+                <!--switch 2-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>URGENTE</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                  </div>
+                </div>
+                <!--switch 2 fin-->
+
+                <!--switch 3-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>Proveedor / Cliente</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                      <mat-label></mat-label>
+                      <input matInput placeholder="Buscar por código o nombre del Proveedor o cliente">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!--switch 3 fin-->
+
+                <!--switch 4-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>Zona</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                      <mat-label></mat-label>
+                      <input matInput placeholder="Buscar por nombre de zona">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!--switch 4 fin-->
+
+                <!--switch 5-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>Contrato</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                      <mat-label></mat-label>
+                      <input matInput placeholder="Buscar por código o nombre de contrato">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!--switch 5 fin-->
+
+                <!--switch 6-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>Asociado a otros expedientes de ingreso o salida</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field class="col-lg-10" appearance="outline">
+                      <mat-label>Expediente</mat-label>
+                      <input matInput placeholder="Buscar por código o asunto">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    <div class="col-lg-2">
+                      <button mat-raised-button color="primary" class="mt-2">Búsqueda avanzada</button>
+                    </div>
+                    <div>
+                      <hr>
+                    </div>
+                    <div class="col-lg-12">
+                      <mat-card class="mb-3">
+                        <div class="row">
+                          <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
+                            <div class="col-lg-7 d-flex justify-content-start align-items-center">
+                              <div>
+                                <button mat-icon-button aria-label="entrar" matTooltip="Entrar">
+                                  <mat-icon>open_in_new</mat-icon>
+                                </button>
+                              </div>
+                              <div class="col-lg-3 col-5">
+                                <span class="ml-3">21-00045</span>
+                                <button mat-icon-button aria-label="entrar" matTooltip="Entrar">
+                                  <mat-icon>login</mat-icon>
+                                </button>
+                              </div>
+                              <div class="col-lg-9 col-5 coment-card">
+                                Informe de calidad del aire 2021-21 Ref. AC-21-0043-C
+                              </div>
+                            </div>
+
+                            <div class="col-lg-5 col-12 d-flex justify-content-end align-items-center">
+                              <div class="col-lg-3 text-end">
+                                <h2 class="mb-0"><span class="badge bg-secondary">Nuevo</span></h2>
+                              </div>
+                              <div class="col-lg-1">
+                                <button mat-icon-button aria-label="regresar" matTooltip="Eliminar">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="row">
+                              <div class="col-md-2 col-6">
+                                <dt>Remitente</dt>
+                                <dd>ACME SAC</dd>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                <dt>Destinatario</dt>
+                                <dd>División de medio ambiente</dd>
+                              </div>
+                              <div class="col-md-2 col-6">
+                                <dt>Fecha de registro</dt>
+                                <dd>29/12/2021-11:05</dd>
+                              </div>
+                              <div class="col-md-3 col-6">
+                                <dt>Fecha de documento</dt>
+                                <dd>28/12/2021</dd>
+                              </div>
+                              <div class="col-md-2 col-6">
+                                <dt>Tipo de documento</dt>
+                                <dd>Carta</dd>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </mat-card>
+                    </div>
+
+                  </div>
+                </div>
+                <!--switch 6 fin-->
+
+                <!--switch 7-->
+                <div class="separador">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>Ubicación física</div>
+                    <div>
+                      <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                      <mat-label>Tipo de Almacenamiento</mat-label>
+                      <mat-select>
+                        <mat-option value="option">CD</mat-option>
+                        <mat-option value="option">Impreso</mat-option>
+                        <mat-option value="option">Otro</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                      <mat-label>Archivo</mat-label>
+                      <mat-select>
+                        <mat-option value="option">Atocongo</mat-option>
+                        <mat-option value="option">Central</mat-option>
+                        <mat-option value="option">Condorcocha</mat-option>
+                        <mat-option value="option">DMAU</mat-option>
+                        <mat-option value="option">Ingieneria</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                      <mat-label>Estante / Container</mat-label>
+                      <input matInput placeholder="Buscar por nombre de zona">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                      <mat-label>Archivador</mat-label>
+                      <input matInput placeholder="Buscar por nombre de zona">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                      <mat-label>Caja</mat-label>
+                      <input matInput placeholder="Buscar por nombre de zona">
+                      <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!--switch 7 fin-->
+
+
+              </div>
+
+            </div>
+          </mat-card>
+        </div>
+
+        <!--CARD3-audiencia-->
+        <div class="col-lg-12">
+
+          <mat-card class="mb-3">
+            <div class="row">
+              <div class="col-lg-12 d-flex mb-3 justify-content-between">
+                <dt class="subtitulo-p">Áreas</dt>
+                <button mat-icon-button aria-label="regresar" matTooltip="Agregar">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+              <div class="col-lg-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Área</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>División de Medio Ambiente</td>
+                      <td>
+                        <button mat-icon-button aria-label="regresar" matTooltip="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </mat-card>
+
+          <mat-card class="mb-3">
+            <div class="row">
+              <div class="col-lg-12 d-flex mb-3 justify-content-between">
+                <dt class="subtitulo-p">Usuarios</dt>
+                <button mat-icon-button aria-label="regresar" matTooltip="Agregar">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+              <div class="col-lg-12 table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Usuario</th>
+                      <th>Sede</th>
+                      <th>Área</th>
+                      <th>Puesto</th>
+                      <th>Acc</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>David Cueto</td>
+                      <td>Atocongo</td>
+                      <td>División del medio ambiente</td>
+                      <td>Jefe de División de Medio Ambiente</td>
+                      <td>
+                        <button mat-icon-button aria-label="regresar" matTooltip="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </mat-card>
+
+
+
+        </div>
+
+        <!--nota / comentario-->
+        <div class="col-md-12 mb-3">
+          <mat-card>
+            <div class="subtitulo-p">Nota / Comentario</div>
+            <div class="row">
+              <mat-form-field class="col-lg-12" appearance="outline">
+                <mat-label>Nota / Comentario</mat-label>
+                <textarea matInput></textarea>
+              </mat-form-field>
+              <div class="col-lg-12 mb-4">
+                <button mat-raised-button color="primary">Seleccionar Archivo</button>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+        <!--nota / comentario-->
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{TituloPopup}}</h2>
+<div mat-dialog-content>
+    <div class="row" *ngIf="Form" [formGroup]="Form">
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Nombre <span style="color:red;">(*)</span></mat-label>
+            <input matInput formControlName="nombre" autocomplete="off" [maxlength]="255">
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('nombre')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-lg-12" appearance="outline">
+            <mat-label>Usuario Responsable<span style="color:red;">(*)</span></mat-label>
+            <input type="text" formControlName="usuarioResponsable" aria-label="Number" matInput (keyup)="eventoFiltrarUsuarioResponsable()" [matAutocomplete]="autoUsuarioResponsable">
+            <mat-autocomplete #autoUsuarioResponsable="matAutocomplete">
+              <mat-option *ngIf="isLoading">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </mat-option>
+              <ng-container *ngIf="!isLoading">
+                <mat-option *ngFor="let option of filteredUsuarioResponsable" [value]="option.NombreCompleto" (onSelectionChange)="onSeleccionUsuarioResponsable($event, option)">
+                 {{option.NombreCompleto}}
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-error>
+              <app-error-validation-display [FormControl]="Form.get('usuarioResponsable')"></app-error-validation-display>
+            </mat-error>
+          </mat-form-field>
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Habilitado <span style="color:red;">(*)</span></mat-label>
+            <mat-select formControlName="habilitado">
+                <mat-option [value]="true">Sí</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('habilitado')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="text-center block-full-width" style="display: block;">
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="eventoGuardar()">Guardar</button>
+</div>

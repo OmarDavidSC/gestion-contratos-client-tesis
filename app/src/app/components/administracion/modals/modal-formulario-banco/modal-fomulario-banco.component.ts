@@ -1,0 +1,76 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { EBanco } from 'src/app/shared/models/entidades/EBanco';
+import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
+import { BancoService } from 'src/app/shared/services/banco.service';
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import { FormHelper } from 'src/app/shared/utils/form-helper';
+import { v4 as uuidv4 } from 'uuid';
+
+@Component({
+  selector: 'app-modal-fomulario-banco',
+  templateUrl: './modal-fomulario-banco.component.html',
+  styleUrls: ['./modal-fomulario-banco.component.scss']
+})
+export class ModalFormularioBancoComponent implements OnInit {
+
+  UsuarioActual: EUsuario = new EUsuario();
+  public TituloPopup: string;
+  public Form: FormGroup;
+  public isLoading = false;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: EBanco,
+    private formBuilder: FormBuilder,
+    private bancoService: BancoService,
+    private spinnerService: NgxSpinnerService,
+    private usuarioService: UsuarioService,
+    public dialogRef: MatDialogRef<ModalFormularioBancoComponent>
+  ) { }
+
+  ngOnInit(): void {
+    this.TituloPopup = this.data ?'Editar Banco' : 'Registrar Banco';
+
+    this.usuarioService.getCurrentUser().then((resultado: EUsuario) => {
+      this.UsuarioActual = resultado;
+
+      this.Form = this.formBuilder.group({
+        id: new FormControl(this.data?.Id, []),
+        nombre: new FormControl(this.data?.Nombre, [Validators.required]),
+        habilitado: new FormControl(this.data?.Habilitado, [Validators.required])
+      });
+    });
+  }
+
+  public async eventoGuardar(): Promise<void> {
+    if(!this.Form.valid){
+      FormHelper.ValidarFormGroup(this.Form);
+      return;
+    }
+
+    const item = this.Form.value;
+
+    const datos = {
+      id: this.data == null ? uuidv4() : this.data.Id,
+      nombre: item.nombre,
+      habilitado: item.habilitado,
+      usuarioRegistro: this.data == null ? { id: this.UsuarioActual.Id } : { id: this.data.UsuarioRegistro.Id },
+      fechaRegistro: this.data == null ? new Date() : this.data.FechaRegistro,
+      usuarioModificacion: { id: this.UsuarioActual.Id },
+      fechaModificacion: new Date()
+    }
+
+    this.spinnerService.show();
+    if(this.data){
+      await this.bancoService.updateItem(datos);
+    }
+    else {
+      await this.bancoService.addItem(datos);
+    }
+    this.spinnerService.hide();
+    this.dialogRef.close(true);
+  }
+
+}

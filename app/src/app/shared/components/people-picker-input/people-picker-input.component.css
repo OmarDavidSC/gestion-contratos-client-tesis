@@ -1,0 +1,31 @@
+.lbl_autocomplete_subtitle {
+  font-size: 10px;
+}
+
+.img_autocomplete {
+  height: 40px;
+  border-radius: 20px;
+}
+
+mat-chip img {
+  height: 32px;
+  border-radius: 16px;
+  margin-left: -12px;
+}
+
+.ng-invalid::-webkit-input-placeholder {
+  color: #f44336;
+}
+
+.ng-invalid:-ms-input-placeholder {
+  color: #f44336;
+}
+
+.ng-invalid::-ms-input-placeholder {
+  color: #f44336;
+}
+
+.ng-invalid::placeholder {
+  color: #f44336;
+}
+/*# sourceMappingURL=people-picker-input.component.css.map */

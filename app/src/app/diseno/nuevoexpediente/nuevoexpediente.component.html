@@ -1,0 +1,249 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12 mb-3">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center">
+                    <button mat-icon-button aria-label="regresar" matTooltip="Regresar">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button> <span class="titulo-p">nuevo expediente de ingreso</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button mat-raised-button color="primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+
+        <!--datos remitente-->
+        <div class="col-md-12 mb-3">
+            <mat-card>
+                <div class="subtitulo-p">Datos del Remitente</div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="1">Persona Natural</mat-radio-button>
+                            <mat-radio-button value="2">Persona Juridica</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div>
+                        <hr>
+                    </div>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Tipo de documento </mat-label>
+                        <mat-select required>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Número de documento</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                    </mat-form-field>
+
+                    <div class="col-lg-4"></div>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Nombres</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Apellido paterno</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Apellido materno</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Correo electrónico</mat-label>
+                        <input matInput placeholder="pat@example.com" required>
+                        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                        <mat-icon matSuffix>phone</mat-icon>
+                    </mat-form-field>
+                </div>
+
+            </mat-card>
+
+        </div>
+        <!--datos remitente-->
+
+        <!--destinatario-->
+        <div class="col-md-12 mb-3">
+            <mat-card>
+                <div class="subtitulo-p">Destinatario</div>
+                <div class="row">
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Área </mat-label>
+                        <mat-select required>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+
+                    <div class="col-lg-4"></div>
+                </div>
+            </mat-card>
+        </div>
+        <!--destinatario-->
+
+        <!--datos del documento-->
+        <div class="col-md-12 mb-3">
+            <mat-card>
+                <div class="subtitulo-p">Datos del Documento</div>
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="alert alert-info" role="alert">
+                            <ul>
+                                <li>Sólo se permiten archivos con las siguientes extensiones: pdf, xls, xlsx, doc, docx, ppt, dwg, jpg, png, mp4, mp3, rar y zip</li>
+                                <li>El peso máximo por archivo es de 1 GB</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Asunto</mat-label>
+                        <textarea matInput required></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Referencia</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Medio de recepción </mat-label>
+                        <mat-select required>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="col-lg-4"></div>
+
+                    <div>
+                        <hr>
+                    </div>
+
+                    <div class="col-lg-12">Documento principal</div>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Tipo de documento </mat-label>
+                        <mat-select required>
+                            <mat-option value="option">Option</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-4" appearance="outline">
+                        <mat-label>Número de documento</mat-label>
+                        <input matInput placeholder="Placeholder" required>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Título o Descripción del archivo</mat-label>
+                        <textarea matInput required></textarea>
+                    </mat-form-field>
+
+                    <div class="col-lg-12 mb-4">
+                        <button mat-raised-button color="primary">Seleccionar Archivo</button>
+                    </div>
+
+                    <div>
+                        <hr>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="row mt-3">
+                            <div class="col-lg-6 subtitulo-s">Adjuntos</div>
+                            <div class="col-lg-6 text-end"><button mat-raised-button color="primary">Agregar Adjunto</button></div>
+                            <div class="col-lg-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Archivo</th>
+                                            <th scope="col">Numero</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Anexo 01.docx</th>
+                                            <td>PL-ABC-342</td>
+                                            <td>Anexo</td>
+                                            <td>Listado de plantillas</td>
+                                            <td class="lista-opciones">
+                                                <ul>
+                                                    <li><button mat-icon-button aria-label="boton editar" matTooltip="Editar">
+                                                            <mat-icon>edit</mat-icon>
+                                                        </button></li>
+                                                    <li><button mat-icon-button aria-label="boton borrar" matTooltip="Eliminar">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Anexo 01.docx</th>
+                                            <td>PL-ABC-342</td>
+                                            <td>Anexo</td>
+                                            <td>Listado de plantillas</td>
+                                            <td class="lista-opciones">
+                                                <ul>
+                                                    <li><button mat-icon-button aria-label="boton editar" matTooltip="Editar">
+                                                            <mat-icon>edit</mat-icon>
+                                                        </button></li>
+                                                    <li><button mat-icon-button aria-label="boton borrar" matTooltip="Eliminar">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-card>
+        </div>
+        <!--datos del documento-->
+
+        <!--nota / comentario-->
+        <div class="col-md-12 mb-3">
+            <mat-card>
+                <div class="subtitulo-p">Nota / Comentario</div>
+                <div class="row">
+                    <mat-form-field class="col-lg-12" appearance="outline">
+                        <mat-label>Nota / Comentario</mat-label>
+                        <textarea matInput></textarea>
+                    </mat-form-field>
+                    <div class="col-lg-12 mb-4">
+                        <button mat-raised-button color="primary">Seleccionar Archivo</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <!--nota / comentario-->
+
+
+    </div>
+
+</div>

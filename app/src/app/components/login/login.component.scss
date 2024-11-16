@@ -1,0 +1,46 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo {
+    height: 130px;
+    margin-bottom: 10px;
+}
+
+.loginCard {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con 80% de opacidad */
+    border-radius: 15px; /* Para bordes redondeados */
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    height: 100px;
+}
+
+mat-card-content {
+    text-align: center;
+}
+
+.contenedor {
+    background: linear-gradient(to bottom left, #f5ffffa4, #F1F6F6, #f8ffffa4, #F1F5F6), url('../../../assets/img/gif/adpbackground.gif');
+    background-repeat: no-repeat;
+    background-size: 150% 150%;
+    height: 100%;
+    padding: 32px;
+    position: relative;
+    animation: gradient 100s ease infinite;
+    min-height: 100vh;
+}
+

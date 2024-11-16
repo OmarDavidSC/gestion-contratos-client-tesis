@@ -1,0 +1,192 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <mat-sidenav #filtersDrawer position="end" class="filters-container">
+                <div class="filters-header">
+                    <div class="row">
+                        <div class="col-lg-5 col-12 mb-2">
+                            <button class="w100" mat-raised-button color="primary"
+                                (click)="eventoBuscarConFiltrosAvanzados()">Buscar</button>
+                        </div>
+                        <div class="col-lg-5 col-12">
+                            <button class="w100" mat-stroked-button
+                                (click)="eventoLimpiarFiltrosAvanzados()">Limpiar</button>
+                        </div>
+                        <div class="col-lg-2 col-12 text-end mb-4">
+                            <button type="button" mat-icon-button color="basic" class="close-button"
+                                (click)="filtersDrawer.toggle()">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="advanced-filters-container">
+                    <div class="row">
+
+                        <!-- <mat-form-field class="col-lg-12" appearance="outline">
+                            <mat-label>Tipo Contrato</mat-label>
+                            <mat-select [(ngModel)]="CampoFiltroAvanzado.TipoContrato" multiple>
+                                <mat-option *ngFor="let value of ListaAdmTipoContrato" [value]="value.Id">{{ value.Nombre }}</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+
+                        <mat-form-field class="col-lg-12" appearance="outline">
+                            <mat-label>Tipo de Contrato</mat-label>
+                            <mat-select [(ngModel)]="CampoFiltroAvanzado.ListaTipoContrato" multiple>
+                                <mat-option *ngFor="let value of ListaAdmTipoContrato" [value]="value.Id">{{
+                                    value.Nombre }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-lg-12" appearance="outline" *ngIf="mostrarCampoFiltroEstado">
+                            <mat-label>Estado</mat-label>
+                            <mat-select [(ngModel)]="CampoFiltroAvanzado.ListaEstado"
+                                [ngModelOptions]="{standalone: true}" multiple>
+                                <mat-option *ngFor="let value of ListaAdmEstado" [value]="value.Id">{{ value.Nombre
+                                    }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field class="col-lg-12" appearance="outline">
+                            <mat-label>Área</mat-label>
+                            <mat-select [(ngModel)]="CampoFiltroAvanzado.ListaArea"
+                                [ngModelOptions]="{standalone: true}" multiple>
+                                <mat-option *ngFor="let value of ListaAdmArea" [value]="value.Id">{{ value.Nombre
+                                    }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-lg-12" appearance="outline">
+                            <mat-label>Fecha Registro</mat-label>
+                            <mat-date-range-input [rangePicker]="pickerFechaRegistro">
+                                <input matStartDate placeholder="Desde"
+                                    [(ngModel)]="CampoFiltroAvanzado.FechaRegistroInicio">
+                                <input matEndDate placeholder="Hasta"
+                                    [(ngModel)]="CampoFiltroAvanzado.FechaRegistroFin">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="pickerFechaRegistro"></mat-datepicker-toggle>
+                            <mat-date-range-picker #pickerFechaRegistro></mat-date-range-picker>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+            </mat-sidenav>
+        </div>
+        <div class="col-lg-12 mb-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <span class="titulo-p">Bandeja de Contratos</span>
+                </div>
+                <div class="col-lg-6 text-end">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-7 filtros-pg d-flex flex-mob-button mb-3 mt-3 estado-combo">
+                    <button mat-raised-button class="{{Vista == 'Pendientes' ? 'active mr-3' : 'mr-3'}}"
+                        (click)="eventoBuscarPorVista('Pendientes')">Mis Pendientes</button>
+                    <!--<button mat-raised-button class="{{Vista == 'Derivados' ? 'active mr-3' : 'mr-3'}}" (click)="eventoBuscarPorVista('Derivados')">Derivados</button> -->
+                    <!-- <button mat-raised-button class="{{Vista == 'Devueltos' ? 'active mr-3' : 'mr-3'}}" (click)="eventoBuscarPorVista('Devueltos')">Devueltos</button> -->
+                    <button mat-raised-button class="{{Vista == 'Todos' ? 'active mr-3' : 'mr-3'}}"
+                        (click)="eventoBuscarPorVista('Todos')">Todos</button>
+                </div>
+                <div class="col-lg-5 text-end">
+                    <button class="mt-2 mr-3" mat-icon-button matTooltip="Nuevo Contrato"
+                        (click)="onClickNuevoDocumento()">
+                        <mat-icon class="icon-large">post_add</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7 filtros-pg">
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                        <mat-label>Buscar...</mat-label>
+                        <input matInput placeholder="Buscar por código o Detalle"
+                            [(ngModel)]="CampoFiltroAvanzado.TextoBusquedaRapida"
+                            (keydown.enter)="eventoBusquedaRapida()">
+                        <mat-icon matSuffix (click)="eventoBusquedaRapida()" style="cursor: pointer;">search</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-5 text-end">
+                    <button class="mt-2 active mr-3" mat-raised-button (click)="onClickExportar()">Exportar
+                        <mat-icon>get_app</mat-icon></button>
+                    <button class="mt mr-3" mat-icon-button matTooltip="Filtros"
+                        (click)="filtersDrawer.toggle()"><mat-icon>filter_list</mat-icon></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="mat-elevation-z3 div-container" [hidden]="dataSource.data.length <= 0">
+                <div class="table-resp">
+                    <table class="table" mat-table [dataSource]="dataSource" matSort matSortActive="Codigo"
+                        matSortDirection="desc">
+                        <ng-container matColumnDef="Codigo">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">
+                                <a class="link" style="cursor: pointer;" (click)="eventoVerDetalle(element)">{{
+                                    element.CodigoContrato }}</a>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Titulo">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TituloContrato }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="TipoContrato">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Tipo Contrato</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TipoContrato.Nombre }}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Area">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Área</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Area.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="RazonSocial">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Razón Social</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Proveedor.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Estado">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Estado</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Estado.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="FechaInicio">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TextoFechaInicio }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="FechaFin">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Fecha Fin</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TextoFechaFin }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Monto">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Monto</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.MontoContrato }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Moneda">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Moneda</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Moneda.Nombre }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="Administrador">
+                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Administrador</th>
+                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.NombresAdministradores}}
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                    <mat-paginator showFirstLastButtons [pageSizeOptions]="[15, 30, 50]"
+                        itemsPerPageLabel="Cantidad por página" [pageSize]="15" [hidePageSize]="false">
+                    </mat-paginator>
+                </div>
+            </div>
+            <mat-card class="mat-elevation-z3 noResultado" [hidden]="dataSource.data.length > 0">
+                <span>No se han encontrado resultados</span>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

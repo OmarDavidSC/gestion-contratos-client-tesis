@@ -1,0 +1,74 @@
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer class="bg-r" #drawer mode="over" [autoFocus]="false" [opened]="false">
+    <div class="pt-2">
+      <div class="row">
+        <div class="col-12 mt-1 mb-1">
+          <button mat-button class="w-100 menu-button" (click)="irAlHome()">
+            <div class="d-flex w-100">
+              <mat-icon class="mt-1">home</mat-icon>
+              <div class="col text-start ps-3">Home</div>
+            </div>
+          </button>
+        </div>
+        <ng-container *ngFor="let modulo of ListaModulo">
+          <div class="col-12 mt-1 mb-1">
+            <button mat-button class="w-100 menu-button" (click)="modulo.Mostrar = !modulo.Mostrar">
+              <div class="d-flex w-100">
+                <mat-icon class="mt-1">{{modulo.Icono}}</mat-icon>
+                <div class="col text-start ps-3">{{modulo.Title}}</div>
+              </div>
+            </button>
+          </div>
+          <div class="ps-1" *ngIf="modulo.Mostrar">
+            <div class="col-12 ps-5" *ngFor="let permiso of modulo.ListaPermisos">
+              <button mat-button class="w-100 menu-button" (click)="Navegar(permiso.UrlPagina)">
+                <div class="d-flex w-100">
+                  <mat-icon class="mt-1">subdirectory_arrow_right</mat-icon>
+                  <div class="col text-start ps-3">{{permiso.Title}}</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+        <div class="col-12 mt-1 mb-1" [hidden]="!mostrarBotonAdministracion">
+          <button mat-button class="w-100 menu-button" (click)="irAAdministracion()">
+            <div class="d-flex w-100">
+              <mat-icon class="mt-1">settings</mat-icon>
+              <div class="col text-start ps-3">Administración</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="main-container">
+      <mat-toolbar fxLayoutAlign="center" *ngIf="mostrarMenu">
+        <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="text-center logo-container">
+          <img [src]="LogoEmpresa">
+          <span class="titulo-cabecera titulo-p mob-hide">
+            GESTIÓN CONTRATOS
+          </span>
+        </div>
+        <span class="example-spacer"></span>
+        <div class="d-flex">
+          <mat-divider [vertical]="true" class="d-none d-sm-block"></mat-divider>
+          <button mat-button [matMenuTriggerFor]="userMenu" class="d-none d-sm-block">
+            ¡Hola! {{ UsuarioActual.NombreCompleto }}
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #userMenu="matMenu">
+            <button mat-menu-item (click)="logOut()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Cerrar sesión</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+      <ng-content select="[Body]"></ng-content>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
