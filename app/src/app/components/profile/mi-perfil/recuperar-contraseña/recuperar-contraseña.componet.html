@@ -1,0 +1,76 @@
+<div class="recovery-container">
+    <div class="recovery-card">
+      <div class="recovery-header">
+        <div class="icon-circle">
+          <mat-icon class="lock-icon">lock_reset</mat-icon>
+        </div>
+        <h2>Recuperar Contraseña</h2>
+        <p class="subtitle">Ingresa tu correo electrónico y te enviaremos las instrucciones para restablecer tu contraseña</p>
+      </div>
+  
+      <form class="recovery-form">
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <div class="input-container">
+            <mat-icon class="input-icon">email</mat-icon>
+            <input type="email" id="email" placeholder="ejemplo@correo.com">
+          </div>
+        </div>
+  
+        <button class="submit-btn" onclick="showAlert('success'); return false;">
+          <mat-icon>send</mat-icon>
+          Enviar Instrucciones
+        </button>
+  
+        <a href="#" class="back-link">
+          <mat-icon>arrow_back</mat-icon>
+          Volver al inicio de sesión
+        </a>
+      </form>
+    </div>
+  
+    <!-- Alerta de Éxito -->
+    <div class="alert success" id="successAlert">
+      <div class="alert-content">
+        <mat-icon class="alert-icon">check_circle</mat-icon>
+        <div class="alert-text">
+          <h3>¡Correo Enviado!</h3>
+          <p>Revisa tu bandeja de entrada para restablecer tu contraseña.</p>
+        </div>
+        <button class="close-alert" onclick="hideAlert('success')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Alerta de Error -->
+    <div class="alert error" id="errorAlert">
+      <div class="alert-content">
+        <mat-icon class="alert-icon">error</mat-icon>
+        <div class="alert-text">
+          <h3>Error</h3>
+          <p>No se pudo enviar el correo. Por favor, intenta nuevamente.</p>
+        </div>
+        <button class="close-alert" onclick="hideAlert('error')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <script>
+    function showAlert(type) {
+      const alert = document.getElementById(type + 'Alert');
+      alert.classList.add('show');
+      
+      // Ocultar automáticamente después de 5 segundos
+      setTimeout(() => {
+        hideAlert(type);
+      }, 5000);
+    }
+    
+    function hideAlert(type) {
+      const alert = document.getElementById(type + 'Alert');
+      alert.classList.remove('show');
+    }
+    </script> -->
