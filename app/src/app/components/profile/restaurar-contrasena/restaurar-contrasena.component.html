@@ -1,6 +1,7 @@
 <div class="container d-flex justify-content-center align-items-center">
   <div class="reset-card rounded shadow position-relative w-100" style="max-width: 400px;">
-    <button class="btn btn-link position-absolute top-0 start-0 m-3" (click)="onBack()" matTooltip="Regresar">
+    <button class="btn btn-secundary position-absolute top-0 start-0 m-3" color="primary" (click)="onBack()"
+      matTooltip="Regresar">
       <mat-icon>arrow_back</mat-icon>
     </button>
     <div class="reset-header text-center">
@@ -32,9 +33,9 @@
           <li id="lengthCheck">Mínimo 8 caracteres</li>
         </ul>
       </div>
-      <button type="submit" class="btn btn-primary btn-block mt-3">
+      <button mat-raised-button color="primary">
         <mat-icon>save</mat-icon>
-        Guardar y Continuar
+        <span>Confirmar</span>
       </button>
     </form>
   </div>
