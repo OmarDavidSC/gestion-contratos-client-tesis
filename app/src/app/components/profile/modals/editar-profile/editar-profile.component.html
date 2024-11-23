@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{TituloPopup}}</h2>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dialogRef.close()"></button>
+  </div>
+<div mat-dialog-content>
+    <div class="row" *ngIf="Form" [formGroup]="Form">
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" autocomplete="off" [maxlength]="255">
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('nombre')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Apellido Paterno</mat-label>
+            <input matInput formControlName="apellidoPaterno" autocomplete="off" [maxlength]="255">
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('apellidoPaterno')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Apellido Materno</mat-label>
+            <input matInput formControlName="apellidoMaterno" autocomplete="off" [maxlength]="255">
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('apellidoMaterno')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" autocomplete="off" [maxlength]="255">
+            <mat-error>
+                <app-error-validation-display [FormControl]="Form.get('correo')">
+                </app-error-validation-display>
+            </mat-error>
+        </mat-form-field>
+        <div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions class="text-center block-full-width" style="display: block;">
+    <button mat-stroked-button color="primary" (click)="dialogRef.close()">Cancelar</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="eventoGuardar()">Guardar</button>
+</div>

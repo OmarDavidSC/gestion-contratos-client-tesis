@@ -1,76 +1,36 @@
 <div class="profile-container">
-    <div class="profile-header">
-      <div class="profile-avatar">
-        <mat-icon class="avatar-icon">account_circle</mat-icon>
-        <button class="edit-avatar-btn" onclick="document.getElementById('editModal').classList.add('modal-show')">
-          <mat-icon>edit</mat-icon>
-          Editar Perfil
-        </button>
-      </div>
-    </div>
-  
-    <div class="profile-info">
-      <div class="info-group">
-        <label>Nombre</label>
-        <p class="info-value">Juan Carlos</p>
-      </div>
-  
-      <div class="info-group">
-        <label>Apellido Paterno</label>
-        <p class="info-value">González</p>
-      </div>
-  
-      <div class="info-group">
-        <label>Apellido Materno</label>
-        <p class="info-value">Rodríguez</p>
-      </div>
-  
-      <div class="info-group">
-        <label>Correo</label>
-        <p class="info-value">juan.gonzalez@gmail.com</p>
-      </div>
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <mat-icon class="avatar-icon">account_circle</mat-icon>
+      <button mat-raised-button color="primary" (click)="eventoMostrarPopupEditar(Usuario)" matTooltip="Editar">
+        <mat-icon>edit</mat-icon>
+        <span>Editar</span>
+      </button>
     </div>
   </div>
-  
-  <!-- Modal -->
-  <div class="modal" id="editModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Editar Perfil</h2>
-        <button class="close-btn" onclick="document.getElementById('editModal').classList.remove('modal-show')">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-  
-      <form class="modal-form">
-        <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" value="Juan Carlos" placeholder="Ingresa tu nombre">
-        </div>
-  
-        <div class="form-group">
-          <label>Apellido Paterno</label>
-          <input type="text" value="González" placeholder="Ingresa tu apellido paterno">
-        </div>
-  
-        <div class="form-group">
-          <label>Apellido Materno</label>
-          <input type="text" value="Rodríguez" placeholder="Ingresa tu apellido materno">
-        </div>
-  
-        <div class="form-group">
-          <label>Correo</label>
-          <input type="email" value="juan.gonzalez@ejemplo.com" placeholder="Ingresa tu correo">
-        </div>
-  
-        <div class="modal-actions">
-          <button class="cancel-btn" onclick="document.getElementById('editModal').classList.remove('modal-show')">
-            Cancelar
-          </button>
-          <button class="save-btn">
-            Guardar Cambios
-          </button>
-        </div>
-      </form>
+  <div class="profile-info">
+    <div class="info-group">
+      <label>Nombre</label>
+      <p class="info-value">{{Usuario.Nombre}}</p>
+    </div>
+
+    <div class="info-group">
+      <label>Apellido Paterno</label>
+      <p class="info-value">{{Usuario.ApellidoPaterno}}</p>
+    </div>
+
+    <div class="info-group">
+      <label>Apellido Materno</label>
+      <p class="info-value">{{Usuario.ApellidoMaterno}}</p>
+    </div>
+
+    <div class="info-group">
+      <label>Correo</label>
+      <p class="info-value">{{Usuario.Correo}}</p>
     </div>
   </div>
+</div>
+
+
+<app-recuperar-contrasena></app-recuperar-contrasena>
+<app-restaurar-contrasena></app-restaurar-contrasena>

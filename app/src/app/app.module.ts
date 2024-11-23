@@ -74,6 +74,9 @@ import { ModalFormularioMetodoEntregaComponent } from './components/administraci
 import { ModalFormularioSistemaContratacionComponent } from './components/administracion/modals/modal-formulario-sistema-contratacion/modal-formulario-sistema-contratacion.component';
 import { AdministracionSistemaContratacionComponent } from './components/administracion/administracion-sistema-contratacion/administracion-sistema-contratacion.component';
 import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
+import { RecuperarContrasenaComponent } from './components/profile/recuperar-contrasena/recuperar-contrasena.component';
+import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
+import { EditarProfileComponent } from './components/profile/modals/editar-profile/editar-profile.component';
 
 
 @NgModule({
@@ -130,7 +133,10 @@ import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.comp
     ModalFormularioMetodoEntregaComponent,
     ModalFormularioSistemaContratacionComponent,
     AdministracionSistemaContratacionComponent,
-    MiPerfilComponent
+    MiPerfilComponent,
+    RecuperarContrasenaComponent,
+    RestaurarContrasenaComponent,
+    EditarProfileComponent
   ],
   imports: [
     ComunModule,

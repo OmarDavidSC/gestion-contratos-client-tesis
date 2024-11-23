@@ -1,4 +1,4 @@
-.recovery-container {
+.reset-container {
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     position: relative;
   }
   
-  .recovery-card {
+  .reset-card {
     background: white;
     border-radius: 24px;
     padding: 2.5rem;
@@ -17,7 +17,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
   
-  .recovery-header {
+  .reset-header {
     text-align: center;
     margin-bottom: 2rem;
   }
@@ -31,13 +31,19 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
+    animation: pulse 2s infinite;
   }
   
-  .lock-icon {
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .key-icon {
     font-size: 40px !important;
     width: 40px !important;
     height: 40px !important;
-    color: #3f51b5;
   }
   
   h2 {
@@ -52,15 +58,19 @@
     line-height: 1.5;
   }
   
-  .recovery-form {
+  .reset-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
   
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
   .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
     color: #555;
     font-size: 0.9rem;
   }
@@ -88,12 +98,73 @@
   
   input:focus {
     outline: none;
-    border-color: #3f51b5;
     box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.1);
   }
   
+  .toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .password-strength {
+    margin-top: 0.5rem;
+  }
+  
+  .strength-bar {
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .strength-progress {
+    height: 100%;
+    width: 0;
+    background: #eee;
+    transition: all 0.3s ease;
+  }
+  
+  .strength-text {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+    display: block;
+  }
+  
+  .password-requirements {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .password-requirements h4 {
+    margin: 0 0 0.5rem;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  
+  .password-requirements ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .password-requirements li {
+    margin: 0.25rem 0;
+    transition: color 0.3s ease;
+  }
+  
+  .password-requirements li.valid {
+    color: #4caf50;
+  }
+  
   .submit-btn {
-    background: #3f51b5;
     color: white;
     border: none;
     padding: 1rem;
@@ -107,25 +178,28 @@
     transition: all 0.3s ease;
   }
   
-  .submit-btn:hover {
+  .submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .submit-btn:not(:disabled):hover {
     background: #303f9f;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(63, 81, 181, 0.4);
   }
   
-  .back-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: #666;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
+  .match-message {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
   }
   
-  .back-link:hover {
-    color: #3f51b5;
+  .match-message.valid {
+    color: #4caf50;
+  }
+  
+  .match-message.invalid {
+    color: #f44336;
   }
   
   /* Alertas */
@@ -174,10 +248,6 @@
     color: #f44336;
   }
   
-  .alert-text {
-    flex: 1;
-  }
-  
   .alert-text h3 {
     margin: 0 0 0.25rem;
     font-size: 1.1rem;
@@ -190,19 +260,8 @@
     color: #666;
   }
   
-  .close-alert {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: #666;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
   @media (max-width: 600px) {
-    .recovery-card {
+    .reset-card {
       padding: 2rem;
     }
   

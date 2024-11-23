@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import { sweet2 } from 'src/app/shared/utils/sweet2';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -31,27 +32,27 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
   }
 
   ngOnInit(): void {
-    //this.obtenerMaestros();
+    this.obtenerMaestros();
   }
 
   async obtenerMaestros() {
     this.mostrarProgreso();
 
-    Promise.all([this.getUser()]).then(([resultadoUsuario]) => {
-      this.UsuarioActual = resultadoUsuario;
-
-      /*Promise.all([this.userService.getItemFilterUsuarioId(this.UsuarioActual.Id)]).then(([
-        resultadoAdmUsuario
-      ]) => {
-      
-        // if (resultadoAdmUsuario.Rol.Title !== "Administrador") {
-        //   window.location.href = environment.webAbsoluteUrl;
-        //   return;
-        // }
-
-        this.ocultarProgreso();
-      });*/
-    })
+    Promise.all([
+      this.userService.getCurrentUser(),
+    ])
+      .then(([resultadoUsuario]) => {
+        this.UsuarioActual = resultadoUsuario;
+        if (this.UsuarioActual.Rol !== "Administrador" || this.UsuarioActual.Rol !== "Master") {
+          sweet2.error({
+            title: "Acceso Denegado",
+            text: "Su usuario no tiene acceso a esta página.",
+          });
+          setTimeout(() => {
+            window.location.href = environment.webAbsoluteUrl;
+          }, 500);
+        }
+      });
   }
 
   Navegar(site: string): void {
