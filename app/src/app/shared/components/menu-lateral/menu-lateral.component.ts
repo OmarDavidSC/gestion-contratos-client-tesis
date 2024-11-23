@@ -69,7 +69,7 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
 
   
   irAPerfil() {
-    this.router.navigate(['/mi-perfil'])
+    this.router.navigate(['/mi-perfil']);
   }
 
   public getOpcionesMenu(): void {

@@ -32,6 +32,7 @@ import { AdministracionTipoContratoComponent } from './components/administracion
 import { AdministracionMetodoEntregaComponent } from './components/administracion/administracion-metodo-entrega/administracion-metodo-entrega.component';
 import { AdministracionSistemaContratacionComponent } from './components/administracion/administracion-sistema-contratacion/administracion-sistema-contratacion.component';
 import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
+import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,11 @@ const routes: Routes = [
   {
     path: 'mi-perfil',
     component: MiPerfilComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'restaurar-contrasena',
+    component: RestaurarContrasenaComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -1,4 +1,10 @@
 <div class="profile-container">
+  <div class="text-end">
+    <button mat-raised-button color="primary" (click)="irACambiarContrasena()"  matTooltip="Cambiar Contraseña">
+      <mat-icon>lock</mat-icon>
+      <span>Cambiar Contraseña</span>
+    </button>
+  </div>
   <div class="profile-header">
     <div class="profile-avatar">
       <mat-icon class="avatar-icon">account_circle</mat-icon>
@@ -30,7 +36,3 @@
     </div>
   </div>
 </div>
-
-
-<app-recuperar-contrasena></app-recuperar-contrasena>
-<app-restaurar-contrasena></app-restaurar-contrasena>

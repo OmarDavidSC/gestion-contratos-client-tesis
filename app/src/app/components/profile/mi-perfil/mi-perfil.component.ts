@@ -69,4 +69,8 @@ export class MiPerfilComponent extends FormularioBase implements OnInit {
     }
   }
 
+  irACambiarContrasena() {
+    this.router.navigate(['/restaurar-contrasena']);
+  }
+
 }

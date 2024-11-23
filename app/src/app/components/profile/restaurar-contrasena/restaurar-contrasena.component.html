@@ -1,89 +1,41 @@
-<div class="reset-container">
-    <div class="reset-card">
-      <div class="reset-header">
-        <div class="icon-circle">
-          <mat-icon class="key-icon">key</mat-icon>
-        </div>
-        <h2>Crear Nueva Contraseña</h2>
-        <p class="subtitle">Por favor ingresa y confirma tu nueva contraseña</p>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="reset-card rounded shadow position-relative w-100" style="max-width: 400px;">
+    <button class="btn btn-link position-absolute top-0 start-0 m-3" (click)="onBack()" matTooltip="Regresar">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="reset-header text-center">
+      <div class="icon-circle mx-auto mb-3">
+        <mat-icon class="key-icon">key</mat-icon>
       </div>
-  
-      <form class="reset-form" id="resetForm" onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label for="password">Nueva Contraseña</label>
-          <div class="input-container">
-            <mat-icon class="input-icon">lock</mat-icon>
-            <input 
-              type="password" 
-              id="password" 
-              placeholder="Ingresa tu nueva contraseña"
-              oninput="validatePassword()"
-            >
-            <button type="button" class="toggle-password" onclick="togglePassword('password')">
-              <mat-icon>visibility</mat-icon>
-            </button>
-          </div>
-          <div class="password-strength">
-            <div class="strength-bar">
-              <div class="strength-progress" id="strengthBar"></div>
-            </div>
-            <span class="strength-text" id="strengthText">Seguridad de la contraseña</span>
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="confirmPassword">Confirmar Contraseña</label>
-          <div class="input-container">
-            <mat-icon class="input-icon">lock_clock</mat-icon>
-            <input 
-              type="password" 
-              id="confirmPassword" 
-              placeholder="Confirma tu nueva contraseña"
-              oninput="validateMatch()"
-            >
-            <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
-              <mat-icon>visibility</mat-icon>
-            </button>
-          </div>
-          <span class="match-message" id="matchMessage"></span>
-        </div>
-  
-        <div class="password-requirements">
-          <h4>La contraseña debe contener:</h4>
-          <ul>
-            <li id="lengthCheck">Mínimo 8 caracteres</li>
-          </ul>
-        </div>
-  
-        <button type="submit" class="submit-btn" id="submitBtn" disabled>
-          <mat-icon>save</mat-icon>
-          Guardar y Continuar
-        </button>
-      </form>
+      <h2>Crear Nueva Contraseña</h2>
+      <p class="subtitle">Por favor ingresa y confirma tu nueva contraseña</p>
     </div>
-  
-    <!-- Alerta de Éxito -->
-    <div class="alert success" id="successAlert">
-      <div class="alert-content">
-        <mat-icon class="alert-icon">check_circle</mat-icon>
-        <div class="alert-text">
-          <h3>¡Contraseña Actualizada!</h3>
-          <p>Redirigiendo al inicio de sesión...</p>
+    <form class="reset-form p-3">
+      <div class="form-group">
+        <label for="password">Nueva Contraseña</label>
+        <div class="input-container position-relative">
+          <mat-icon class="input-icon position-absolute">lock</mat-icon>
+          <input type="password" class="form-control pl-5" id="password" placeholder="Ingresa tu nueva contraseña">
         </div>
       </div>
-    </div>
-  
-    <!-- Alerta de Error -->
-    <div class="alert error" id="errorAlert">
-      <div class="alert-content">
-        <mat-icon class="alert-icon">error</mat-icon>
-        <div class="alert-text">
-          <h3>Error</h3>
-          <p>No se pudo actualizar la contraseña. Intenta nuevamente.</p>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Contraseña</label>
+        <div class="input-container position-relative">
+          <mat-icon class="input-icon position-absolute">lock_clock</mat-icon>
+          <input type="password" class="form-control pl-5" id="confirmPassword"
+            placeholder="Confirma tu nueva contraseña">
         </div>
-        <button class="close-alert" onclick="hideAlert('error')">
-          <mat-icon>close</mat-icon>
-        </button>
       </div>
-    </div>
+      <div class="password-requirements">
+        <h4>La contraseña debe contener:</h4>
+        <ul>
+          <li id="lengthCheck">Mínimo 8 caracteres</li>
+        </ul>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mt-3">
+        <mat-icon>save</mat-icon>
+        Guardar y Continuar
+      </button>
+    </form>
   </div>
+</div>
