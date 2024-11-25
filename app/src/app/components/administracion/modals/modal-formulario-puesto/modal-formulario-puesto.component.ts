@@ -32,7 +32,6 @@ export class ModalFormularioPuestoComponent implements OnInit {
       Nombre: new FormControl(this.data?.nombre, [Validators.required]),
       Habilitado: new FormControl(this.data?.habilitado, [Validators.required])
     });
-    console.dir(this.data);
   }
 
   public async eventoGuardar(): Promise<void> {

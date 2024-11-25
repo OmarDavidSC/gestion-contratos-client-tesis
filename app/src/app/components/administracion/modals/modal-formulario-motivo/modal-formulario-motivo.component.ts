@@ -34,7 +34,6 @@ export class ModalFormularioMotivoComponent implements OnInit {
       Title: new FormControl(this.data?.Title, [Validators.required]),
       Estado: new FormControl(this.data?.Estado, [Validators.required])
     });
-    console.dir(this.data);
   }
 
 

@@ -59,8 +59,6 @@ export class ModalFormularioMatrizResponsableComponent implements OnInit {
 
       this.Form.get("Usuarios")?.setValue(listaUser);
     }
-
-    console.dir(this.data);
   }
 
   removePeople(): void {

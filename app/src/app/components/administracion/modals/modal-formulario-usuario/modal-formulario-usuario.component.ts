@@ -25,7 +25,7 @@ export class ModalFormularioUsuarioComponent implements OnInit {
   public TituloPopup: string;
   public UsuarioActual: EUsuario = new EUsuario();
   public ListaAdmArea: Lookup[] = [];
-  public ListaAdmRol: string[] = ["Master", "Administrador", "Colaborador"]
+  public ListaAdmRol: string[] = ["Administrador", "Colaborador"]
   public Form: FormGroup;
   public isLoading = false;
 

@@ -42,7 +42,6 @@ export class ModalFormularioRemitenteComponent implements OnInit {
       Habilitado: new FormControl(this.data.itemRemitente?.Habilitado, [Validators.required])
 
     });
-    console.dir(this.data);
   }
 
   public async eventoGuardar(): Promise<void>{

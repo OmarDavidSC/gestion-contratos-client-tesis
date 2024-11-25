@@ -69,7 +69,6 @@ export class AdministracionParametrosComponent extends FormularioBase implements
     ])
       .then(([resultadoUsuario]) => {
         this.UsuarioActual = resultadoUsuario;
-        console.dir(this.UsuarioActual);
         this.buscarMestros();
 
         /*Promise.all([this.userService.getItemFilterUsuarioId(this.UsuarioActual.Id)]).then(([

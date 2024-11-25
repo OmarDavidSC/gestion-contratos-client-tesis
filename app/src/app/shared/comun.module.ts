@@ -89,10 +89,10 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [  
-    PeoplePickerInputComponent, 
+  declarations: [
+    PeoplePickerInputComponent,
     PaginacionComponent,
-    MaterialElevationDirective,    
+    MaterialElevationDirective,
     NumericDirective,
     OnlyNumberDirective,
     OnlyMoneyDirective,
@@ -108,7 +108,7 @@ const materialModules = [
     NgxSpinnerModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule,   
+    NgxMatNativeDateModule,
     ...materialModules
   ],
   exports: [
@@ -120,7 +120,7 @@ const materialModules = [
     NgxMatNativeDateModule,
     FormsModule,
     FontAwesomeModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
     PeoplePickerInputComponent,
     PaginacionComponent,
     MaterialElevationDirective,

@@ -1,147 +1,307 @@
 <div class="container">
-    <div class="row mt-4">
-        <div class="col-12 mt-3">
-            <div class="row">
-                <div class="col-md-12 col-12">
-                    <span class="titulo-p">Administración</span>
-                </div>
-                <div class="">
-                    <hr class="dash">
+    <div class="">
+        <h2 class="alinea-titulo letra-interna">Gestión de Contratos<span class="migaja">
+                / Administración </span></h2>
+        <div class="nbsp"> </div>
+    </div>
+    <div class="page-container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="heading1">
+                            <h5 class="mb-0">
+                                <button type="button" (click)="togglePanel('panel1')" class="btn btn-link"
+                                    data-toggle="collapse" data-target="#collapse1" aria-expanded="false"
+                                    aria-controls="collapse1">
+                                    <mat-icon>settings</mat-icon> Configuraciones Generales
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse1"
+                            [ngClass]="{'show': panelsState['panel1'], 'collapse': !panelsState['panel1']}"
+                            class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Áreas</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-areas')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Usuarios</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-usuarios')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-12 mt-3">
-            <div class="row">
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-areas')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">domain</mat-icon>
-                                <h3 class="h3-home"> Áreas</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="heading2">
+                            <h5 class="mb-0">
+                                <button type="button" (click)="togglePanel('panel2')" class="btn btn-link"
+                                    data-toggle="collapse" data-target="#collapse2" aria-expanded="false"
+                                    aria-controls="collapse2">
+                                    <mat-icon>assignment</mat-icon> Gestión de Proveedores y Contratos
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse2"
+                            [ngClass]="{'show': panelsState['panel2'], 'collapse': !panelsState['panel2']}"
+                            class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Sistame de Contratación </h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-sistema-contratacion')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Proveedores </h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-proveedores')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </mat-card>
-                </div>                
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-bancos')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">account_balance</mat-icon>
-                                <h3 class="h3-home">Bancos</h3>
-                            </div>
-                        </div>
-                    </mat-card>
+                    </div>
                 </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-compania-aseguradoras')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">verified</mat-icon>
-                                <h3 class="h3-home">Compañias Aseguradoras</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="heading1">
+                            <h5 class="mb-0">
+                                <button type="button" (click)="togglePanel('panel3')" class="btn btn-link"
+                                    data-toggle="collapse" data-target="#collapse3" aria-expanded="false"
+                                    aria-controls="collapse3">
+                                    <mat-icon>account_balance</mat-icon> Gestión Financiera
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse3"
+                            [ngClass]="{'show': panelsState['panel3'], 'collapse': !panelsState['panel3']}"
+                            class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Monedas</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-monedas')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Metodos de Entregas</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-metodo-entrega')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Compañias Aseguradoras</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-compania-aseguradoras')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Bancos</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-bancos')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </mat-card>
+                    </div>
                 </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-metodo-entrega')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">directions_car</mat-icon>
-                                <h3 class="h3-home">Metodos de Entregas</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="heading1">
+                            <h5 class="mb-0">
+                                <button type="button" (click)="togglePanel('panel4')" class="btn btn-link"
+                                    data-toggle="collapse" data-target="#collapse4" aria-expanded="false"
+                                    aria-controls="collapse4">
+                                    <mat-icon>folder</mat-icon> Catálogos de Contratación
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapse4"
+                            [ngClass]="{'show': panelsState['panel4'], 'collapse': !panelsState['panel4']}"
+                            class="collapse" aria-labelledby="heading1" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Tipo Polizas</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-tipo-poliza')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Tipo Garantias</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-tipo-garantia')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Tipo Documentos</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-tipo-documento')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Tipo Contratos</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-tipo-contrato')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <div class="card-body more text-center">
+                                                <h5 class="card-title black">Tipo Adendas</h5>
+                                                <p class="card-text descripcion">
+
+                                                </p>
+                                                <a (click)="Navegar('/administracion-tipo-adenda')"
+                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                                    <mat-icon>play_arrow</mat-icon>
+                                                    <span>Empezar</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </mat-card>
+                    </div>
                 </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-monedas')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">monetization_on</mat-icon>
-                                <h3 class="h3-home">Monedas</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-proveedores')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">store</mat-icon>
-                                <h3 class="h3-home">Proveedores</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-sistema-contratacion')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">gavel</mat-icon>
-                                <h3 class="h3-home">Sistema de Contratacion</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-tipo-adenda')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">add_circle</mat-icon>
-                                <h3 class="h3-home">Tipo de Adendas</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-tipo-contrato')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">file_copy</mat-icon>
-                                <h3 class="h3-home">Tipo de Contratos</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-tipo-documento')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">insert_drive_file</mat-icon>
-                                <h3 class="h3-home">Tipo de Documentos</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-tipo-garantia')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">verified_user</mat-icon>
-                                <h3 class="h3-home">Tipo de Garantias</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-tipo-poliza')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">policy</mat-icon>
-                                <h3 class="h3-home">Tipo de Polizas</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>                
-                <div class="col-md-4 col-12 mt-3">
-                    <mat-card appMaterialElevation matRipple class="cursor-pointer bg-gra" (click)="Navegar('/administracion-usuarios')">
-                        <div class="row">
-                            <div class="col-12 calc-height">
-                                <mat-icon class="icon-home-selector">group</mat-icon>
-                                <h3 class="h3-home">Usuarios</h3>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>                
             </div>
         </div>
     </div>

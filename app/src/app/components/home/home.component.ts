@@ -37,7 +37,6 @@ export class HomeComponent extends FormularioBase implements OnInit{
   async obtenerMaestros() {
     
     this.UsuarioActual = await this.getUser();
-    console.dir(this.UsuarioActual);
   }
 
   IrAPublicaciones(): void {

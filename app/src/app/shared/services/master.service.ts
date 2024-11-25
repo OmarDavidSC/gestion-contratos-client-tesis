@@ -35,7 +35,6 @@ export class MasterService {
 
       await lista.items.add(datos);
     } catch (error) {
-      console.dir(error);
       throw error;
     }
   }

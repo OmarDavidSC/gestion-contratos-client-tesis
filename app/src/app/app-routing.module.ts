@@ -33,6 +33,7 @@ import { AdministracionMetodoEntregaComponent } from './components/administracio
 import { AdministracionSistemaContratacionComponent } from './components/administracion/administracion-sistema-contratacion/administracion-sistema-contratacion.component';
 import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
 import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
+import { RecuperarContrasenaComponent } from './components/profile/recuperar-contrasena/recuperar-contrasena.component';
 
 const routes: Routes = [
   {

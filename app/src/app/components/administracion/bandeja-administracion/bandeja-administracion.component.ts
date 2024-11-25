@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@auth0/auth0-angular';
@@ -19,6 +20,11 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
 
   UsuarioActual: User = new User();
 
+  panelsState: { [key: string]: boolean } = {};
+
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+
   constructor(
     public dialog: MatDialog,
     public route: ActivatedRoute,
@@ -26,13 +32,19 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
     public spinner: NgxSpinnerService,
     public toastr: ToastrService,
     public sanitizer: DomSanitizer,
-    public userService: UsuarioService
+    public userService: UsuarioService,
   ) {
     super('administracion', dialog, route, router, spinner, userService);
   }
 
   ngOnInit(): void {
     this.obtenerMaestros();
+    this.panelsState = {
+      'panel1': false,
+      'panel2': false,
+      'panel3': false,
+      'panel4': false
+    };
   }
 
   async obtenerMaestros() {
@@ -43,7 +55,7 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
     ])
       .then(([resultadoUsuario]) => {
         this.UsuarioActual = resultadoUsuario;
-        if (this.UsuarioActual.Rol !== "Administrador" || this.UsuarioActual.Rol !== "Master") {
+        if (this.UsuarioActual.Rol !== "Administrador") {
           sweet2.error({
             title: "Acceso Denegado",
             text: "Su usuario no tiene acceso a esta página.",
@@ -51,8 +63,15 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
           setTimeout(() => {
             window.location.href = environment.webAbsoluteUrl;
           }, 500);
+        } else {
+          //oculta el progreso si el usuario tiene permisos
+          this.ocultarProgreso();
         }
       });
+  }
+
+  togglePanel(panelId: string) {
+    this.panelsState[panelId] = !this.panelsState[panelId];
   }
 
   Navegar(site: string): void {

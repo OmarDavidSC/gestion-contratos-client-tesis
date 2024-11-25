@@ -34,7 +34,6 @@ export class ModalFormularioParametroComponent implements OnInit {
       IndicadorRojo: new FormControl(this.data?.IndicadorRojo, [Validators.required]),
       DiasAntesAlerta: new FormControl(this.data?.DiasAntesAlerta, [Validators.required]),
     });
-    console.dir(this.data);
   }
 
   public async eventoGuardar(): Promise<void> {

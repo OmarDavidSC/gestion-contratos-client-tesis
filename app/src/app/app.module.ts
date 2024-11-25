@@ -136,7 +136,7 @@ import { EditarProfileComponent } from './components/profile/modals/editar-profi
     MiPerfilComponent,
     RecuperarContrasenaComponent,
     RestaurarContrasenaComponent,
-    EditarProfileComponent
+    EditarProfileComponent,
   ],
   imports: [
     ComunModule,

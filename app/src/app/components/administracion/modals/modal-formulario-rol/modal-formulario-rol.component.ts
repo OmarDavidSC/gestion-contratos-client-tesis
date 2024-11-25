@@ -32,7 +32,6 @@ export class ModalFormularioRolComponent implements OnInit {
       Title: new FormControl(this.data?.Title, [Validators.required]),     
       Habilitado: new FormControl(this.data?.Habilitado, [Validators.required])
     });
-    console.dir(this.data);
   }
 
   public async eventoGuardar(): Promise<void> {

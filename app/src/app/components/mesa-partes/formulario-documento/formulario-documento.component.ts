@@ -1565,7 +1565,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
       }).catch(error => {
         this.ocultarProgreso();
-        console.dir(error);
       });
 
     }, "Sí", "No");
@@ -1708,7 +1707,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
       }).catch(error => {
         this.ocultarProgreso();
-        console.dir(error);
       });
 
     }, "Sí", "No");
@@ -1752,7 +1750,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
       }).catch(error => {
         this.ocultarProgreso();
-        console.dir(error);
       });
 
     }, "Sí", "No");
@@ -2017,7 +2014,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
       }).catch(error => {
         this.ocultarProgreso();
-        console.dir(error);
       });
 
     }, "Sí", "No");
