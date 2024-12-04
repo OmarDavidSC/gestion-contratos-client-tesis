@@ -97,7 +97,7 @@ const materialModules = [
     OnlyNumberDirective,
     OnlyMoneyDirective,
     LoginComponent,
-    SignInComponent,
+    SignInComponent
   ],
   imports: [
     CommonModule,

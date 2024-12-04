@@ -25,6 +25,8 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
     this.Drawer = value;
   }
 
+  @ViewChild('notificationsDrawer') notificationsDrawer: MatDrawer;
+
   public UsuarioActual: EUsuario = new EUsuario();
   public LogoEmpresa: string = environment.urlLogo;
   public ListaModulo: EModuloSeguridad[] = [];
@@ -41,6 +43,12 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnDestroy(): void {
+  }
+
+  toggleNotificationsDrawer() {
+    if (this.notificationsDrawer) {
+      this.notificationsDrawer.toggle(); 
+    }
   }
 
   async ngOnInit(): Promise<void> {

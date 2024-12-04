@@ -44,5 +44,9 @@ export class ProfileService {
         return await lastValueFrom(this.http.post<ApiResponse<any>>(url, datos));
     }
 
+    async updatePassword(datos: any): Promise<ApiResponse<any>> {
+        const url = this.urlBase + 'update-password';
+        return await lastValueFrom(this.http.post<ApiResponse<any>>(url, datos));
+    }
 
 }

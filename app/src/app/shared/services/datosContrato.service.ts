@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { EDatosContrato } from '../models/entidades/EDatosContrato';
 import { lastValueFrom } from 'rxjs';
+import { ApiResponse } from '../utils/response';
+import { ENotificaciones } from '../models/entidades/ENotificaciones';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +48,7 @@ export class DatosContratoService {
     const url = this.urlBase + 'editar-contrato';
     return await lastValueFrom(this.http.post(url, datos));
   }
-  
+
   async accionContrato(datos: any): Promise<any> {
 
     const url = this.urlBase + 'accion-contrato';
@@ -57,6 +59,13 @@ export class DatosContratoService {
 
     const url = this.urlBase + 'guardar-contrato';
     return await lastValueFrom(this.http.post(url, datos));
+  }
+
+  async notifications(): Promise<ApiResponse<ENotificaciones[]>> {
+    const url = `${this.urlBase}notifications`;
+    const response = await lastValueFrom(this.http.get<ApiResponse<ENotificaciones[]>>(url));
+    response.data = ENotificaciones.parseJsonList(response.data);
+    return response;
   }
 
 }

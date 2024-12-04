@@ -77,6 +77,7 @@ import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.comp
 import { RecuperarContrasenaComponent } from './components/profile/recuperar-contrasena/recuperar-contrasena.component';
 import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
 import { EditarProfileComponent } from './components/profile/modals/editar-profile/editar-profile.component';
+import { NotificacionesComponent } from './shared/components/notificaciones/notificaciones.component';
 
 
 @NgModule({
@@ -137,6 +138,7 @@ import { EditarProfileComponent } from './components/profile/modals/editar-profi
     RecuperarContrasenaComponent,
     RestaurarContrasenaComponent,
     EditarProfileComponent,
+    NotificacionesComponent
   ],
   imports: [
     ComunModule,

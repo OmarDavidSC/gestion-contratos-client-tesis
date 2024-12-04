@@ -1,4 +1,7 @@
 <mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer class="bg-r" #notificationsDrawer mode="side" [opened]="false" position="end">
+    <app-notificaciones></app-notificaciones> 
+  </mat-drawer>
   <mat-drawer class="bg-r" #drawer mode="over" [autoFocus]="false" [opened]="false">
     <div class="pt-2">
       <div class="row">
@@ -55,6 +58,9 @@
         </div>
         <span class="example-spacer"></span>
         <div class="d-flex">
+          <button mat-icon-button (click)="toggleNotificationsDrawer()">
+            <mat-icon>notifications</mat-icon>
+          </button>
           <mat-divider [vertical]="true" class="d-none d-sm-block"></mat-divider>
           <button mat-button [matMenuTriggerFor]="userMenu" class="d-none d-sm-block">
             ¡Hola! {{ UsuarioActual.NombreCompleto }}

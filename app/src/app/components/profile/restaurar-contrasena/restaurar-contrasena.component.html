@@ -11,19 +11,19 @@
       <h2>Crear Nueva Contraseña</h2>
       <p class="subtitle">Por favor ingresa y confirma tu nueva contraseña</p>
     </div>
-    <form class="reset-form p-3">
+    <form *ngIf="Form" [formGroup]="Form" class="reset-form p-3">
       <div class="form-group">
         <label for="password">Nueva Contraseña</label>
         <div class="input-container position-relative">
           <mat-icon class="input-icon position-absolute">lock</mat-icon>
-          <input type="password" class="form-control pl-5" id="password" placeholder="Ingresa tu nueva contraseña">
+          <input formControlName="nuevaContrasena" autocomplete="off" type="password" class="form-control pl-5" id="password" placeholder="Ingresa tu nueva contraseña">
         </div>
       </div>
       <div class="form-group">
         <label for="confirmPassword">Confirmar Contraseña</label>
         <div class="input-container position-relative">
           <mat-icon class="input-icon position-absolute">lock_clock</mat-icon>
-          <input type="password" class="form-control pl-5" id="confirmPassword"
+          <input formControlName="confirmarContrasena" autocomplete="off" type="password" class="form-control pl-5" id="confirmPassword"
             placeholder="Confirma tu nueva contraseña">
         </div>
       </div>
@@ -33,7 +33,7 @@
           <li id="lengthCheck">Mínimo 8 caracteres</li>
         </ul>
       </div>
-      <button mat-raised-button color="primary">
+      <button (click)="eventoConfirmar()" mat-raised-button color="primary">
         <mat-icon>save</mat-icon>
         <span>Confirmar</span>
       </button>
