@@ -1,4 +1,7 @@
 <div class="container">
+    <button mat-icon-button (click)="cerrarDrawer()">
+        <mat-icon>close</mat-icon>
+    </button>
     <mat-card *ngFor="let notificacion of ListaNotificaciones" class="notification-card">
         <mat-card-header class="card-header py-7">
             <div class="mt-3">

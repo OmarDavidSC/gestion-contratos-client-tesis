@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ENotificaciones } from '../../models/entidades/ENotificaciones';
 import { DatosContratoService } from '../../services/datosContrato.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,6 +20,8 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
   ListaNotificaciones: ENotificaciones[] = [];
   UsuarioActual: EUsuario = new EUsuario();
   intervalId: any;
+
+  @Output() closeDrawer = new EventEmitter<void>();
 
   constructor(
     public dialog: MatDialog,
@@ -76,6 +78,10 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
     setTimeout(() => {
       this.router.navigate([`/detalle-contrato/${idContrato}`]);
     }, 50);
+  }
+
+  cerrarDrawer() {
+    this.closeDrawer.emit();
   }
 
 }
