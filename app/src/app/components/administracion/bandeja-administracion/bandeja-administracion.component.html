@@ -1,308 +1,262 @@
 <div class="container">
-    <div class="">
-        <h2 class="alinea-titulo letra-interna">Gestión de Contratos<span class="migaja">
-                / Administración </span></h2>
-        <div class="nbsp"> </div>
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> <mat-icon>settings</mat-icon> Configuraciones Generales </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Áreas</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-areas')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Usuarios</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-usuarios')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
     </div>
-    <div class="page-container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="heading1">
-                            <h5 class="mb-0">
-                                <button type="button" (click)="togglePanel('panel1')" class="btn btn-link"
-                                    data-toggle="collapse" data-target="#collapse1" aria-expanded="false"
-                                    aria-controls="collapse1">
-                                    <mat-icon>settings</mat-icon> Configuraciones Generales
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapse1"
-                            [ngClass]="{'show': panelsState['panel1'], 'collapse': !panelsState['panel1']}"
-                            class="collapse" aria-labelledby="heading1" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Áreas</h5>
-                                                <p class="card-text descripcion">
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> <mat-icon>assignment</mat-icon> Gestión de Proveedores y Contratos
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Sistame de Contratación </h5>
+                                        <p class="card-text descripcion">
 
-                                                </p>
-                                                <a (click)="Navegar('/administracion-areas')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <a (click)="Navegar('/administracion-sistema-contratacion')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Usuarios</h5>
-                                                <p class="card-text descripcion">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Proveedores </h5>
+                                        <p class="card-text descripcion">
 
-                                                </p>
-                                                <a (click)="Navegar('/administracion-usuarios')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <a (click)="Navegar('/administracion-proveedores')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="heading2">
-                            <h5 class="mb-0">
-                                <button type="button" (click)="togglePanel('panel2')" class="btn btn-link"
-                                    data-toggle="collapse" data-target="#collapse2" aria-expanded="false"
-                                    aria-controls="collapse2">
-                                    <mat-icon>assignment</mat-icon> Gestión de Proveedores y Contratos
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapse2"
-                            [ngClass]="{'show': panelsState['panel2'], 'collapse': !panelsState['panel2']}"
-                            class="collapse" aria-labelledby="heading2" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Sistame de Contratación </h5>
-                                                <p class="card-text descripcion">
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title><mat-icon>account_balance</mat-icon> Gestión Financiera</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Monedas</h5>
+                                        <p class="card-text descripcion">
 
-                                                </p>
-                                                <a (click)="Navegar('/administracion-sistema-contratacion')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <a (click)="Navegar('/administracion-monedas')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Proveedores </h5>
-                                                <p class="card-text descripcion">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Metodos de Entregas</h5>
+                                        <p class="card-text descripcion">
 
-                                                </p>
-                                                <a (click)="Navegar('/administracion-proveedores')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <a (click)="Navegar('/administracion-metodo-entrega')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Compañias Aseguradoras</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-compania-aseguradoras')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Bancos</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-bancos')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="heading1">
-                            <h5 class="mb-0">
-                                <button type="button" (click)="togglePanel('panel3')" class="btn btn-link"
-                                    data-toggle="collapse" data-target="#collapse3" aria-expanded="false"
-                                    aria-controls="collapse3">
-                                    <mat-icon>account_balance</mat-icon> Gestión Financiera
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapse3"
-                            [ngClass]="{'show': panelsState['panel3'], 'collapse': !panelsState['panel3']}"
-                            class="collapse" aria-labelledby="heading1" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Monedas</h5>
-                                                <p class="card-text descripcion">
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title><mat-icon>folder</mat-icon> Catálogos de Contratación</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Tipo Polizas</h5>
+                                        <p class="card-text descripcion">
 
-                                                </p>
-                                                <a (click)="Navegar('/administracion-monedas')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Metodos de Entregas</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-metodo-entrega')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Compañias Aseguradoras</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-compania-aseguradoras')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <a (click)="Navegar('/administracion-tipo-poliza')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Bancos</h5>
-                                                <p class="card-text descripcion">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Tipo Garantias</h5>
+                                        <p class="card-text descripcion">
 
-                                                </p>
-                                                <a (click)="Navegar('/administracion-bancos')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <a (click)="Navegar('/administracion-tipo-garantia')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Tipo Documentos</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-tipo-documento')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Tipo Contratos</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-tipo-contrato')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body more text-center">
+                                        <h5 class="card-title black">Tipo Adendas</h5>
+                                        <p class="card-text descripcion">
+
+                                        </p>
+                                        <a (click)="Navegar('/administracion-tipo-adenda')"
+                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
+                                            <mat-icon>play_arrow</mat-icon>
+                                            <span>Empezar</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 mb20">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="heading1">
-                            <h5 class="mb-0">
-                                <button type="button" (click)="togglePanel('panel4')" class="btn btn-link"
-                                    data-toggle="collapse" data-target="#collapse4" aria-expanded="false"
-                                    aria-controls="collapse4">
-                                    <mat-icon>folder</mat-icon> Catálogos de Contratación
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapse4"
-                            [ngClass]="{'show': panelsState['panel4'], 'collapse': !panelsState['panel4']}"
-                            class="collapse" aria-labelledby="heading1" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Tipo Polizas</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-tipo-poliza')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Tipo Garantias</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-tipo-garantia')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Tipo Documentos</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-tipo-documento')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Tipo Contratos</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-tipo-contrato')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card">
-                                            <div class="card-body more text-center">
-                                                <h5 class="card-title black">Tipo Adendas</h5>
-                                                <p class="card-text descripcion">
-
-                                                </p>
-                                                <a (click)="Navegar('/administracion-tipo-adenda')"
-                                                    class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                                    <mat-icon>play_arrow</mat-icon>
-                                                    <span>Empezar</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </mat-expansion-panel>
+            </mat-accordion>
         </div>
     </div>
 </div>

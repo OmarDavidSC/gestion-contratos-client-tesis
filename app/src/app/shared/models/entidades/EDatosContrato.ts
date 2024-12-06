@@ -42,6 +42,7 @@ export class EDatosContrato {
     FechaFinReal: any;
     TextoFechaFinReal: string;
     MontoContrato: string;
+    DiasFaltanParaVencimiento: number;
 
     MontoTotal: string;
 
@@ -98,6 +99,7 @@ export class EDatosContrato {
         this.TextoFechaFinReal = "";
         this.MontoContrato = "";
         this.MontoTotal = "";
+        this.DiasFaltanParaVencimiento = 0;
         this.Moneda = new Lookup;
         this.MetodoEntrega = new Lookup;
         this.SistemaContratacion = new Lookup;
@@ -270,6 +272,8 @@ export class EDatosContrato {
         objeto.FechaFinReal = SPParse.getDate(element["fechaFinReal"]);
         objeto.TextoFechaFinReal = Funciones.ConvertirDateToString(objeto.FechaFinReal);
         objeto.MontoContrato = SPParse.getString(element["montoContrato"]);
+        objeto.DiasFaltanParaVencimiento = SPParse.getNumber(element["diasFaltanParaVencimiento"]);
+        objeto.MontoTotal = SPParse.getString(element["montoTotal"]);
         objeto.Moneda = EMoneda.parseJsonLookup(element["moneda"]);
         objeto.MetodoEntrega = EMetodoEntrega.parseJsonLookup(element["metodoEntrega"]);
         objeto.SistemaContratacion = ESistemaContratacion.parseJsonLookup(element["sistemaContratacion"]);

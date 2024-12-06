@@ -32,6 +32,7 @@ export class DatosContratoService {
   }
 
   async getItemsBandeja(datos: any): Promise<EDatosContrato[]> {
+    debugger;
     const url = this.urlBase + "obtener-contrato-bandeja";
     const response = await lastValueFrom(this.http.post<any[]>(url, datos));
     return response.map(EDatosContrato.parseJsonBandeja);

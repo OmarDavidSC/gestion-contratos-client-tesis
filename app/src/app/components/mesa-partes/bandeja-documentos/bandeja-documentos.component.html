@@ -19,18 +19,15 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
                 <div class="advanced-filters-container">
                     <div class="row">
-
                         <!-- <mat-form-field class="col-lg-12" appearance="outline">
                             <mat-label>Tipo Contrato</mat-label>
                             <mat-select [(ngModel)]="CampoFiltroAvanzado.TipoContrato" multiple>
                                 <mat-option *ngFor="let value of ListaAdmTipoContrato" [value]="value.Id">{{ value.Nombre }}</mat-option>
                             </mat-select>
                         </mat-form-field> -->
-
                         <mat-form-field class="col-lg-12" appearance="outline">
                             <mat-label>Tipo de Contrato</mat-label>
                             <mat-select [(ngModel)]="CampoFiltroAvanzado.ListaTipoContrato" multiple>
@@ -38,7 +35,6 @@
                                     value.Nombre }}</mat-option>
                             </mat-select>
                         </mat-form-field>
-
                         <mat-form-field class="col-lg-12" appearance="outline" *ngIf="mostrarCampoFiltroEstado">
                             <mat-label>Estado</mat-label>
                             <mat-select [(ngModel)]="CampoFiltroAvanzado.ListaEstado"
@@ -47,9 +43,6 @@
                                     }}</mat-option>
                             </mat-select>
                         </mat-form-field>
-
-
-
                         <mat-form-field class="col-lg-12" appearance="outline">
                             <mat-label>Área</mat-label>
                             <mat-select [(ngModel)]="CampoFiltroAvanzado.ListaArea"
@@ -58,7 +51,6 @@
                                     }}</mat-option>
                             </mat-select>
                         </mat-form-field>
-
                         <mat-form-field class="col-lg-12" appearance="outline">
                             <mat-label>Fecha Registro</mat-label>
                             <mat-date-range-input [rangePicker]="pickerFechaRegistro">
@@ -70,12 +62,11 @@
                             <mat-datepicker-toggle matSuffix [for]="pickerFechaRegistro"></mat-datepicker-toggle>
                             <mat-date-range-picker #pickerFechaRegistro></mat-date-range-picker>
                         </mat-form-field>
-
                     </div>
                 </div>
             </mat-sidenav>
         </div>
-        <div class="col-lg-12 mb-3">
+        <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-6">
                     <span class="titulo-p">Bandeja de Contratos</span>
@@ -113,80 +104,90 @@
                     </mat-form-field>
                 </div>
                 <div class="col-lg-5 text-end">
-                    <button class="mt-2 active mr-3" mat-raised-button (click)="onClickExportar()">Exportar
-                        <mat-icon>get_app</mat-icon></button>
                     <button class="mt mr-3" mat-icon-button matTooltip="Filtros"
                         (click)="filtersDrawer.toggle()"><mat-icon>filter_list</mat-icon></button>
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-12">
-            <div class="mat-elevation-z3 div-container" [hidden]="dataSource.data.length <= 0">
-                <div class="table-resp">
-                    <table class="table" mat-table [dataSource]="dataSource" matSort matSortActive="Codigo"
-                        matSortDirection="desc">
-                        <ng-container matColumnDef="Codigo">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">
-                                <a class="link" style="cursor: pointer;" (click)="eventoVerDetalle(element)">{{
-                                    element.CodigoContrato }}</a>
-                            </td>
-                        </ng-container>
-                        <ng-container matColumnDef="Titulo">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TituloContrato }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="TipoContrato">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Tipo Contrato</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TipoContrato.Nombre }}
-                            </td>
-                        </ng-container>
-                        <ng-container matColumnDef="Area">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Área</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Area.Nombre }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="RazonSocial">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Razón Social</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Proveedor.Nombre }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="Estado">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Estado</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Estado.Nombre }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="FechaInicio">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TextoFechaInicio }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="FechaFin">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Fecha Fin</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.TextoFechaFin }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="Monto">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Monto</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.MontoContrato }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="Moneda">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Moneda</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.Moneda.Nombre }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="Administrador">
-                            <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Administrador</th>
-                            <td class="filaTabla" mat-cell *matCellDef="let element">{{ element.NombresAdministradores}}
-                            </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-                    </table>
-                    <mat-paginator showFirstLastButtons [pageSizeOptions]="[15, 30, 50]"
-                        itemsPerPageLabel="Cantidad por página" [pageSize]="15" [hidePageSize]="false">
-                    </mat-paginator>
-                </div>
+        <div class="col-lg-12 scroll-container">
+            <div class="mat-elevation-z3 div-container" [hidden]="ListaContratos.length <= 0">
+                <mat-card *ngFor="let element of ListaContratos" class="mt-3">
+                    <div class="estado-c3">C</div>
+                    <div class="row pl-15">
+                        <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
+                            <div class="col-lg-7 d-flex flex-wrap justify-content-start align-items-center">
+                                <div class="col-lg-3 col-12 d-flex align-items-center mb-mob-8 flex-between">
+                                    <span class="ml-3 number-card">{{ element.CodigoContrato }}</span>
+                                    <mat-icon class="c-green">circle</mat-icon>
+                                </div>
+                                <div class="col-lg-9 col-12 mb-mob-8">
+                                    <span class="coment-card"> {{ element.TituloContrato }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-12 d-flex justify-content-end align-items-center">
+                                <div class="col-lg-3 col-6 text-end">
+                                    <h2 class="mb-0"><span class="badge-c3">{{element.Estado.Nombre}}</span></h2>
+                                </div>
+                                <div class="col-lg-1 col-6 text-end">
+                                    <button mat-icon-button aria-label="ingresar" (click)="eventoVerDetalle(element)"
+                                        matTooltip="Ingresar">
+                                        <mat-icon>arrow_forward</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-md-2 col-6">
+                                    <dt>Área </dt>
+                                    <dd>{{ element.Area.Nombre }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Monto</dt>
+                                    <dd>{{ element.MontoContrato }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Fecha Inicio</dt>
+                                    <dd>{{ element.TextoFechaInicio }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Fecha Fin</dt>
+                                    <dd>{{ element.TextoFechaFin }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Tipo de Contrato</dt>
+                                    <dd>{{ element.TipoContrato.Nombre }}</dd>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-2 col-6">
+                                    <dt>Razón Social </dt>
+                                    <dd>{{ element.Proveedor.Nombre }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Monto Total</dt>
+                                    <dd>{{ element.MontoTotal ? element.MontoTotal : 'Sin Monto Total' }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Moneda</dt>
+                                    <dd>{{ element.Moneda.Nombre }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Administradores</dt>
+                                    <dd>{{ element.NombresAdministradores }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Dias Faltante de Venciemiento</dt>
+                                    <dd>{{element.DiasFaltanParaVencimiento}}</dd>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
             </div>
-            <mat-card class="mat-elevation-z3 noResultado" [hidden]="dataSource.data.length > 0">
+            <mat-card class="mat-elevation-z3 noResultado" [hidden]="ListaContratos.length > 0">
                 <span>No se han encontrado resultados</span>
             </mat-card>
         </div>
-
     </div>
 </div>

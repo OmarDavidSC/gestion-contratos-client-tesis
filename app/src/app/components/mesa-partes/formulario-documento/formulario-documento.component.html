@@ -1,824 +1,882 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 mb-3">
-      <div class="row">
-        <div class="col-md-6 d-flex align-items-center">
-          <button mat-icon-button aria-label="regresar" (click)="onClickRegresar()" matTooltip="Regresar">
-            <mat-icon>arrow_back</mat-icon>
-          </button>
-          <span class="titulo-p">{{ TituloFormulario }}</span>
-        </div>
-        <div class="col-md-6 text-end">
-          <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonRegistrar"
-            (click)="eventoRegistrar('registrar')">Registrar</button>
-          <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonRegistrar"
-            (click)="eventoRegistrar('enviar')">Enviar a Aprobación</button>
-          <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonEditar"
-            (click)="eventoActualizar('guardar')">Guardar</button>
-          <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonEditar"
-            (click)="eventoActualizar('enviar')">Enviar a Aprobación</button>
-          <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonAprobador"
-            (click)="eventoRechazar()">Rechazar</button>
-          <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonAprobador"
-            (click)="eventoObservar()">Observar</button>
-          <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonAprobador"
-            (click)="eventoAprobar()">Aprobar</button>
-          <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonGuardar"
-            (click)="eventoGuardar()">Guardar</button>
-          <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonGuardar"
-            (click)="eventoCerrarContrato()">Cerrar Contrato</button>
-        </div>
+    <div class="col-lg-2 col-12">
+      <div class="d-flex flex-column btn-tab">
+        <button class="mb-2" mat-raised-button [ngClass]="{ active: activeButton === 'datos-generales' }"
+          (click)="activateButton('datos-generales')">
+          Datos Generales
+        </button>
+        <button class="mb-2" mat-raised-button [ngClass]="{ active: activeButton === 'administradores' }"
+          (click)="activateButton('administradores')">
+          Administradores
+        </button>
+        <button class="mb-2" mat-raised-button [ngClass]="{ active: activeButton === 'contrato-firmado' }"
+          (click)="activateButton('contrato-firmado')">
+          Contrato Firmado
+        </button>
+        <button class="mb-2" mat-raised-button [ngClass]="{ active: activeButton === 'archivos-adicionales' }"
+          (click)="activateButton('archivos-adicionales')">
+          Archivos Adicionales
+        </button>
+        <button *ngIf="mostrarSeccionAdenda" class="mb-2" mat-raised-button
+          [ngClass]="{ active: activeButton === 'adendas' }" (click)="activateButton('adendas')">
+          Adendas
+        </button>
+        <button *ngIf="mostrarSeccionGarantias" class="mb-2" mat-raised-button
+          [ngClass]="{ active: activeButton === 'garantias' }" (click)="activateButton('garantias')">
+          Garantías
+        </button>
+        <button *ngIf="mostrarSeccionPolizas" class="mb-2" mat-raised-button
+          [ngClass]="{ active: activeButton === 'polizas' }" (click)="activateButton('polizas')">
+          Pólizas
+        </button>
+        <button class="mb-2" mat-raised-button [ngClass]="{ active: activeButton === 'historial' }"
+          (click)="activateButton('historial')">
+          Historial
+        </button>
       </div>
+
     </div>
-    <div class="col-md-12 mb-3">
-      <mat-card class="mb-3">
-        <div class="subtitulo-p">Datos Generales</div>
-        <div class="row">
-          <mat-form-field class="col-lg-9 col-9" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoTituloContrato">
-            <mat-label>Titulo de Contrato
-              <span style="color: red" *ngIf="!bloquearCampoTituloContrato">(*)</span></mat-label>
-            <input matInput placeholder="" [(ngModel)]="Registro.TituloContrato" [ngModelOptions]="{ standalone: true }"
-              (keyup)="validarCampoTituloContrato()" [disabled]="bloquearCampoTituloContrato" maxlength="255" />
-            <mat-hint class="mat-error" *ngIf="errorCampoTituloContrato">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-          <mat-form-field class="col-lg-3 col-3" appearance="outline">
-            <mat-label>Código de Contrato</mat-label>
-            <input matInput placeholder="" [(ngModel)]="Registro.CodigoContrato" [ngModelOptions]="{ standalone: true }"
-              [disabled]="true" maxlength="255" />
-          </mat-form-field>
+    <div class="col-lg-10 col-12">
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <div class="row">
+            <div class="col-md-6 d-flex align-items-center">
+              <button mat-icon-button aria-label="regresar" (click)="onClickRegresar()" matTooltip="Regresar">
+                <mat-icon>arrow_back</mat-icon>
+              </button>
+              <span class="titulo-p">{{ TituloFormulario }}</span>
+            </div>
+            <div class="col-md-6 text-end">
+              <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonRegistrar"
+                (click)="eventoRegistrar('registrar')">Registrar</button>
+              <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonRegistrar"
+                (click)="eventoRegistrar('enviar')">Enviar a Aprobación</button>
+              <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonEditar"
+                (click)="eventoActualizar('guardar')">Guardar</button>
+              <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonEditar"
+                (click)="eventoActualizar('enviar')">Enviar a Aprobación</button>
+              <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonAprobador"
+                (click)="eventoRechazar()">Rechazar</button>
+              <button mat-raised-button class="mr-3" color="secondary" *ngIf="mostrarBotonAprobador"
+                (click)="eventoObservar()">Observar</button>
+              <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonAprobador"
+                (click)="eventoAprobar()">Aprobar</button>
+              <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonGuardar"
+                (click)="eventoGuardar()">Guardar</button>
+              <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonGuardar"
+                (click)="eventoCerrarContrato()">Cerrar Contrato</button>
+            </div>
+          </div>
         </div>
-        <div class="row">
-          <mat-form-field class="col-lg-12 col-12" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoDetalleContrato">
-            <mat-label>Detalle del Contrato
-              <span style="color: red" *ngIf="!bloquearCampoDetalleContrato">(*)</span></mat-label>
-            <textarea matInput [(ngModel)]="Registro.DetalleContrato" [ngModelOptions]="{ standalone: true }"
-              (keyup)="validarCampoDetalleContrato()" [disabled]="bloquearCampoDetalleContrato" rows="3"
-              maxlength="1000"></textarea>
-            <mat-hint class="mat-error" *ngIf="errorCampoDetalleContrato">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field class="col-lg-4" appearance="outline" [class.mat-form-field-invalid]="errorCampoProveedor">
-            <mat-label>Proveedor
-              <span style="color: red" *ngIf="!bloquearCampoProveedor">(*)</span></mat-label>
-            <input type="text" aria-label="Number" matInput [(ngModel)]="Registro.Proveedor.Nombre"
-              [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarProveedor()"
-              [disabled]="bloquearCampoProveedor" [matAutocomplete]="autoProveedor" />
-            <mat-autocomplete #autoProveedor="matAutocomplete">
-              <mat-option *ngIf="isLoading">
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-              </mat-option>
-              <ng-container *ngIf="!isLoading">
-                <mat-option (onSelectionChange)="onSeleccionProveedor(option)" *ngFor="let option of ListaProveedores"
-                  [value]="option.Nombre">
-                  {{ option.Ruc }} | {{ option.Nombre }}
-                </mat-option>
-              </ng-container>
-            </mat-autocomplete>
-            <mat-icon matSuffix>search</mat-icon>
-            <mat-hint class="mat-error" *ngIf="errorCampoProveedor">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="col-lg-4 col-12" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoTipoContrato">
-            <mat-label>Tipo de Contrato<span style="color: red" *ngIf="!bloquearCampoTipoContrato">
-                (*)</span></mat-label>
-            <mat-select [(ngModel)]="Registro.TipoContrato.Id" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoTipoContrato">
-              <mat-option *ngFor="let item of ListaAdmTipoContrato" [value]="item.Id"
-                (click)="validarCampoTipoContrato()">{{ item.Nombre }}</mat-option>
-            </mat-select>
-            <mat-hint class="mat-error" *ngIf="errorCampoTipoContrato">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="col-lg-4 col-12" appearance="outline" [class.mat-form-field-invalid]="errorCampoArea">
-            <mat-label>Área<span style="color: red" *ngIf="!bloquearCampoArea">
-                (*)</span></mat-label>
-            <mat-select [(ngModel)]="Registro.Area.Id" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoArea">
-              <mat-option *ngFor="let item of ListaAdmArea" [value]="item.Id" (click)="validarCampoArea()">{{
-                item.Nombre }}</mat-option>
-            </mat-select>
-            <mat-hint class="mat-error" *ngIf="errorCampoArea">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field class="col-lg-4 col-4" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoFechaInicio">
-            <mat-label>Fecha Inicio
-              <span style="color: red" *ngIf="!bloquearCampoFechaInicio">(*)</span></mat-label>
-            <input [(ngModel)]="Registro.FechaInicio" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoFechaInicio" (dateChange)="validarCampoFechaInicio($event)" autocomplete="off"
-              matInput appDatePickerDirective [matDatepicker]="pickerFechaInicio" />
-            <mat-datepicker-toggle matSuffix [for]="pickerFechaInicio"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFechaInicio></mat-datepicker>
-            <mat-hint class="mat-error" *ngIf="errorCampoFechaInicio">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="col-lg-4 col-4" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoFechaFin">
-            <mat-label>Fecha Fin
-              <span style="color: red" *ngIf="!bloquearCampoFechaFin">(*)</span></mat-label>
-            <input [(ngModel)]="Registro.FechaFin" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoFechaFin" (dateChange)="validarCampoFechaFin($event)" autocomplete="off" matInput
-              appDatePickerDirective [matDatepicker]="pickerFechaFin" />
-            <mat-datepicker-toggle matSuffix [for]="pickerFechaFin"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFechaFin></mat-datepicker>
-            <mat-hint class="mat-error" *ngIf="errorCampoFechaFin">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="col-lg-4 col-4" appearance="outline" *ngIf="mostrarCampoFechaFinReal">
-            <mat-label>Fecha Fin Real</mat-label>
-            <input [(ngModel)]="Registro.FechaFinReal" [ngModelOptions]="{ standalone: true }" [disabled]="true"
-              autocomplete="off" matInput appDatePickerDirective [matDatepicker]="pickerFechaFinReal" />
-            <mat-datepicker-toggle matSuffix [for]="pickerFechaFinReal"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFechaFinReal></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field class="col-lg-4 col-12" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoMontoContrato">
-            <mat-label>Monto Contrato
-              <span style="color: red" *ngIf="!bloquearCampoMontoContrato">(*)</span></mat-label>
-            <input type="number" matInput placeholder="" [(ngModel)]="Registro.MontoContrato"
-              [ngModelOptions]="{ standalone: true }" (keyup)="validarCampoMontoContrato()"
-              [disabled]="bloquearCampoMontoContrato" maxlength="16" />
-            <mat-hint class="mat-error" *ngIf="errorCampoMontoContrato">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-          <mat-form-field class="col-lg-4 col-12" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoMoneda">
-            <mat-label>Moneda<span style="color: red" *ngIf="!bloquearCampoMoneda">
-                (*)</span></mat-label>
-            <mat-select [(ngModel)]="Registro.Moneda.Id" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoMoneda">
-              <mat-option *ngFor="let item of ListaAdmMoneda" [value]="item.Id" (click)="validarCampoMoneda()">{{
-                item.Nombre }}</mat-option>
-            </mat-select>
-            <mat-hint class="mat-error" *ngIf="errorCampoMoneda">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-          <mat-form-field class="col-lg-4 col-12" appearance="outline" *ngIf="mostrarCampoMontoTotal">
-            <mat-label>Monto Total </mat-label>
-            <input type="number" matInput placeholder="" [(ngModel)]="Registro.MontoTotal"
-              [ngModelOptions]="{ standalone: true }" [disabled]="true" />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field class="col-lg-4 col-12" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoMetodoEntrega">
-            <mat-label>Metodo de Entrega<span style="color: red" *ngIf="!bloquearCampoMetodoEntrega">
-                (*)</span></mat-label>
-            <mat-select [(ngModel)]="Registro.MetodoEntrega.Id" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoMetodoEntrega">
-              <mat-option *ngFor="let item of ListaAdmMetodoEntrega" [value]="item.Id"
-                (click)="validarCampoMetodoEntrega()">{{ item.Nombre }}</mat-option>
-            </mat-select>
-            <mat-hint class="mat-error" *ngIf="errorCampoMetodoEntrega">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="col-lg-4 col-12" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoSistemaContratacion">
-            <mat-label>Sistema de Contratación<span style="color: red" *ngIf="!bloquearCampoSistemaContratacion">
-                (*)</span></mat-label>
-            <mat-select [(ngModel)]="Registro.SistemaContratacion.Id" [ngModelOptions]="{ standalone: true }"
-              [disabled]="bloquearCampoSistemaContratacion">
-              <mat-option *ngFor="let item of ListaAdmSistemaContratacion" [value]="item.Id"
-                (click)="validarCampoSistemaContratacion()">{{ item.Nombre }}</mat-option>
-            </mat-select>
-            <mat-hint class="mat-error" *ngIf="errorCampoSistemaContratacion">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="col-lg-4" appearance="outline"
-            [class.mat-form-field-invalid]="errorCampoAprobadorContrato">
-            <mat-label>Aprobador del Contrato
-              <span style="color: red" *ngIf="!bloquearCampoAprobadorContrato">(*)</span></mat-label>
-            <input type="text" aria-label="Number" matInput [(ngModel)]="Registro.UsuarioAprobadorContrato.Nombre"
-              [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarAprobadorContrato()"
-              [disabled]="bloquearCampoAprobadorContrato" [matAutocomplete]="autoAprobadorContrato" />
-            <mat-autocomplete #autoAprobadorContrato="matAutocomplete">
-              <mat-option *ngIf="isLoading">
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-              </mat-option>
-              <ng-container *ngIf="!isLoading">
-                <mat-option (onSelectionChange)="onSeleccionAprobadorContrato(option)"
-                  *ngFor="let option of ListaUsuariosAprobadoresContrato" [value]="option.NombreCompleto">
-                  {{ option.NombreCompleto }}
-                </mat-option>
-              </ng-container>
-            </mat-autocomplete>
-            <mat-icon matSuffix>search</mat-icon>
-            <mat-hint class="mat-error" *ngIf="errorCampoAprobadorContrato">{{
-              mensajeCompletarCampoObligatorio
-              }}</mat-hint>
-          </mat-form-field>
-
-        </div>
-        <div class="row" *ngIf="mostrarCamposAuditoria">
-          <mat-form-field class="col-lg-4 col-12" appearance="outline">
-            <mat-label>Registrado por</mat-label>
-            <input matInput placeholder="" [(ngModel)]="Registro.UsuarioRegistro.Nombre"
-              [ngModelOptions]="{ standalone: true }" [disabled]="true" maxlength="255" />
-          </mat-form-field>
-          <mat-form-field class="col-lg-4 col-12" appearance="outline">
-            <mat-label>Fecha de Registro</mat-label>
-            <input matInput placeholder="" [(ngModel)]="Registro.TextoFechaRegistro"
-              [ngModelOptions]="{ standalone: true }" [disabled]="true" maxlength="255" />
-          </mat-form-field>
-          <mat-form-field class="col-lg-4 col-12" appearance="outline">
-            <mat-label>Estado</mat-label>
-            <input matInput placeholder="" [(ngModel)]="Registro.Estado.Nombre" [ngModelOptions]="{ standalone: true }"
-              [disabled]="true" maxlength="255" />
-          </mat-form-field>
-        </div>
-      </mat-card>
-
-      <mat-card class="mb-3">
-        <div class="subtitulo-p">Administradores del Contrato</div>
-        <div class="row" *ngIf="mostrarCampoBusquedaAdministrador">
-          <mat-form-field class="col-lg-4" appearance="outline">
-            <mat-label>Buscar Usuario</mat-label>
-            <input type="text" aria-label="Number" matInput [(ngModel)]="AdministradorBuscar"
-              [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarAdministrador()"
-              [matAutocomplete]="autoAdministrador" />
-            <mat-autocomplete #autoAdministrador="matAutocomplete">
-              <mat-option *ngIf="isLoading">
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-              </mat-option>
-              <ng-container *ngIf="!isLoading">
-                <mat-option (onSelectionChange)="onSeleccionAdministrador(option)"
-                  *ngFor="let option of ListaUsuarioAdministradores" [value]="option.NombreCompleto">
-                  {{ option.NombreCompleto }}
-                </mat-option>
-              </ng-container>
-            </mat-autocomplete>
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <div class="col-lg-12" *ngFor="let item of Registro.ListaAdministrador; let i = index">
-            <div class="d-flex flex-wrap align-items-center bg-card-destinatario" *ngIf="!item.Eliminado">
-              <div class="col-lg-5 col-6">
-                <dt>Nombre</dt>
-                <dd>{{ item.Nombre }}</dd>
-              </div>
-              <div class="col-lg-5 col-6">
-                <dt>Correo</dt>
-                <dd>{{ item.Correo }}</dd>
-              </div>
-              <!--<div class="col-lg-3 col-6">
-                  <dt>Puesto</dt>
-                  <dd>{{item.Puesto.Nombre}}</dd>
-              </div>
-              <div class="col-lg-3 col-6">
-                <dt>Área</dt>
-                <dd>{{ item.Area.Nombre }}</dd>
-              </div>-->
-              <div class="col-lg-2 col-12" *ngIf="item.PuedeEliminar">
-                <button type="button" mat-icon-button aria-label="eliminar" (click)="OnEliminarAdministrador(item)"
-                  matTooltip="Eliminar">
-                  <mat-icon>close</mat-icon>
-                </button>
+        <div class="col-md-12 mb-3">
+          <mat-card class="mb-3">
+            <div class="estado-c3-detalle">C</div>
+            <div class=" pl-15">
+              <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
+                <div class="col-lg-7 d-flex flex-wrap justify-content-start align-items-center">
+                  <div class="col-lg-4 col-12 d-flex align-items-center mb-mob-8 flex-between">
+                    <span class="ml-3 number-card">{{ Registro.CodigoContrato }}</span>
+                  </div>
+                  <div class="col-lg-8 col-12 mb-mob-8">
+                    <span class="coment-card"> {{ Registro.TituloContrato }}</span>
+                  </div>
+                </div>
+                <div class="col-lg-5 col-12 d-flex justify-content-end align-items-center">
+                  <div class="col-lg-4 col-6 text-end">
+                    <h2 class="mb-0"><span class="badge-c3">{{ Registro.Estado.Nombre }}</span></h2>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </mat-card>
         </div>
-      </mat-card>
-
-      <mat-card class="mb-3">
-        <div class="subtitulo-p">Archivo del Contrato</div>
-        <div class="row" *ngIf="mostrarBotonAgregarArchivoContrato">
-          <div class="col-lg-12">
-            <div class="alert alert-info" role="alert">
-              <ul>
-                <li>
-                  Sólo se permiten archivos con las siguientes extensiones: {{ TextoExtensionesValidasArchivoContrato }}
-                </li>
-                <li>El peso máximo por archivo es de 25 MB</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-12 text-end mb-4">
-            <!--<button type="button" mat-icon-button matTooltip="** Debe seleccionar el contrato firmado" aria-label="">
-              <mat-icon>info</mat-icon>
-            </button>-->
-            <button type="button" mat-raised-button class="mr-3" color="primary"
-              (click)="FileControlArchivoContrato.click()">
-              Agregar Contrato Firmado
-            </button>
-            <input type="file" accept=".pdf" id="fileArchivoContrato" #FileControlArchivoContrato [hidden]="true"
-              multiple (change)="OnFileUploadArchivoContrato($event)" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 table-responsive">
-            <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
-              *ngFor="let ItemArchivo of Registro.ListaArchivosContrato">
-              <div class="d-flex justify-content-between">
-                <div>
-                  <!--<span>{{ItemArchivo.NombreArchivo}}</span>-->
-                </div>
-                <div>
-                  <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
-                    (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
-                    <mat-icon>download</mat-icon>
-                  </button>
-                  <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
-                    (click)="eventoEliminarArchivoContrato(ItemArchivo)" matTooltip="Eliminar">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-              </div>
-              <div class="row">
-                <mat-form-field class="col-lg-6" appearance="outline">
-                  <mat-label>Nombre</mat-label>
-                  <input matInput [value]="ItemArchivo.NombreArchivo" [disabled]="true" maxlength="250"
-                    autocomplete="off">
-                </mat-form-field>
-              </div>
-            </mat-card>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card class="mb-3">
-        <div class="subtitulo-p">Archivo Adicionales</div>
-        <div class="row" *ngIf="mostrarBotonAgregarArchivoAdicional">
-          <div class="col-lg-12">
-            <div class="alert alert-info" role="alert">
-              <ul>
-                <li>Sólo se permiten archivos con las siguientes extensiones:
-                  {{TextoExtensionesValidasArchivosAdicionales}}</li>
-                <li>El peso máximo por archivo es de 25 MB</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-12 text-end mb-4">
-            <button type="button" mat-raised-button class="mr-3" color="primary"
-              (click)="FileControlArchivoAdicional.click()">Agregar Archivo</button>
-            <input type="file" accept=".pdf, .xls, .xlsx, .doc, .docx, .ppt, .jpg, .png, .rar, .zip"
-              id="fileDocumentosAdjuntos" #FileControlArchivoAdicional [hidden]="true" multiple
-              (change)="OnFileUploadArchivoAdicional($event)">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <!--<div class="subtitulo-p">Adjuntos</div>-->
-            <div class="col-lg-12 table-responsive">
-              <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
-                *ngFor="let ItemArchivo of Registro.ListaArchivosAdiconales">
-                <div class="d-flex justify-content-between">
-                  <div><!--<span>{{ItemArchivo.NombreArchivo}}</span>--></div>
-                  <div>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
-                      (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
-                      <mat-icon>download</mat-icon>
-                    </button>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
-                      (click)="eventoEliminarArchivoAdjunto(ItemArchivo)" matTooltip="Eliminar">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </div>
-                </div>
-                <div class="row">
-                  <mat-form-field class="col-lg-6" appearance="outline">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput [value]="ItemArchivo.NombreArchivo" [disabled]="true" maxlength="250"
-                      autocomplete="off">
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-6" appearance="outline">
-                    <mat-label>Tipo de Documento</mat-label>
-                    <mat-select [value]="ItemArchivo.TipoDocumento.Id" [disabled]="bloquearArchivoAdicional">
-                      <mat-option *ngFor="let value of ListaAdmTipoDocumentoContato"
-                        (click)="onChangeAdjuntoTipoDocumento(ItemArchivo, $event)" [value]="value.Id">{{ value.Nombre
-                        }}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </mat-card>
-            </div>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card class="mb-3" *ngIf="mostrarSeccionAdenda">
-        <div class="subtitulo-p">Adendas</div>
-        <div class="row" *ngIf="mostrarBotonAgregarArchivoAdenda">
-          <div class="col-lg-12">
-            <div class="alert alert-info" role="alert">
-              <ul>
-                <li>Sólo se permiten archivos con las siguientes extensiones:
-                  {{TextoExtensionesValidasArchivoAdenda}}</li>
-                <li>El peso máximo por archivo es de 25 MB</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-12 text-end mb-4">
-            <button type="button" mat-raised-button class="mr-3" color="primary"
-              (click)="FileControlArchivoAdenda.click()">Agregar Archivo</button>
-            <input type="file" id="fileAndeda" #FileControlArchivoAdenda accept=".pdf" [hidden]="true" multiple
-              (change)="OnFileUploadArchivoAdenda($event)">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="col-lg-12 table-responsive">
-              <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
-                *ngFor="let ItemArchivo of Registro.ListaAdenda">
-                <div class="d-flex justify-content-between">
-                  <div><span>{{ItemArchivo.NombreArchivo}}</span></div>
-                  <div>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
-                      (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
-                      <mat-icon>download</mat-icon>
-                    </button>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
-                      (click)="eventoEliminarArchivoAdenda(ItemArchivo)" matTooltip="Eliminar">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </div>
-                </div>
-                <div class="row">
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Código de Adenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                        (*)</span></mat-label>
-                    <input matInput [(ngModel)]="ItemArchivo.CodigoAdenda" [disabled]="ItemArchivo.bloquearCampoAdenda"
-                      maxlength="250" autocomplete="off">
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Descripción <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                        (*)</span></mat-label>
-                    <input matInput [(ngModel)]="ItemArchivo.Descripcion" [disabled]="ItemArchivo.bloquearCampoAdenda"
-                      maxlength="250" autocomplete="off">
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>TipoAdenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                        (*)</span></mat-label>
-                    <mat-select [value]="ItemArchivo.TipoAdenda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
-                      <mat-option *ngFor="let value of ListaAdmTipoAdenda"
-                        (click)="onChangeAdjuntoTipoAdenda(ItemArchivo, $event)" [value]="value.Id">{{
-                        value.Nombre}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-                  <div class="col-lg-3">
-                    <div class="row">
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Monto <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                            (*)</span></mat-label>
-                        <input type="number" matInput [(ngModel)]="ItemArchivo.Monto"
-                          [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Moneda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                            (*)</span></mat-label>
-                        <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
-                          <mat-option *ngFor="let value of ListaAdmMoneda"
-                            (click)="onChangeAdjuntoMonedaAdenda(ItemArchivo, $event)" [value]="value.Id">{{
-                            value.Nombre}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="row">
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Fecha Inicio <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                            (*)</span></mat-label>
-                        <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="ItemArchivo.bloquearCampoAdenda"
-                          autocomplete="off" matInput appDatePickerDirective
-                          [matDatepicker]="pickerGarantiaFechaInicio"/>
-                        <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Fecha Fin <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
-                            (*)</span></mat-label>
-                        <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="ItemArchivo.bloquearCampoAdenda"
-                          autocomplete="off" matInput appDatePickerDirective [matDatepicker]="pickerGarantiaFechaFin" />
-                        <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </div>
-              </mat-card>
-            </div>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card class="mb-3" *ngIf="mostrarSeccionGarantias">
-        <div class="subtitulo-p">Garantias</div>
-        <div class="row" *ngIf="mostrarBotonAgregarArchivoGarantia">
-          <div class="col-lg-12">
-            <div class="alert alert-info" role="alert">
-              <ul>
-                <li>Sólo se permiten archivos con las siguientes extensiones:
-                  {{TextoExtensionesValidasArchivoGarantia}}</li>
-                <li>El peso máximo por archivo es de 25 MB</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-12 text-end mb-4">
-            <button type="button" mat-raised-button class="mr-3" color="primary"
-              (click)="FileControlArchivoGarantia.click()">Agregar Archivo</button>
-            <input type="file" id="fileGarantia" #FileControlArchivoGarantia accept=".pdf" [hidden]="true" multiple
-              (change)="OnFileUploadArchivoGarantia($event)">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="col-lg-12 table-responsive">
-              <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
-                *ngFor="let ItemArchivo of Registro.ListaArchivosGarantia">
-                <div class="d-flex justify-content-between">
-                  <div><span>{{ItemArchivo.NombreArchivo}}</span></div>
-                  <div>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
-                      (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
-                      <mat-icon>download</mat-icon>
-                    </button>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
-                      (click)="eventoEliminarArchivoGarantia(ItemArchivo)" matTooltip="Eliminar">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </div>
-                </div>
-                <div class="row">
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Número de Garantía <span style="color: red" *ngIf="!bloquearArchivoGarantia">
-                        (*)</span></mat-label>
-                    <input matInput [(ngModel)]="ItemArchivo.NumeroGarantia" [disabled]="bloquearArchivoGarantia"
-                      maxlength="250" autocomplete="off">
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Banco <span style="color: red" *ngIf="!bloquearArchivoGarantia"> (*)</span></mat-label>
-                    <mat-select [value]="ItemArchivo.Banco.Id" [disabled]="bloquearArchivoGarantia">
-                      <mat-option *ngFor="let value of ListaAdmBanco"
-                        (click)="onChangeAdjuntoBanco(ItemArchivo, $event)" [value]="value.Id">{{
-                        value.Nombre}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Tipo Garantía <span style="color: red" *ngIf="!bloquearArchivoGarantia">
-                        (*)</span></mat-label>
-                    <mat-select [value]="ItemArchivo.TipoGarantia.Id" [disabled]="bloquearArchivoGarantia">
-                      <mat-option *ngFor="let value of ListaAdmTipoGarantia"
-                        (click)="onChangeAdjuntoTipoGarantia(ItemArchivo, $event)" [value]="value.Id">{{
-                        value.Nombre}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <div class="col-lg-3">
-                    <div class="row">
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Monto <span style="color: red" *ngIf="!bloquearArchivoGarantia">
-                            (*)</span></mat-label>
-                        <input type="number" matInput [(ngModel)]="ItemArchivo.Monto"
-                          [disabled]="bloquearArchivoGarantia" maxlength="250" autocomplete="off">
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Moneda <span style="color: red" *ngIf="!bloquearArchivoGarantia">
-                            (*)</span></mat-label>
-                        <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="bloquearArchivoGarantia">
-                          <mat-option *ngFor="let value of ListaAdmMoneda"
-                            (click)="onChangeAdjuntoMonedaGarantia(ItemArchivo, $event)" [value]="value.Id">{{
-                            value.Nombre}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="row">
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Fecha Inicio <span style="color: red" *ngIf="!bloquearArchivoGarantia">
-                            (*)</span></mat-label>
-                        <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="bloquearArchivoGarantia"
-                          autocomplete="off" matInput appDatePickerDirective
-                          [matDatepicker]="pickerGarantiaFechaInicio" />
-                        <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Fecha Fin <span style="color: red" *ngIf="!bloquearArchivoGarantia">
-                            (*)</span></mat-label>
-                        <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="bloquearArchivoGarantia"
-                          autocomplete="off" matInput appDatePickerDirective [matDatepicker]="pickerGarantiaFechaFin" />
-                        <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </div>
-              </mat-card>
-            </div>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card class="mb-3" *ngIf="mostrarSeccionPolizas">
-        <div class="subtitulo-p">Pólizas</div>
-        <div class="row" *ngIf="mostrarBotonAgregarArchivoPoliza">
-          <div class="col-lg-12">
-            <div class="alert alert-info" role="alert">
-              <ul>
-                <li>Sólo se permiten archivos con las siguientes extensiones:
-                  {{TextoExtensionesValidasArchivoPoliza}}</li>
-                <li>El peso máximo por archivo es de 25 MB</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-12 text-end mb-4">
-            <button type="button" mat-raised-button class="mr-3" color="primary"
-              (click)="FileControlArchivoPoliza.click()">Agregar Archivo</button>
-            <input type="file" id="filePoliza" #FileControlArchivoPoliza accept=".pdf" [hidden]="true" multiple
-              (change)="OnFileUploadArchivoPoliza($event)">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="col-lg-12 table-responsive">
-              <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
-                *ngFor="let ItemArchivo of Registro.ListaArchivosPoliza">
-                <div class="d-flex justify-content-between">
-                  <div><span>{{ItemArchivo.NombreArchivo}}</span></div>
-                  <div>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
-                      (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
-                      <mat-icon>download</mat-icon>
-                    </button>
-                    <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
-                      (click)="eventoEliminarArchivoPoliza(ItemArchivo)" matTooltip="Eliminar">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </div>
-                </div>
-                <div class="row">
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Número de Póliza <span style="color: red" *ngIf="!bloquearArchivoPoliza">
-                        (*)</span></mat-label>
-                    <input matInput [(ngModel)]="ItemArchivo.NumeroPoliza" [disabled]="bloquearArchivoPoliza"
-                      maxlength="250" autocomplete="off">
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Compañia Aseguradora <span style="color: red" *ngIf="!bloquearArchivoPoliza">
-                        (*)</span></mat-label>
-                    <mat-select [value]="ItemArchivo.CompaniaAseguradora.Id" [disabled]="bloquearArchivoPoliza">
-                      <mat-option *ngFor="let value of ListaAdmCompaniaAseguradora"
-                        (click)="onChangeAdjuntoCompaniaAseguradora(ItemArchivo, $event)" [value]="value.Id">{{
-                        value.Nombre}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-2" appearance="outline">
-                    <mat-label>Tipo Póliza <span style="color: red" *ngIf="!bloquearArchivoPoliza">
-                        (*)</span></mat-label>
-                    <mat-select [value]="ItemArchivo.TipoPoliza.Id" [disabled]="bloquearArchivoPoliza">
-                      <mat-option *ngFor="let value of ListaAdmTipoPoliza"
-                        (click)="onChangeAdjuntoTipoPoliza(ItemArchivo, $event)" [value]="value.Id">{{
-                        value.Nombre}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-                  <div class="col-lg-3">
-                    <div class="row">
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Monto <span style="color: red" *ngIf="!bloquearArchivoPoliza"> (*)</span></mat-label>
-                        <input type="number" matInput [(ngModel)]="ItemArchivo.Monto" [disabled]="bloquearArchivoPoliza"
-                          maxlength="250" autocomplete="off">
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Moneda <span style="color: red" *ngIf="!bloquearArchivoPoliza">
-                            (*)</span></mat-label>
-                        <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="bloquearArchivoPoliza">
-                          <mat-option *ngFor="let value of ListaAdmMoneda"
-                            (click)="onChangeAdjuntoMonedaPoliza(ItemArchivo, $event)" [value]="value.Id">{{
-                            value.Nombre}}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="row">
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Fecha Inicio <span style="color: red" *ngIf="!bloquearArchivoPoliza">
-                            (*)</span></mat-label>
-                        <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="bloquearArchivoPoliza"
-                          autocomplete="off" matInput appDatePickerDirective
-                          [matDatepicker]="pickerGarantiaFechaInicio" />
-                        <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
-                      </mat-form-field>
-                      <mat-form-field class="col-lg-6" appearance="outline">
-                        <mat-label>Fecha Fin <span style="color: red" *ngIf="!bloquearArchivoPoliza">
-                            (*)</span></mat-label>
-                        <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="bloquearArchivoPoliza" autocomplete="off"
-                          matInput appDatePickerDirective [matDatepicker]="pickerGarantiaFechaFin" />
-                        <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
-                        <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
-                      </mat-form-field>
-                    </div>
-                  </div>
-
-                </div>
-              </mat-card>
-            </div>
-          </div>
-        </div>
-      </mat-card>      
-
-      <div class="mb-3" *ngIf="mostrarSeccionComentarios">
-        <mat-accordion>
-          <!--<mat-expansion-panel [expanded]="true" (opened)="panelOpenComentarios = true" (closed)="panelOpenComentarios = false"></mat-expansion-panel>-->
-          <mat-expansion-panel (opened)="panelOpenComentarios = true" (closed)="panelOpenComentarios = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <div class="subtitulo-accordion">Comentarios</div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div class="row" *ngIf="mostrarCampoComentarioContrato">
-              <mat-form-field class="col-lg-12 col-12" appearance="outline">
-                <mat-label>Comentario</mat-label>
-                <textarea matInput [(ngModel)]="Registro.Comentarios" rows="3" maxlength="1000"
-                  [ngModelOptions]="{standalone: true}" [disabled]="bloquearCampoComentarios"></textarea>
+        <div class="col-md-12 mb-3 scroll-container">
+          <mat-card class="mb-3" id="datos-generales">
+            <div class="subtitulo-p">Datos Generales</div>
+            <div class="row">
+              <mat-form-field class="col-lg-9 col-9" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoTituloContrato">
+                <mat-label>Titulo de Contrato
+                  <span style="color: red" *ngIf="!bloquearCampoTituloContrato">(*)</span></mat-label>
+                <input matInput placeholder="" [(ngModel)]="Registro.TituloContrato"
+                  [ngModelOptions]="{ standalone: true }" (keyup)="validarCampoTituloContrato()"
+                  [disabled]="bloquearCampoTituloContrato" maxlength="255" />
+                <mat-hint class="mat-error" *ngIf="errorCampoTituloContrato">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-3 col-3" appearance="outline">
+                <mat-label>Código de Contrato</mat-label>
+                <input matInput placeholder="" [(ngModel)]="Registro.CodigoContrato"
+                  [ngModelOptions]="{ standalone: true }" [disabled]="true" maxlength="255" />
               </mat-form-field>
             </div>
             <div class="row">
-              <div *ngFor="let item of Registro.ListaComentario; let i = index">
-                <div class="col-lg-12 col-12 d-flex justify-content-between">
-                  <div style="padding-top: 10px;">
-                    <b>{{item.UsuarioRegistro.Nombre}}</b>
+              <mat-form-field class="col-lg-12 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoDetalleContrato">
+                <mat-label>Detalle del Contrato
+                  <span style="color: red" *ngIf="!bloquearCampoDetalleContrato">(*)</span></mat-label>
+                <textarea matInput [(ngModel)]="Registro.DetalleContrato" [ngModelOptions]="{ standalone: true }"
+                  (keyup)="validarCampoDetalleContrato()" [disabled]="bloquearCampoDetalleContrato" rows="3"
+                  maxlength="1000"></textarea>
+                <mat-hint class="mat-error" *ngIf="errorCampoDetalleContrato">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-lg-4" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoProveedor">
+                <mat-label>Proveedor
+                  <span style="color: red" *ngIf="!bloquearCampoProveedor">(*)</span></mat-label>
+                <input type="text" aria-label="Number" matInput [(ngModel)]="Registro.Proveedor.Nombre"
+                  [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarProveedor()"
+                  [disabled]="bloquearCampoProveedor" [matAutocomplete]="autoProveedor" />
+                <mat-autocomplete #autoProveedor="matAutocomplete">
+                  <mat-option *ngIf="isLoading">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  </mat-option>
+                  <ng-container *ngIf="!isLoading">
+                    <mat-option (onSelectionChange)="onSeleccionProveedor(option)"
+                      *ngFor="let option of ListaProveedores" [value]="option.Nombre">
+                      {{ option.Ruc }} | {{ option.Nombre }}
+                    </mat-option>
+                  </ng-container>
+                </mat-autocomplete>
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint class="mat-error" *ngIf="errorCampoProveedor">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoTipoContrato">
+                <mat-label>Tipo de Contrato<span style="color: red" *ngIf="!bloquearCampoTipoContrato">
+                    (*)</span></mat-label>
+                <mat-select [(ngModel)]="Registro.TipoContrato.Id" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoTipoContrato">
+                  <mat-option *ngFor="let item of ListaAdmTipoContrato" [value]="item.Id"
+                    (click)="validarCampoTipoContrato()">{{ item.Nombre }}</mat-option>
+                </mat-select>
+                <mat-hint class="mat-error" *ngIf="errorCampoTipoContrato">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoArea">
+                <mat-label>Área<span style="color: red" *ngIf="!bloquearCampoArea">
+                    (*)</span></mat-label>
+                <mat-select [(ngModel)]="Registro.Area.Id" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoArea">
+                  <mat-option *ngFor="let item of ListaAdmArea" [value]="item.Id" (click)="validarCampoArea()">{{
+                    item.Nombre }}</mat-option>
+                </mat-select>
+                <mat-hint class="mat-error" *ngIf="errorCampoArea">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-lg-4 col-4" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoFechaInicio">
+                <mat-label>Fecha Inicio
+                  <span style="color: red" *ngIf="!bloquearCampoFechaInicio">(*)</span></mat-label>
+                <input [(ngModel)]="Registro.FechaInicio" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoFechaInicio" (dateChange)="validarCampoFechaInicio($event)"
+                  autocomplete="off" matInput appDatePickerDirective [matDatepicker]="pickerFechaInicio" />
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaInicio></mat-datepicker>
+                <mat-hint class="mat-error" *ngIf="errorCampoFechaInicio">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-4" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoFechaFin">
+                <mat-label>Fecha Fin
+                  <span style="color: red" *ngIf="!bloquearCampoFechaFin">(*)</span></mat-label>
+                <input [(ngModel)]="Registro.FechaFin" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoFechaFin" (dateChange)="validarCampoFechaFin($event)" autocomplete="off"
+                  matInput appDatePickerDirective [matDatepicker]="pickerFechaFin" />
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaFin></mat-datepicker>
+                <mat-hint class="mat-error" *ngIf="errorCampoFechaFin">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-4" appearance="outline" *ngIf="mostrarCampoFechaFinReal">
+                <mat-label>Fecha Fin Real</mat-label>
+                <input [(ngModel)]="Registro.FechaFinReal" [ngModelOptions]="{ standalone: true }" [disabled]="true"
+                  autocomplete="off" matInput appDatePickerDirective [matDatepicker]="pickerFechaFinReal" />
+                <mat-datepicker-toggle matSuffix [for]="pickerFechaFinReal"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFechaFinReal></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-lg-4 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoMontoContrato">
+                <mat-label>Monto Contrato
+                  <span style="color: red" *ngIf="!bloquearCampoMontoContrato">(*)</span></mat-label>
+                <input type="number" matInput placeholder="" [(ngModel)]="Registro.MontoContrato"
+                  [ngModelOptions]="{ standalone: true }" (keyup)="validarCampoMontoContrato()"
+                  [disabled]="bloquearCampoMontoContrato" maxlength="16" />
+                <mat-hint class="mat-error" *ngIf="errorCampoMontoContrato">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoMoneda">
+                <mat-label>Moneda<span style="color: red" *ngIf="!bloquearCampoMoneda">
+                    (*)</span></mat-label>
+                <mat-select [(ngModel)]="Registro.Moneda.Id" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoMoneda">
+                  <mat-option *ngFor="let item of ListaAdmMoneda" [value]="item.Id" (click)="validarCampoMoneda()">{{
+                    item.Nombre }}</mat-option>
+                </mat-select>
+                <mat-hint class="mat-error" *ngIf="errorCampoMoneda">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline" *ngIf="mostrarCampoMontoTotal">
+                <mat-label>Monto Total </mat-label>
+                <input type="number" matInput placeholder="" [(ngModel)]="Registro.MontoTotal"
+                  [ngModelOptions]="{ standalone: true }" [disabled]="true" />
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-lg-4 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoMetodoEntrega">
+                <mat-label>Metodo de Entrega<span style="color: red" *ngIf="!bloquearCampoMetodoEntrega">
+                    (*)</span></mat-label>
+                <mat-select [(ngModel)]="Registro.MetodoEntrega.Id" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoMetodoEntrega">
+                  <mat-option *ngFor="let item of ListaAdmMetodoEntrega" [value]="item.Id"
+                    (click)="validarCampoMetodoEntrega()">{{ item.Nombre }}</mat-option>
+                </mat-select>
+                <mat-hint class="mat-error" *ngIf="errorCampoMetodoEntrega">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoSistemaContratacion">
+                <mat-label>Sistema de Contratación<span style="color: red" *ngIf="!bloquearCampoSistemaContratacion">
+                    (*)</span></mat-label>
+                <mat-select [(ngModel)]="Registro.SistemaContratacion.Id" [ngModelOptions]="{ standalone: true }"
+                  [disabled]="bloquearCampoSistemaContratacion">
+                  <mat-option *ngFor="let item of ListaAdmSistemaContratacion" [value]="item.Id"
+                    (click)="validarCampoSistemaContratacion()">{{ item.Nombre }}</mat-option>
+                </mat-select>
+                <mat-hint class="mat-error" *ngIf="errorCampoSistemaContratacion">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-lg-4" appearance="outline"
+                [class.mat-form-field-invalid]="errorCampoAprobadorContrato">
+                <mat-label>Aprobador del Contrato
+                  <span style="color: red" *ngIf="!bloquearCampoAprobadorContrato">(*)</span></mat-label>
+                <input type="text" aria-label="Number" matInput [(ngModel)]="Registro.UsuarioAprobadorContrato.Nombre"
+                  [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarAprobadorContrato()"
+                  [disabled]="bloquearCampoAprobadorContrato" [matAutocomplete]="autoAprobadorContrato" />
+                <mat-autocomplete #autoAprobadorContrato="matAutocomplete">
+                  <mat-option *ngIf="isLoading">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  </mat-option>
+                  <ng-container *ngIf="!isLoading">
+                    <mat-option (onSelectionChange)="onSeleccionAprobadorContrato(option)"
+                      *ngFor="let option of ListaUsuariosAprobadoresContrato" [value]="option.NombreCompleto">
+                      {{ option.NombreCompleto }}
+                    </mat-option>
+                  </ng-container>
+                </mat-autocomplete>
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint class="mat-error" *ngIf="errorCampoAprobadorContrato">{{
+                  mensajeCompletarCampoObligatorio
+                  }}</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="row" *ngIf="mostrarCamposAuditoria">
+              <mat-form-field class="col-lg-4 col-12" appearance="outline">
+                <mat-label>Registrado por</mat-label>
+                <input matInput placeholder="" [(ngModel)]="Registro.UsuarioRegistro.Nombre"
+                  [ngModelOptions]="{ standalone: true }" [disabled]="true" maxlength="255" />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline">
+                <mat-label>Fecha de Registro</mat-label>
+                <input matInput placeholder="" [(ngModel)]="Registro.TextoFechaRegistro"
+                  [ngModelOptions]="{ standalone: true }" [disabled]="true" maxlength="255" />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4 col-12" appearance="outline">
+                <mat-label>Estado</mat-label>
+                <input matInput placeholder="" [(ngModel)]="Registro.Estado.Nombre"
+                  [ngModelOptions]="{ standalone: true }" [disabled]="true" maxlength="255" />
+              </mat-form-field>
+            </div>
+          </mat-card>
+          <mat-card class="mb-3" id="administradores">
+            <div class="subtitulo-p">Administradores del Contrato</div>
+            <div class="row" *ngIf="mostrarCampoBusquedaAdministrador">
+              <mat-form-field class="col-lg-4" appearance="outline">
+                <mat-label>Buscar Usuario</mat-label>
+                <input type="text" aria-label="Number" matInput [(ngModel)]="AdministradorBuscar"
+                  [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarAdministrador()"
+                  [matAutocomplete]="autoAdministrador" />
+                <mat-autocomplete #autoAdministrador="matAutocomplete">
+                  <mat-option *ngIf="isLoading">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  </mat-option>
+                  <ng-container *ngIf="!isLoading">
+                    <mat-option (onSelectionChange)="onSeleccionAdministrador(option)"
+                      *ngFor="let option of ListaUsuarioAdministradores" [value]="option.NombreCompleto">
+                      {{ option.NombreCompleto }}
+                    </mat-option>
+                  </ng-container>
+                </mat-autocomplete>
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <div class="col-lg-12" *ngFor="let item of Registro.ListaAdministrador; let i = index">
+                <div class="d-flex flex-wrap align-items-center bg-card-destinatario" *ngIf="!item.Eliminado">
+                  <div class="col-lg-5 col-6">
+                    <dt>Nombre</dt>
+                    <dd>{{ item.Nombre }}</dd>
                   </div>
-                  <div>
-                    {{item.TextoFechaRegistro}}
+                  <div class="col-lg-5 col-6">
+                    <dt>Correo</dt>
+                    <dd>{{ item.Correo }}</dd>
+                  </div>
+                  <!--<div class="col-lg-3 col-6">
+                      <dt>Puesto</dt>
+                      <dd>{{item.Puesto.Nombre}}</dd>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <dt>Área</dt>
+                    <dd>{{ item.Area.Nombre }}</dd>
+                  </div>-->
+                  <div class="col-lg-2 col-12" *ngIf="item.PuedeEliminar">
+                    <button type="button" mat-icon-button aria-label="eliminar" (click)="OnEliminarAdministrador(item)"
+                      matTooltip="Eliminar">
+                      <mat-icon>close</mat-icon>
+                    </button>
                   </div>
                 </div>
-                <mat-form-field class="col-lg-12 col-12" appearance="outline">
-                  <textarea matInput disabled>{{item.Nota}}</textarea>
-                </mat-form-field>
               </div>
             </div>
-
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-
-      <div class="mb-3" *ngIf="Registro.ListaHistorial.length > 0">
-        <mat-accordion>
-          <mat-expansion-panel (opened)="panelOpenHistorial = true" (closed)="panelOpenHistorial = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <div class="subtitulo-accordion">Historial de Eventos</div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
+          </mat-card>
+          <mat-card class="mb-3" id="contrato-firmado">
+            <div class="subtitulo-p">Archivo del Contrato</div>
+            <div class="row" *ngIf="mostrarBotonAgregarArchivoContrato">
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  <ul>
+                    <li>
+                      Sólo se permiten archivos con las siguientes extensiones: {{
+                      TextoExtensionesValidasArchivoContrato
+                      }}
+                    </li>
+                    <li>El peso máximo por archivo es de 25 MB</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 text-end mb-4">
+                <!--<button type="button" mat-icon-button matTooltip="** Debe seleccionar el contrato firmado" aria-label="">
+                  <mat-icon>info</mat-icon>
+                </button>-->
+                <button type="button" mat-raised-button class="mr-3" color="primary"
+                  (click)="FileControlArchivoContrato.click()">
+                  Agregar Contrato Firmado
+                </button>
+                <input type="file" accept=".pdf" id="fileArchivoContrato" #FileControlArchivoContrato [hidden]="true"
+                  multiple (change)="OnFileUploadArchivoContrato($event)" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 table-responsive">
+                <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
+                  *ngFor="let ItemArchivo of Registro.ListaArchivosContrato">
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <!--<span>{{ItemArchivo.NombreArchivo}}</span>-->
+                    </div>
+                    <div>
+                      <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
+                        (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
+                        <mat-icon>download</mat-icon>
+                      </button>
+                      <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
+                        (click)="eventoEliminarArchivoContrato(ItemArchivo)" matTooltip="Eliminar">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-form-field class="col-lg-6" appearance="outline">
+                      <mat-label>Nombre</mat-label>
+                      <input matInput [value]="ItemArchivo.NombreArchivo" [disabled]="true" maxlength="250"
+                        autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card>
+          <mat-card class="mb-3" id="archivos-adicionales">
+            <div class="subtitulo-p">Archivo Adicionales</div>
+            <div class="row" *ngIf="mostrarBotonAgregarArchivoAdicional">
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  <ul>
+                    <li>Sólo se permiten archivos con las siguientes extensiones:
+                      {{TextoExtensionesValidasArchivosAdicionales}}</li>
+                    <li>El peso máximo por archivo es de 25 MB</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 text-end mb-4">
+                <button type="button" mat-raised-button class="mr-3" color="primary"
+                  (click)="FileControlArchivoAdicional.click()">Agregar Archivo</button>
+                <input type="file" accept=".pdf, .xls, .xlsx, .doc, .docx, .ppt, .jpg, .png, .rar, .zip"
+                  id="fileDocumentosAdjuntos" #FileControlArchivoAdicional [hidden]="true" multiple
+                  (change)="OnFileUploadArchivoAdicional($event)">
+              </div>
+            </div>
             <div class="row">
               <div class="col-lg-12">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Fecha y Hora</th>
-                      <th>Usuario</th>
-                      <th>Evento</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let value of Registro.ListaHistorial">
-                      <td>{{value.TextoFechaRegistro}}</td>
-                      <td>{{value.UsuarioRegistro.Nombre}}</td>
-                      <td>{{value.Descripcion}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <!--<div class="subtitulo-p">Adjuntos</div>-->
+                <div class="col-lg-12 table-responsive">
+                  <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
+                    *ngFor="let ItemArchivo of Registro.ListaArchivosAdiconales">
+                    <div class="d-flex justify-content-between">
+                      <div><!--<span>{{ItemArchivo.NombreArchivo}}</span>--></div>
+                      <div>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
+                          (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
+                          <mat-icon>download</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
+                          (click)="eventoEliminarArchivoAdjunto(ItemArchivo)" matTooltip="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <mat-form-field class="col-lg-6" appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput [value]="ItemArchivo.NombreArchivo" [disabled]="true" maxlength="250"
+                          autocomplete="off">
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-6" appearance="outline">
+                        <mat-label>Tipo de Documento</mat-label>
+                        <mat-select [value]="ItemArchivo.TipoDocumento.Id" [disabled]="bloquearArchivoAdicional">
+                          <mat-option *ngFor="let value of ListaAdmTipoDocumentoContato"
+                            (click)="onChangeAdjuntoTipoDocumento(ItemArchivo, $event)" [value]="value.Id">{{
+                            value.Nombre
+                            }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </mat-card>
+                </div>
               </div>
             </div>
+          </mat-card>
+          <mat-card class="mb-3" *ngIf="mostrarSeccionAdenda" id="adendas">
+            <div class="subtitulo-p">Adendas</div>
+            <div class="row" *ngIf="mostrarBotonAgregarArchivoAdenda">
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  <ul>
+                    <li>Sólo se permiten archivos con las siguientes extensiones:
+                      {{TextoExtensionesValidasArchivoAdenda}}</li>
+                    <li>El peso máximo por archivo es de 25 MB</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 text-end mb-4">
+                <button type="button" mat-raised-button class="mr-3" color="primary"
+                  (click)="FileControlArchivoAdenda.click()">Agregar Archivo</button>
+                <input type="file" id="fileAndeda" #FileControlArchivoAdenda accept=".pdf" [hidden]="true" multiple
+                  (change)="OnFileUploadArchivoAdenda($event)">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="col-lg-12 table-responsive">
+                  <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
+                    *ngFor="let ItemArchivo of Registro.ListaAdenda">
+                    <div class="d-flex justify-content-between">
+                      <div><span>{{ItemArchivo.NombreArchivo}}</span></div>
+                      <div>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
+                          (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
+                          <mat-icon>download</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
+                          (click)="eventoEliminarArchivoAdenda(ItemArchivo)" matTooltip="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Código de Adenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                            (*)</span></mat-label>
+                        <input matInput [(ngModel)]="ItemArchivo.CodigoAdenda"
+                          [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Descripción <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                            (*)</span></mat-label>
+                        <input matInput [(ngModel)]="ItemArchivo.Descripcion"
+                          [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>TipoAdenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                            (*)</span></mat-label>
+                        <mat-select [value]="ItemArchivo.TipoAdenda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
+                          <mat-option *ngFor="let value of ListaAdmTipoAdenda"
+                            (click)="onChangeAdjuntoTipoAdenda(ItemArchivo, $event)" [value]="value.Id">{{
+                            value.Nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <div class="col-lg-3">
+                        <div class="row">
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Monto <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                                (*)</span></mat-label>
+                            <input type="number" matInput [(ngModel)]="ItemArchivo.Monto"
+                              [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
+                          </mat-form-field>
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Moneda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                                (*)</span></mat-label>
+                            <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
+                              <mat-option *ngFor="let value of ListaAdmMoneda"
+                                (click)="onChangeAdjuntoMonedaAdenda(ItemArchivo, $event)" [value]="value.Id">{{
+                                value.Nombre}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="row">
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Fecha Inicio <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                                (*)</span></mat-label>
+                            <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="ItemArchivo.bloquearCampoAdenda"
+                              autocomplete="off" matInput appDatePickerDirective
+                              [matDatepicker]="pickerGarantiaFechaInicio" />
+                            <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
+                          </mat-form-field>
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Fecha Fin <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                                (*)</span></mat-label>
+                            <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="ItemArchivo.bloquearCampoAdenda"
+                              autocomplete="off" matInput appDatePickerDirective
+                              [matDatepicker]="pickerGarantiaFechaFin" />
+                            <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+          <mat-card class="mb-3" *ngIf="mostrarSeccionGarantias" id="garantias">
+            <div class="subtitulo-p">Garantias</div>
+            <div class="row" *ngIf="mostrarBotonAgregarArchivoGarantia">
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  <ul>
+                    <li>Sólo se permiten archivos con las siguientes extensiones:
+                      {{TextoExtensionesValidasArchivoGarantia}}</li>
+                    <li>El peso máximo por archivo es de 25 MB</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 text-end mb-4">
+                <button type="button" mat-raised-button class="mr-3" color="primary"
+                  (click)="FileControlArchivoGarantia.click()">Agregar Archivo</button>
+                <input type="file" id="fileGarantia" #FileControlArchivoGarantia accept=".pdf" [hidden]="true" multiple
+                  (change)="OnFileUploadArchivoGarantia($event)">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="col-lg-12 table-responsive">
+                  <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
+                    *ngFor="let ItemArchivo of Registro.ListaArchivosGarantia">
+                    <div class="d-flex justify-content-between">
+                      <div><span>{{ItemArchivo.NombreArchivo}}</span></div>
+                      <div>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
+                          (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
+                          <mat-icon>download</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
+                          (click)="eventoEliminarArchivoGarantia(ItemArchivo)" matTooltip="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Número de Garantía <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                            (*)</span></mat-label>
+                        <input matInput [(ngModel)]="ItemArchivo.NumeroGarantia" [disabled]="bloquearArchivoGarantia"
+                          maxlength="250" autocomplete="off">
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Banco <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                            (*)</span></mat-label>
+                        <mat-select [value]="ItemArchivo.Banco.Id" [disabled]="bloquearArchivoGarantia">
+                          <mat-option *ngFor="let value of ListaAdmBanco"
+                            (click)="onChangeAdjuntoBanco(ItemArchivo, $event)" [value]="value.Id">{{
+                            value.Nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Tipo Garantía <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                            (*)</span></mat-label>
+                        <mat-select [value]="ItemArchivo.TipoGarantia.Id" [disabled]="bloquearArchivoGarantia">
+                          <mat-option *ngFor="let value of ListaAdmTipoGarantia"
+                            (click)="onChangeAdjuntoTipoGarantia(ItemArchivo, $event)" [value]="value.Id">{{
+                            value.Nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <div class="col-lg-3">
+                        <div class="row">
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Monto <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                                (*)</span></mat-label>
+                            <input type="number" matInput [(ngModel)]="ItemArchivo.Monto"
+                              [disabled]="bloquearArchivoGarantia" maxlength="250" autocomplete="off">
+                          </mat-form-field>
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Moneda <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                                (*)</span></mat-label>
+                            <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="bloquearArchivoGarantia">
+                              <mat-option *ngFor="let value of ListaAdmMoneda"
+                                (click)="onChangeAdjuntoMonedaGarantia(ItemArchivo, $event)" [value]="value.Id">{{
+                                value.Nombre}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="row">
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Fecha Inicio <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                                (*)</span></mat-label>
+                            <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="bloquearArchivoGarantia"
+                              autocomplete="off" matInput appDatePickerDirective
+                              [matDatepicker]="pickerGarantiaFechaInicio" />
+                            <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
+                          </mat-form-field>
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Fecha Fin <span style="color: red" *ngIf="!bloquearArchivoGarantia">
+                                (*)</span></mat-label>
+                            <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="bloquearArchivoGarantia"
+                              autocomplete="off" matInput appDatePickerDirective
+                              [matDatepicker]="pickerGarantiaFechaFin" />
+                            <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+          <mat-card class="mb-3" *ngIf="mostrarSeccionPolizas" id="polizas">
+            <div class="subtitulo-p">Pólizas</div>
+            <div class="row" *ngIf="mostrarBotonAgregarArchivoPoliza">
+              <div class="col-lg-12">
+                <div class="alert alert-info" role="alert">
+                  <ul>
+                    <li>Sólo se permiten archivos con las siguientes extensiones:
+                      {{TextoExtensionesValidasArchivoPoliza}}</li>
+                    <li>El peso máximo por archivo es de 25 MB</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 text-end mb-4">
+                <button type="button" mat-raised-button class="mr-3" color="primary"
+                  (click)="FileControlArchivoPoliza.click()">Agregar Archivo</button>
+                <input type="file" id="filePoliza" #FileControlArchivoPoliza accept=".pdf" [hidden]="true" multiple
+                  (change)="OnFileUploadArchivoPoliza($event)">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="col-lg-12 table-responsive">
+                  <mat-card class="mb-3 color-card" [hidden]="ItemArchivo.Eliminado"
+                    *ngFor="let ItemArchivo of Registro.ListaArchivosPoliza">
+                    <div class="d-flex justify-content-between">
+                      <div><span>{{ItemArchivo.NombreArchivo}}</span></div>
+                      <div>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeDescargar"
+                          (click)="eventoDescargarArchivo(ItemArchivo)" matTooltip="Descargar">
+                          <mat-icon>download</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button *ngIf="ItemArchivo.PuedeEliminar"
+                          (click)="eventoEliminarArchivoPoliza(ItemArchivo)" matTooltip="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Número de Póliza <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                            (*)</span></mat-label>
+                        <input matInput [(ngModel)]="ItemArchivo.NumeroPoliza" [disabled]="bloquearArchivoPoliza"
+                          maxlength="250" autocomplete="off">
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Compañia Aseguradora <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                            (*)</span></mat-label>
+                        <mat-select [value]="ItemArchivo.CompaniaAseguradora.Id" [disabled]="bloquearArchivoPoliza">
+                          <mat-option *ngFor="let value of ListaAdmCompaniaAseguradora"
+                            (click)="onChangeAdjuntoCompaniaAseguradora(ItemArchivo, $event)" [value]="value.Id">{{
+                            value.Nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field class="col-lg-2" appearance="outline">
+                        <mat-label>Tipo Póliza <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                            (*)</span></mat-label>
+                        <mat-select [value]="ItemArchivo.TipoPoliza.Id" [disabled]="bloquearArchivoPoliza">
+                          <mat-option *ngFor="let value of ListaAdmTipoPoliza"
+                            (click)="onChangeAdjuntoTipoPoliza(ItemArchivo, $event)" [value]="value.Id">{{
+                            value.Nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
 
-          </mat-expansion-panel>
-        </mat-accordion>
+                      <div class="col-lg-3">
+                        <div class="row">
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Monto <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                                (*)</span></mat-label>
+                            <input type="number" matInput [(ngModel)]="ItemArchivo.Monto"
+                              [disabled]="bloquearArchivoPoliza" maxlength="250" autocomplete="off">
+                          </mat-form-field>
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Moneda <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                                (*)</span></mat-label>
+                            <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="bloquearArchivoPoliza">
+                              <mat-option *ngFor="let value of ListaAdmMoneda"
+                                (click)="onChangeAdjuntoMonedaPoliza(ItemArchivo, $event)" [value]="value.Id">{{
+                                value.Nombre}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="row">
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Fecha Inicio <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                                (*)</span></mat-label>
+                            <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="bloquearArchivoPoliza"
+                              autocomplete="off" matInput appDatePickerDirective
+                              [matDatepicker]="pickerGarantiaFechaInicio" />
+                            <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
+                          </mat-form-field>
+                          <mat-form-field class="col-lg-6" appearance="outline">
+                            <mat-label>Fecha Fin <span style="color: red" *ngIf="!bloquearArchivoPoliza">
+                                (*)</span></mat-label>
+                            <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="bloquearArchivoPoliza"
+                              autocomplete="off" matInput appDatePickerDirective
+                              [matDatepicker]="pickerGarantiaFechaFin" />
+                            <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+
+          <div class="mb-3" *ngIf="mostrarSeccionComentarios">
+            <mat-accordion>
+              <!--<mat-expansion-panel [expanded]="true" (opened)="panelOpenComentarios = true" (closed)="panelOpenComentarios = false"></mat-expansion-panel>-->
+              <mat-expansion-panel (opened)="panelOpenComentarios = true" (closed)="panelOpenComentarios = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div class="subtitulo-accordion">Comentarios</div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="row" *ngIf="mostrarCampoComentarioContrato">
+                  <mat-form-field class="col-lg-12 col-12" appearance="outline">
+                    <mat-label>Comentario</mat-label>
+                    <textarea matInput [(ngModel)]="Registro.Comentarios" rows="3" maxlength="1000"
+                      [ngModelOptions]="{standalone: true}" [disabled]="bloquearCampoComentarios"></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <div *ngFor="let item of Registro.ListaComentario; let i = index">
+                    <div class="col-lg-12 col-12 d-flex justify-content-between">
+                      <div style="padding-top: 10px;">
+                        <b>{{item.UsuarioRegistro.Nombre}}</b>
+                      </div>
+                      <div>
+                        {{item.TextoFechaRegistro}}
+                      </div>
+                    </div>
+                    <mat-form-field class="col-lg-12 col-12" appearance="outline">
+                      <textarea matInput disabled>{{item.Nota}}</textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+          <div class="mb-3" *ngIf="Registro.ListaHistorial.length > 0" id="historial">
+            <mat-accordion>
+              <mat-expansion-panel (opened)="panelOpenHistorial = true" (closed)="panelOpenHistorial = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div class="subtitulo-accordion">Historial de Eventos</div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Fecha y Hora</th>
+                          <th>Usuario</th>
+                          <th>Evento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let value of Registro.ListaHistorial">
+                          <td>{{value.TextoFechaRegistro}}</td>
+                          <td>{{value.UsuarioRegistro.Nombre}}</td>
+                          <td>{{value.Descripcion}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
 </div>

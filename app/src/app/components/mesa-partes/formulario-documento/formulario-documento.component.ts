@@ -173,6 +173,9 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
   panelOpenHistorial: boolean = false;
   panelOpenComentarios: boolean = true;
 
+  //boton tab
+  activeButton: string = 'datos-generales'
+
   constructor(
     public dialog: MatDialog,
     public route: ActivatedRoute,
@@ -213,6 +216,19 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
     this.obtenerMaestros();
   }
 
+  //tab
+  activateButton(buttonId: string) {
+    this.activeButton = buttonId; 
+    this.scrollToSection(buttonId);
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  //
   async obtenerMaestros() {
 
     this.mostrarProgreso();

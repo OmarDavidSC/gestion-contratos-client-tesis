@@ -1,99 +1,77 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1rem 2rem;
-    overflow-y: auto; 
-    max-height: 97vh; 
-    
-    scrollbar-width: thin; 
-    scrollbar-color: #888 #f0f0f0; 
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  overflow-y: auto;
+  max-height: 97vh;
+  scrollbar-width: thin;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+
+  .close-btn {
+    border-radius: 50%;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
   }
-  
-  
-  .header {
+}
+
+.notification-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s, transform 0.2s;
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+
+  .card-header {
+    padding-bottom: 0.5rem;
+
+    mat-card-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    mat-card-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .card-content {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .card-actions {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 1rem;
-  
-    .close-btn {
-      border-radius: 50%;
-      transition: transform 0.2s;
-  
-      &:hover {
-        transform: rotate(90deg);
-      }
-  
-      mat-icon {
-        color: #333;
-      }
-    }
+    margin-top: 1rem;
   }
-  
-  .notification-card {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s, transform 0.2s;
-    padding: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-  
-    &:hover {
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
-      transform: translateY(-5px);
-    }
-  
-    .card-header {
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 0.5rem;
-  
-      mat-card-title {
-        font-size: 1.4rem;
-        font-weight: bold;
-        color: #2c3e50;
-      }
-  
-      mat-card-subtitle {
-        font-size: 1rem;
-        color: #757575;
-  
-        .badge {
-          background-color: #e3f2fd;
-          color: #1565c0;
-          padding: 0.2rem 0.5rem;
-          border-radius: 4px;
-          font-weight: bold;
-        }
-      }
-    }
-  
-    .card-content {
-      padding: 0.5rem 0;
-      color: #4f4f4f;
-      font-size: 1rem;
-  
-      p {
-        margin: 0;
-      }
-    }
-  
-    .card-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 1rem;
-  
-      button {
-        font-size: 0.9rem;
-        font-weight: bold;
-        background-color: #1565c0;
-        color: white;
-        transition: background-color 0.3s;
-  
-        &:hover {
-          background-color: #0d47a1;
-        }
-      }
-    }
-  }
-  
+}
+
+.scroll-container {
+  max-height: 750px;
+  overflow-y: scroll;
+  padding-right: 10px;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}

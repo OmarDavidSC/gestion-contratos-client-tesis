@@ -28,7 +28,6 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
   @ViewChild('notificationsDrawer') notificationsDrawer: MatDrawer;
 
   public UsuarioActual: EUsuario = new EUsuario();
-  public LogoEmpresa: string = environment.urlLogo;
   public ListaModulo: EModuloSeguridad[] = [];
   public ListaPermisos: any[] = [];
   public mostrarMenu: boolean = false;
@@ -110,11 +109,17 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
   }
  
   public irAlHome(): void {
-    location.href = environment.webAbsoluteUrl;
+    this.router.navigate(['/bandeja-contratos']);
+    this.Drawer?.toggle();
   }
 
   public irAAdministracion(): void {
     this.router.navigate(["/administracion"]);
+    this.Drawer?.toggle();
+  }
+
+  public IrAReporte(): void {
+    this.router.navigate(["/reporte-general"]);
     this.Drawer?.toggle();
   }
 

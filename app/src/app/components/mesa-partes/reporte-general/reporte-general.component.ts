@@ -9,40 +9,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Lookup } from 'src/app/shared/models/base/Lookup';
-import { EArea } from 'src/app/shared/models/entidades/EArea';
-import { EDatosDocumento } from 'src/app/shared/models/entidades/EDatosDocumento';
-import { ERemitente } from 'src/app/shared/models/entidades/ERemitente';
-import { ETipoDocumento } from 'src/app/shared/models/entidades/ETipoDocumento';
+import { EDatosContrato } from 'src/app/shared/models/entidades/EDatosContrato';
+import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { AreaService } from 'src/app/shared/services/area.service';
+import { DatosContratoService } from 'src/app/shared/services/datosContrato.service';
 import { DatosDocumentosService } from 'src/app/shared/services/datosDocumento.service';
-import { RemitenteService } from 'src/app/shared/services/remitente.service';
 import { MasterService } from 'src/app/shared/services/master.service';
-import { TipoDocumentoService } from 'src/app/shared/services/tipoDocumento.service';
-import { UsuarioService } from 'src/app/shared/services/usuario.service';
-import { Constantes } from 'src/app/shared/utils/Constantes';
-import { EMotivo } from 'src/app/shared/models/entidades/EMotivo';
 import { MotivoService } from 'src/app/shared/services/motivo.service';
 import { ParametroService } from 'src/app/shared/services/parametro.service';
-import { User } from 'src/app/shared/models/base/User';
-import { tsXLXS } from 'ts-xlsx-export';
-import { SPParse } from 'src/app/shared/utils/SPParse';
-import { EParametro } from 'src/app/shared/models/entidades/EParametro';
-import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
-import { Funciones } from 'src/app/shared/utils/Funciones';
-import { EDatosContrato } from 'src/app/shared/models/entidades/EDatosContrato';
-import { DatosContratoService } from 'src/app/shared/services/datosContrato.service';
-import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
-import { ETipoContrato } from 'src/app/shared/models/entidades/ETIpoContrato';
+import { RemitenteService } from 'src/app/shared/services/remitente.service';
 import { TipoContratoService } from 'src/app/shared/services/tipoContrato.service';
-
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import { Constantes } from 'src/app/shared/utils/Constantes';
+import { SPParse } from 'src/app/shared/utils/SPParse';
+import { tsXLXS } from 'ts-xlsx-export';
 
 @Component({
-  selector: 'app-bandeja-documentos',
-  templateUrl: './bandeja-documentos.component.html',
-  styleUrls: ['./bandeja-documentos.component.scss']
+  selector: 'app-reporte-general',
+  templateUrl: './reporte-general.component.html',
+  styleUrls: ['./reporte-general.component.scss']
 })
-export class BandejaDocumentosComponent extends FormularioBase implements OnInit {
+export class ReporteGeneralComponent extends FormularioBase implements OnInit {
 
   @ViewChild("filtersDrawer", { static: true }) filtersDrawer: MatSidenav;
 
@@ -50,7 +39,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
   ItemAdmUsuarioActual: EUsuario = new EUsuario();
   ListaContratos: EDatosContrato[] = [];
   BusquedaRapida: string = "";
-  Vista: string = "Pendientes";
+  Vista: string = "Todos";
 
   ListaAdmTipoContrato: Lookup[] = [];
   ListaAdmArea: Lookup[] = [];
@@ -140,7 +129,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
           { Id: Constantes.estadoRegistro.IdRechazado, Nombre: 'Rechazado' },
           { Id: Constantes.estadoRegistro.IdObservado, Nombre: 'Observado' },
         ]
-        this.eventoBuscarPorVista("Pendientes");
+        this.eventoBuscarPorVista("Todos");
       });
   }
 
@@ -232,6 +221,33 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
       fecha.getSeconds().toString().padStart(2, "0");
 
     return fechaHora;
-  } 
+  }
 
+  onClickExportar() {
+    const fechahora = this.obtenerFechaHoraDocumento();
+    const ItemsExportar = this.ListaContratos.map(elemento => {
+      return {
+        'Codigo': elemento.CodigoContrato,
+        'Tipo Tramite': elemento.TipoContrato.Nombre,
+        'Descripcion': elemento.DetalleContrato,
+        'Area': elemento.Area.Nombre,
+        'Razón Social': elemento.Proveedor.Nombre,
+        'Estado': elemento.Estado.Nombre,
+        'Fecha Inicio': SPParse.getDateReporte(elemento.FechaInicio),
+        'Fecha Fin': SPParse.getDateReporte(elemento.FechaFin),
+        'Monto': elemento.MontoContrato,
+        'Moneda': elemento.Moneda.Nombre,
+        'Administradores': elemento.NombresAdministradores,
+        'Fecha Registro': SPParse.getDateReporte(elemento.FechaRegistro),
+        'Registrador': elemento.UsuarioRegistro.Nombre
+      };
+    });
+
+    if (ItemsExportar.length > 0) {
+      const nombreArchivo = 'Reporte General ' + fechahora;
+      tsXLXS()
+        .exportAsExcelFile(ItemsExportar)
+        .saveAsExcelFile(nombreArchivo);
+    }
+  }
 }

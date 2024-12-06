@@ -34,6 +34,7 @@ import { AdministracionSistemaContratacionComponent } from './components/adminis
 import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
 import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
 import { RecuperarContrasenaComponent } from './components/profile/recuperar-contrasena/recuperar-contrasena.component';
+import { ReporteGeneralComponent } from './components/mesa-partes/reporte-general/reporte-general.component';
 
 const routes: Routes = [
   {
@@ -93,6 +94,11 @@ const routes: Routes = [
   {
     path: 'administracion',
     component: BandejaAdministracionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reporte-general',
+    component: ReporteGeneralComponent,
     canActivate: [AuthGuard]
   },
   {
