@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   Form: FormGroup;
   loading: boolean = false;
   hide: boolean = true;
-  public LogoEmpresa: string = environment.urlLogo;
 
   constructor(
     private toastr: ToastrService,

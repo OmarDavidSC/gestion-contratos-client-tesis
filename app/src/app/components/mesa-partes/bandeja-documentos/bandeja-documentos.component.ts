@@ -35,6 +35,7 @@ import { DatosContratoService } from 'src/app/shared/services/datosContrato.serv
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 import { ETipoContrato } from 'src/app/shared/models/entidades/ETIpoContrato';
 import { TipoContratoService } from 'src/app/shared/services/tipoContrato.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -205,6 +206,16 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
 
   eventoVerDetalle(element: any) {
     this.router.navigate([this.obtenerRutaDetalleContrato(element.Id)]);
+  }
+
+  eventoVerDetalle2(element: any): void {
+    const urlDetalle = this.router.serializeUrl(
+      this.router.createUrlTree([Constantes.ruteo.DetalleContrato + "/" + element.Id])
+    );
+
+    const url = environment.webAbsoluteUrl + "/#/" + urlDetalle;
+
+    window.open(url, '_blank');
   }
 
   obtenerRutaNuevoContrato(): string {

@@ -35,6 +35,7 @@ import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.comp
 import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
 import { RecuperarContrasenaComponent } from './components/profile/recuperar-contrasena/recuperar-contrasena.component';
 import { ReporteGeneralComponent } from './components/mesa-partes/reporte-general/reporte-general.component';
+import { DashboardsComponent } from './components/reportes/dashboards/dashboards.component';
 
 const routes: Routes = [
   {
@@ -99,6 +100,11 @@ const routes: Routes = [
   {
     path: 'reporte-general',
     component: ReporteGeneralComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reporte',
+    component: DashboardsComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -123,6 +123,11 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
     this.Drawer?.toggle();
   }
 
+  public IrADashboard(): void {
+    this.router.navigate(["/reporte"]);
+    this.Drawer?.toggle();
+  }
+
   public Navegar(site: string): void {
     const tieneAspx = site.indexOf('.aspx') !== -1;
     if (tieneAspx) {

@@ -79,6 +79,7 @@ import { RestaurarContrasenaComponent } from './components/profile/restaurar-con
 import { EditarProfileComponent } from './components/profile/modals/editar-profile/editar-profile.component';
 import { NotificacionesComponent } from './shared/components/notificaciones/notificaciones.component';
 import { ReporteGeneralComponent } from './components/mesa-partes/reporte-general/reporte-general.component';
+import { DashboardsComponent } from './components/reportes/dashboards/dashboards.component';
 
 
 @NgModule({
@@ -140,7 +141,8 @@ import { ReporteGeneralComponent } from './components/mesa-partes/reporte-genera
     RestaurarContrasenaComponent,
     EditarProfileComponent,
     NotificacionesComponent,
-    ReporteGeneralComponent
+    ReporteGeneralComponent,
+    DashboardsComponent
   ],
   imports: [
     ComunModule,

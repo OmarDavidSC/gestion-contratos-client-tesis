@@ -5,7 +5,7 @@ export const environment = {
   proxyUrl: "http://localhost:8080",
   webRelativeUrl: "",
   webAbsoluteUrl: "",
-  urlLogo: "",
+  urlLogo: "https://www.adp.com.pe/contents/images/logo.png",
   uriApiBack: "https://localhost:44320/api/",
   //uriApiBack: "https://localhost:7243/api/",
 
