@@ -80,6 +80,9 @@ import { EditarProfileComponent } from './components/profile/modals/editar-profi
 import { NotificacionesComponent } from './shared/components/notificaciones/notificaciones.component';
 import { ReporteGeneralComponent } from './components/mesa-partes/reporte-general/reporte-general.component';
 import { DashboardsComponent } from './components/reportes/dashboards/dashboards.component';
+import { DashboardPorEstadoComponent } from './components/reportes/partials/dashboard-por-estado/dashboard-por-estado.component';
+import { DashboardPorProveedorComponent } from './components/reportes/partials/dashboard-por-proveedor/dashboard-por-proveedor.component';
+import { DashboardPorTipoComponent } from './components/reportes/partials/dashboard-por-tipo/dashboard-por-tipo.component';
 
 
 @NgModule({
@@ -142,7 +145,10 @@ import { DashboardsComponent } from './components/reportes/dashboards/dashboards
     EditarProfileComponent,
     NotificacionesComponent,
     ReporteGeneralComponent,
-    DashboardsComponent
+    DashboardsComponent,
+    DashboardPorEstadoComponent,
+    DashboardPorProveedorComponent,
+    DashboardPorTipoComponent
   ],
   imports: [
     ComunModule,

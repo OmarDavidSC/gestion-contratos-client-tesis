@@ -1,0 +1,158 @@
+.table-loading {
+    position: relative;
+    height: 100%;
+}
+
+.table-loading-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+canvas {
+    width: 100% !important;
+    height: 400px;
+}
+
+/*row - card*/
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Estilo*/
+.titulo-comunicacion-estado {
+    font-weight: bold;
+    color: #b53e3e;
+}
+
+.titulo {
+    font-weight: bold;
+    color: #050101;
+    font-size: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.kpi-promedio {
+    font-weight: bold;
+    color: #b53e3e;
+    font-size: 25px;
+}
+
+.kpi-promedio-detalle {
+    text-align: justify;
+    color: #5694ad;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.sm-text {
+    font-size: 12px;
+}
+
+.box {
+    width: 10px !important;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: block;
+    margin-right: 5px;
+    flex: 0 0 10px;
+}
+
+.w-25 {
+    flex: 0 0 35px;
+    padding-right: 10px;
+}
+
+@media only screen and (max-width: 400px) {
+    .mb-mobile-3 {
+        margin-bottom: 1rem !important;
+    }
+}
+
+.rojo,
+.rojo mat-icon {
+    color: #cb2828;
+}
+
+.verde,
+.verde mat-icon {
+    color: #12a112;
+}
+
+.amarillo,
+.amarillo mat-icon {
+    color: #f3c744;
+}
+
+.azul {
+    color: #2525b5;
+}
+
+.black {
+    color: black;
+    font-weight: normal;
+}
+
+.margin-seguimiento {
+    flex: 0 0 20px;
+}
+
+.valor-seguimiento {
+    flex: 0 0 35px;
+    text-align: right;
+}
+
+.dotted-divider {
+    width: 100%;
+    border-top: 1px dashed;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.ico-fire {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    color: #f3c744;
+}
+
+::ng-deep.mat-card-header-text {
+    flex: 1 0 0%;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}

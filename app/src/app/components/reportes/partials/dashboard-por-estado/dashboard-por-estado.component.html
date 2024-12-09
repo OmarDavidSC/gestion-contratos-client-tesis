@@ -1,0 +1,18 @@
+<div class="card shadow-lg">
+    <div class="card-header text-center">
+        <h4 class="titulo">Contratos por Estado</h4>
+    </div>
+    <div class="card-body">
+        <div [ngClass]="{ 'table-loading': loading }">
+            <div class="table-loading-message" *ngIf="loading">Cargando...</div>
+            <div class="row">
+                <div class="col text-start font-weight-bold">Estado</div>
+                <div class="col text-end font-weight-bold">Total</div>
+            </div>
+            <div class="row" *ngFor="let item of contratosPorEstado">
+                <div class="col text-start">{{ item.Estado }}</div>
+                <div class="col text-end">{{ item.Cantidad | number }}</div>
+            </div>
+        </div>
+    </div>
+</div>
