@@ -11,6 +11,7 @@ import { ApiResponse } from "../utils/response";
 import { EDashEstado } from "../models/entidades/EDashEstado";
 import { EDashPorProveedor } from "../models/entidades/EDashPorProveedor";
 import { EDashTipoContrato } from "../models/entidades/EDashTipoContrato";
+import { EDashPorMes } from "../models/entidades/EDashPorMes";
 
 
 @Injectable({
@@ -43,6 +44,13 @@ export class DashboardService {
         const url = `${this.urlBase}por-tipo`;
         const response = await lastValueFrom(this.http.get<ApiResponse<EDashTipoContrato[]>>(url));
         response.data = EDashTipoContrato.parseJsonList(response.data);
+        return response;
+    }
+
+    async porMes(): Promise<ApiResponse<EDashPorMes[]>> {
+        const url = `${this.urlBase}por-mes`;
+        const response = await lastValueFrom(this.http.get<ApiResponse<EDashPorMes[]>>(url));
+        response.data = EDashPorMes.parseJsonList(response.data);
         return response;
     }
 }
