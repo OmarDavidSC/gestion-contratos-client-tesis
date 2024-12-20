@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartData, registerables } from 'chart.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
 import { EDashPorMes } from 'src/app/shared/models/entidades/EDashPorMes';
 import { DashboardService } from 'src/app/shared/services/dashboard.service';
 
@@ -20,7 +21,7 @@ export class DashboardPorMesComponent implements OnInit {
   @ViewChild('detallePorMesChart', { static: false }) detallePorMesChart!: ElementRef;
 
   constructor(private dashboardService: DashboardService) {
-    Chart.register(...registerables);
+    Chart.register(...registerables, zoomPlugin);
   }
 
   ngOnInit(): void {
@@ -37,12 +38,23 @@ export class DashboardPorMesComponent implements OnInit {
     const response = await this.dashboardService.porMes();
     if (response.success) {
       this.detallePorMes = response.data;
-
-      const labels: string[] = Array.from({ length: 12 }, (_, i) => this.getMonthName(i + 1));
-      const data: number[] = new Array(12).fill(0);
-      this.detallePorMes.forEach(item => {
-        data[item.Mes - 1] = item.CantidadContratos; 
+      const years = Array.from(new Set(this.detallePorMes.map(item => item.Anio))).sort();
+      const labels: string[] = [];
+      years.forEach(year => {
+        for (let month = 1; month <= 12; month++) {
+          labels.push(`${this.getMonthName(month)} ${year}`);
+        }
       });
+
+      const data: number[] = new Array(labels.length).fill(0);
+      this.detallePorMes.forEach(item => {
+        const label = `${this.getMonthName(item.Mes)} ${item.Anio}`;
+        const index = labels.indexOf(label);
+        if (index !== -1) {
+          data[index] = item.CantidadContratos;
+        }
+      });
+
       this.detallePorMesChartData = {
         labels: labels,
         datasets: [{
@@ -67,6 +79,21 @@ export class DashboardPorMesComponent implements OnInit {
             callbacks: {
               label: (context) => `Cantidad: ${context.raw}`
             }
+          },
+          zoom: { 
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: 'x', 
+            },
+            pan: {
+              enabled: true, 
+              mode: 'x',
+            }
           }
         },
         scales: {
@@ -74,6 +101,9 @@ export class DashboardPorMesComponent implements OnInit {
             title: {
               display: true,
               text: 'Meses'
+            },
+            ticks: {
+              autoSkip: false
             }
           },
           y: {
