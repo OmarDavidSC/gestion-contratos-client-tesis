@@ -16,7 +16,7 @@ export class DashboardPorTipoComponent implements OnInit {
 
   detallePorTipo: EDashTipoContrato[] = [];
   detallePorTipoLeyenda: { idTipo: number, nombre: string, color: string, total: number }[] = [];
-  detallePorTipoChartData: ChartData<'radar'> = {} as ChartData<'radar'>;
+  detallePorTipoChartData: ChartData<'bar'> = {} as ChartData<'bar'>;
   detallePorTipoChartOptions: ChartConfiguration['options'] = {} as ChartConfiguration['options'];
 
   @ViewChild('detallePorTipoChart', { static: false }) detallePorTipoChart: ElementRef;
@@ -75,18 +75,19 @@ export class DashboardPorTipoComponent implements OnInit {
 
       this.detallePorTipoChartData = {
         labels,
-        datasets: [{
-          label: 'Cantidad de Contratos por Tipo',
-          data,
-          backgroundColor: backgroundColors
-        }]
+        datasets: [
+          {
+            data,
+            backgroundColor: backgroundColors
+          }
+        ]
       };
 
       this.detallePorTipoChartOptions = {
         responsive: true,
         plugins: {
           legend: {
-            position: 'top'
+            display: false
           },
           tooltip: {
             callbacks: {
@@ -108,12 +109,15 @@ export class DashboardPorTipoComponent implements OnInit {
           }
         },
         scales: {
-          r: {
+          x: {
+            beginAtZero: true,
+          },
+          y: {
             beginAtZero: true,
             ticks: {
-              precision: 0
-            }
-          }
+              precision: 0,
+            },
+          },
         }
       };
 
@@ -122,11 +126,11 @@ export class DashboardPorTipoComponent implements OnInit {
       this.loading = false;
     }
   }
-  
+
   private renderChart(type: 'tipo') {
     if (type === 'tipo' && this.detallePorTipoChart) {
       new Chart(this.detallePorTipoChart.nativeElement, {
-        type: 'radar',
+        type: 'bar',
         data: this.detallePorTipoChartData,
         options: this.detallePorTipoChartOptions
       });

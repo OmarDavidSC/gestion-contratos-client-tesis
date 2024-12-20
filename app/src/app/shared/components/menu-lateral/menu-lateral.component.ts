@@ -20,6 +20,7 @@ import { EUsuario } from '../../models/entidades/EUsuario';
 export class MenuLateralComponent implements OnInit, OnDestroy {
 
   public Drawer: MatDrawer | undefined;
+  public notificationsCount: number = 0;
 
   @ViewChild('drawer') set MatDrawer(value: MatDrawer) {
     this.Drawer = value;
@@ -48,6 +49,10 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
     if (this.notificationsDrawer) {
       this.notificationsDrawer.toggle(); 
     }
+  }
+
+  onNotificationsCountChange(count: number) {
+    this.notificationsCount = count;
   }
 
   async ngOnInit(): Promise<void> {

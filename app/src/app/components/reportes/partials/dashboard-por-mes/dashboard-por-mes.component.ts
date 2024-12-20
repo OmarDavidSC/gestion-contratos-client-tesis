@@ -46,7 +46,6 @@ export class DashboardPorMesComponent implements OnInit {
       this.detallePorMesChartData = {
         labels: labels,
         datasets: [{
-          label: 'Contratos por Mes (2024)',
           data: data,
           fill: false,
           borderColor: 'rgba(75, 192, 192, 1)',
@@ -61,7 +60,7 @@ export class DashboardPorMesComponent implements OnInit {
         responsive: true,
         plugins: {
           legend: {
-            display: true,
+            display: false,
             position: 'top',
           },
           tooltip: {

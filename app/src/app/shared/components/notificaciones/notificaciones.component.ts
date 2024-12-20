@@ -22,6 +22,7 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
   intervalId: any;
 
   @Output() closeDrawer = new EventEmitter<void>();
+  @Output() notificacionesCount = new EventEmitter<number>();
 
   constructor(
     public dialog: MatDialog,
@@ -56,6 +57,7 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
     const response = await this.contratoSevice.notifications();
     if (response.success) {
       this.ListaNotificaciones = response.data;
+      this.notificacionesCount.emit(this.ListaNotificaciones.length)
       this.ocultarProgreso();
     }
   }

@@ -72,7 +72,7 @@
         <span class="example-spacer"></span>
         <div class="d-flex">
           <button mat-raised-button [matBadgeHidden]="hidden" (click)="toggleNotificationsDrawer()">
-            <mat-icon matBadge="✔">notifications</mat-icon>
+            <mat-icon matBadge="{{notificationsCount}}">notifications</mat-icon>
           </button>
           <mat-divider [vertical]="true" class="d-none d-sm-block ms-3"></mat-divider>
           <button mat-button [matMenuTriggerFor]="userMenu" class="d-none d-sm-block">
@@ -97,5 +97,5 @@
 </mat-drawer-container>
 
 <mat-drawer class="" #notificationsDrawer mode="side" [opened]="false" position="end">
-  <app-notificaciones (closeDrawer)="toggleNotificationsDrawer()"></app-notificaciones>
+  <app-notificaciones (closeDrawer)="toggleNotificationsDrawer()"  (notificacionesCount)="onNotificationsCountChange($event)"></app-notificaciones>
 </mat-drawer>
