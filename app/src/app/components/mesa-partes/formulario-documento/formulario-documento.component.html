@@ -492,10 +492,13 @@
                 </div>
               </div>
               <div class="col-lg-12 text-end mb-4">
-                <button type="button" mat-raised-button class="mr-3" color="primary"
+                <button type="button" *ngIf="!bloquearBotonAdenda" mat-raised-button class="mr-3" color="primary"
                   (click)="FileControlArchivoAdenda.click()">Agregar Archivo</button>
                 <input type="file" id="fileAndeda" #FileControlArchivoAdenda accept=".pdf" [hidden]="true" multiple
                   (change)="OnFileUploadArchivoAdenda($event)">
+                <div *ngIf="bloquearBotonAdenda" class="alert alert-warning text-start mt-2" role="alert">
+                  Guarde los cambios actual antes de agregar otra Adenda.
+                </div>
               </div>
             </div>
             <div class="row">
@@ -518,19 +521,19 @@
                     </div>
                     <div class="row">
                       <mat-form-field class="col-lg-2" appearance="outline">
-                        <mat-label>Código de Adenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                        <mat-label>Código de Adenda <span style="color: red">
                             (*)</span></mat-label>
-                        <input matInput [(ngModel)]="ItemArchivo.CodigoAdenda"
-                          [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
+                        <input matInput [disabled]="ItemArchivo.bloquearCampoAdenda" [(ngModel)]="ItemArchivo.CodigoAdenda"
+                          maxlength="250" autocomplete="off">
                       </mat-form-field>
                       <mat-form-field class="col-lg-2" appearance="outline">
-                        <mat-label>Descripción <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                        <mat-label>Descripción <span style="color: red">
                             (*)</span></mat-label>
-                        <input matInput [(ngModel)]="ItemArchivo.Descripcion"
-                          [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
+                        <input matInput [disabled]="ItemArchivo.bloquearCampoAdenda"
+                          [(ngModel)]="ItemArchivo.Descripcion" maxlength="250" autocomplete="off">
                       </mat-form-field>
                       <mat-form-field class="col-lg-2" appearance="outline">
-                        <mat-label>TipoAdenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                        <mat-label> TipoAdenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
                             (*)</span></mat-label>
                         <mat-select [value]="ItemArchivo.TipoAdenda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
                           <mat-option *ngFor="let value of ListaAdmTipoAdenda"
@@ -543,14 +546,14 @@
                           <mat-form-field class="col-lg-6" appearance="outline">
                             <mat-label>Monto <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
                                 (*)</span></mat-label>
-                            <input type="number" matInput [(ngModel)]="ItemArchivo.Monto"
-                              [disabled]="ItemArchivo.bloquearCampoAdenda" maxlength="250" autocomplete="off">
+                            <input type="number" matInput [(ngModel)]="ItemArchivo.Monto" maxlength="250"
+                              [disabled]="ItemArchivo.bloquearCampoAdenda" autocomplete="off">
                           </mat-form-field>
                           <mat-form-field class="col-lg-6" appearance="outline">
                             <mat-label>Moneda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
                                 (*)</span></mat-label>
                             <mat-select [value]="ItemArchivo.Moneda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
-                              <mat-option *ngFor="let value of ListaAdmMoneda"
+                              <mat-option *ngFor="let value of ListaAdmMoneda" autocomplete="off"
                                 (click)="onChangeAdjuntoMonedaAdenda(ItemArchivo, $event)" [value]="value.Id">{{
                                 value.Nombre}}</mat-option>
                             </mat-select>
@@ -562,8 +565,8 @@
                           <mat-form-field class="col-lg-6" appearance="outline">
                             <mat-label>Fecha Inicio <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
                                 (*)</span></mat-label>
-                            <input [(ngModel)]="ItemArchivo.FechaInicio" [disabled]="ItemArchivo.bloquearCampoAdenda"
-                              autocomplete="off" matInput appDatePickerDirective
+                            <input [(ngModel)]="ItemArchivo.FechaInicio" autocomplete="off" matInput
+                              [disabled]="ItemArchivo.bloquearCampoAdenda" appDatePickerDirective
                               [matDatepicker]="pickerGarantiaFechaInicio" />
                             <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaInicio"></mat-datepicker-toggle>
                             <mat-datepicker #pickerGarantiaFechaInicio></mat-datepicker>
@@ -571,9 +574,8 @@
                           <mat-form-field class="col-lg-6" appearance="outline">
                             <mat-label>Fecha Fin <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
                                 (*)</span></mat-label>
-                            <input [(ngModel)]="ItemArchivo.FechaFin" [disabled]="ItemArchivo.bloquearCampoAdenda"
-                              autocomplete="off" matInput appDatePickerDirective
-                              [matDatepicker]="pickerGarantiaFechaFin" />
+                            <input [(ngModel)]="ItemArchivo.FechaFin" autocomplete="off" matInput appDatePickerDirective
+                              [disabled]="ItemArchivo.bloquearCampoAdenda" [matDatepicker]="pickerGarantiaFechaFin" />
                             <mat-datepicker-toggle matSuffix [for]="pickerGarantiaFechaFin"></mat-datepicker-toggle>
                             <mat-datepicker #pickerGarantiaFechaFin></mat-datepicker>
                           </mat-form-field>

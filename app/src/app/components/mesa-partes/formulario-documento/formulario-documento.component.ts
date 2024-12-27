@@ -176,6 +176,8 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
   //boton tab
   activeButton: string = 'datos-generales'
 
+  bloquearBotonAdenda: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     public route: ActivatedRoute,
@@ -218,7 +220,7 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
   //tab
   activateButton(buttonId: string) {
-    this.activeButton = buttonId; 
+    this.activeButton = buttonId;
     this.scrollToSection(buttonId);
   }
 
@@ -1258,26 +1260,24 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
             Eliminado: false,
             PuedeEliminar: true,
             PuedeDescargar: false,
-            bloquearCampoAdenda: false
+            bloquearCampoAdenda: true
           };
 
           this.Registro.ListaAdenda.push(datosArchivo);
+          if (this.Registro.ListaAdenda.length > 1) {
+            this.Registro.ListaAdenda.forEach((adenda, index) => {
+              if (index < this.Registro.ListaAdenda.length - 1) {
+                adenda.bloquearCampoAdenda = true;
+                adenda.PuedeEliminar = false;
+              } else {
+                adenda.bloquearCampoAdenda = false;
+              }
+            });
+          }
+          this.bloquearBotonAdenda = true;
         });
-
-        if (this.Registro.ListaAdenda.length > 0) {
-          this.Registro.ListaAdenda.forEach((adenda: EAdenda, index: number) => {
-            if (index === this.Registro.ListaAdenda.length - 1) {
-              adenda.bloquearCampoAdenda = true;
-              adenda.PuedeEliminar = false;
-              contadorAdenda++;
-            } else {
-              adenda.bloquearCampoAdenda = true;
-              contadorAdenda++;
-            }
-          });
-        }
+        contadorAdenda++;
       }
-
       $('#fileAdenda').val('');
 
     }
