@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Contratos en Estado: {{ data.estado }}</h2>
+<mat-card *ngFor="let element of data.contratos" class="mt-3 scroll-container">
+    <div class="row pl-15">
+        <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
+            <div class="col-lg-7 d-flex flex-wrap justify-content-start align-items-center">
+                <div class="col-lg-3 col-12 d-flex align-items-center mb-mob-8 flex-between">
+                    <span class="ml-3 number-card">{{ element.CodigoContrato }}</span>
+                </div>
+                <div class="col-lg-9 col-12 mb-mob-8">
+                    <span class="coment-card"> {{ element.Nombre }}</span>
+                </div>
+            </div>
+            <div class="col-lg-5 col-12 d-flex justify-content-end align-items-center">
+                <div class="col-lg-3 col-6 text-start">
+                    <h2 class="mb-0"><span class="badge-c3">{{element.FechaFinReal | date}}</span></h2>
+                </div>
+                <div class="col-lg-7 text-end">
+                    <button mat-icon-button aria-label="ingresar" (click)="eventoVerDetalle(element)"
+                        matTooltip="Ingresar">
+                        <mat-icon>login</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="ingresar" (click)="eventoVerDetalle2(element)"
+                        matTooltip="Abrir en Otra Pestaña">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

@@ -64,7 +64,7 @@ export class EAdenda {
         }
 
         objeto.NombreArchivo = SPParse.getString(element["nombreArchivo"]);
-        objeto.ByteArchivo = element.bytesArchivo;
+        objeto.ByteArchivo = element.byteArchivo;
 
         return objeto;
     }

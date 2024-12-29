@@ -19,7 +19,7 @@ export class EPoliza {
     UrlDocumento: string;
     Eliminado: boolean;
     PuedeEliminar: boolean;
-    PuedeDescargar: boolean;  
+    PuedeDescargar: boolean;
 
     constructor() {
         this.Id = '00000000-0000-0000-0000-000000000000';
@@ -31,13 +31,13 @@ export class EPoliza {
         this.FechaInicio = "";
         this.TextoFechaInicio = "";
         this.FechaFin = "";
-        this.TextoFechaFin = "";        
+        this.TextoFechaFin = "";
         this.NombreArchivo = "";
         this.ByteArchivo = null;
         this.UrlDocumento = '';
         this.Eliminado = false;
         this.PuedeEliminar = false;
-        this.PuedeDescargar = false;        
+        this.PuedeDescargar = false;
     }
 
     public static parseJson(element: any): EPoliza {
@@ -65,14 +65,14 @@ export class EPoliza {
         objeto.TextoFechaInicio = Funciones.ConvertirDateToString(objeto.FechaInicio);
         objeto.FechaFin = SPParse.getDate(element["fechaFin"]);
         objeto.TextoFechaFin = Funciones.ConvertirDateToString(objeto.FechaFin);
-       
+
 
         if (!Funciones.esUndefinedNullOrEmpty(element["moneda"])) {
             objeto.Moneda = Lookup.parseJson(element["moneda"]);
         }
 
         objeto.NombreArchivo = SPParse.getString(element["nombreArchivo"]);
-        objeto.ByteArchivo = element.byteArchivo;        
+        objeto.ByteArchivo = element.byteArchivo;
 
         return objeto;
     }

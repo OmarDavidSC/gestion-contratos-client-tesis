@@ -84,6 +84,7 @@ import { DashboardPorEstadoComponent } from './components/reportes/partials/dash
 import { DashboardPorProveedorComponent } from './components/reportes/partials/dashboard-por-proveedor/dashboard-por-proveedor.component';
 import { DashboardPorTipoComponent } from './components/reportes/partials/dashboard-por-tipo/dashboard-por-tipo.component';
 import { DashboardPorMesComponent } from './components/reportes/partials/dashboard-por-mes/dashboard-por-mes.component';
+import { PorEstadoModalsComponent } from './components/reportes/modals/por-estado-modals/por-estado-modals.component';
 
 
 @NgModule({
@@ -150,7 +151,8 @@ import { DashboardPorMesComponent } from './components/reportes/partials/dashboa
     DashboardPorEstadoComponent,
     DashboardPorProveedorComponent,
     DashboardPorTipoComponent,
-    DashboardPorMesComponent
+    DashboardPorMesComponent,
+    PorEstadoModalsComponent
   ],
   imports: [
     ComunModule,
