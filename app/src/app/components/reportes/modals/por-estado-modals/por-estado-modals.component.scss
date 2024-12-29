@@ -1,10 +1,17 @@
 .scroll-container {
-    max-height: 650px;
-    overflow-y: scroll;
-    padding-right: 10px;
-    scrollbar-width: none;
-  }
-  
-  .scroll-container::-webkit-scrollbar {
-    display: none;
-  }
+  max-height: 650px;
+  overflow-y: scroll;
+  padding-right: 10px;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.titulo {
+  font-weight: bold;
+  color: #050101;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
