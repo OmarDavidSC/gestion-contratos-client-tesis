@@ -1,9 +1,11 @@
 <div class="row">
-    <div class="col-md-3 mt-3" *ngFor="let item of contratosPorEstado" style="cursor: pointer;" (click)="openContratoModal(item)">
+    <div class="col-md-3 mt-3" *ngFor="let item of contratosPorEstado"
+        [style.cursor]="item.Estado === 'Total General' ? 'default' : 'pointer'"
+        (click)="item.Estado !== 'Total General' && openContratoModal(item)">
         <div class="card  shadow-lg border-0">
             <div class="card-body">
                 <div class="icon-container text-success">
-                    <mat-icon class="fs-1">folder</mat-icon>
+                    <mat-icon class="fs-1" color="primary">folder</mat-icon>
                 </div>
                 <h4 class="card-title text-muted">{{ item.Estado }}</h4>
                 <p class="card-text text-end fs-4">{{ item.Cantidad | number }}</p>

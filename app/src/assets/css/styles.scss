@@ -65,8 +65,8 @@
 
 //colores
 $rojo: #ff0000;
-$negro: #799900;
-$azul: #799900;
+$negro: #6f42c1;
+$azul: #6f42c1;
 $secundario: #D1007C;
 $colorTitulo: #1E1C00;
 $colorSubTitulo: #1E1C00;
@@ -74,10 +74,10 @@ $colorBoton: $negro;
 $colorGrilla: $azul;
 $colorMenuLateral: $negro;
 $colorSlideToggle: $negro;
-$verde: #799900;
+$verde: #6f42c1;
 $blanco: #ffffff;
 $nuevoIngreso: #D1007C;
-$recepcionado: #799900;
+$recepcionado: #6f42c1;
 $rechazado: #566570;
 $anulado: #1c181f;
 $finalizado: #7E536E;
@@ -271,6 +271,10 @@ ul {
   color: #4caf50;
 }
 
+.c-purple {
+  color: #6f42c1;
+}
+
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
 .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
   background: $negro;
@@ -284,10 +288,10 @@ ul {
 .number-card {
   font-weight: 500;
   font-size: 15px;
-  border: 2px solid #ff0000;
+  border: 2px solid #6f42c1;
   padding: 2px 10px;
   border-radius: 2px;
-  color: #ff0000;
+  color: #6f42c1;
 }
 
 .sort {
