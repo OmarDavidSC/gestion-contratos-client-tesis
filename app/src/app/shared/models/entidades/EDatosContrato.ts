@@ -34,6 +34,7 @@ export class EDatosContrato {
     Proveedor: Lookup;
     TipoContrato: Lookup;
 
+    
     DetalleContrato: string;
     FechaInicio: any;
     TextoFechaInicio: string;
@@ -73,6 +74,7 @@ export class EDatosContrato {
 
     ListaAdenda: EAdenda[];
  
+    AdministradorBuscar: string;
     ListaAdministrador: EAdministradorContrato[];
     NombresAdministradores: string;
     ListaArchivosContrato: EArchivoContrato[];
@@ -122,6 +124,7 @@ export class EDatosContrato {
 
         this.ListaAdenda = [];
 
+        this.AdministradorBuscar = "";
         this.ListaAdministrador = [];
         this.NombresAdministradores = "";
 

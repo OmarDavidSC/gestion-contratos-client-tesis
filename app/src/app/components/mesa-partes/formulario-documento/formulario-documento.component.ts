@@ -572,7 +572,7 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
   async eventoBuscarAdministrador(): Promise<void> {
     this.isLoading = true;
-    const textoBusqueda = this.AdministradorBuscar;
+    const textoBusqueda = this.Registro.AdministradorBuscar;
     const result = await this.userService.getItems(textoBusqueda);
     this.ListaUsuarioAdministradores = result;
     this.isLoading = false;
@@ -580,7 +580,7 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
   onSeleccionAdministrador(usuario: EUsuario): void {
 
-    this.AdministradorBuscar = "";
+    this.Registro.AdministradorBuscar = "";
 
     const existeUsuario = this.Registro.ListaAdministrador.filter(x => x.IdUsuario === usuario.Id && x.Eliminado === false).length !== 0;
 
@@ -591,7 +591,7 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
     const elemento = new EAdministradorContrato();
     elemento.IdUsuario = usuario.Id;
-    elemento.Nombre = usuario.Nombre;
+    elemento.Nombre = usuario.NombreCompleto;
     elemento.Correo = usuario.Correo;
     //elemento.Puesto.Id = usuario.Puesto.Id;
     //elemento.Puesto.Nombre = usuario.Puesto.Nombre;
@@ -600,7 +600,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
     elemento.PuedeEliminar = true;
 
     this.Registro.ListaAdministrador.push(elemento);
-
   }
 
   OnEliminarAdministrador(item: EAdministradorContrato): void {
@@ -1260,7 +1259,7 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
             Eliminado: false,
             PuedeEliminar: true,
             PuedeDescargar: false,
-            bloquearCampoAdenda: true
+            bloquearCampoAdenda: false
           };
 
           this.Registro.ListaAdenda.push(datosArchivo);

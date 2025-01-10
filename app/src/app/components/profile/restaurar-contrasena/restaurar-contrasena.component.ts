@@ -28,7 +28,6 @@ export class RestaurarContrasenaComponent implements OnInit {
 
   ngOnInit(): void {
     this.IdUsuarioActual = localStorage.getItem('IdUsuario')?.replace(/^"|"$/g, '');
-    console.dir(this.IdUsuarioActual);
     this.Form = this.formBuilder.group({
       id: new FormControl(this.IdUsuarioActual, []),
       nuevaContrasena: new FormControl('', [Validators.required]),
