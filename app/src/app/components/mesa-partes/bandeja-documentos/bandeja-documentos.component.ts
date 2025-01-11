@@ -146,9 +146,8 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
   }
 
   async eventoBusquedaRapida() {
-    this.ListaContratos = await this.datosContratosService.getItemsBandeja(this.BusquedaRapida);
-    this.dataSource.data = this.ListaContratos;
-    this.ocultarProgreso();
+    this.CampoFiltroAvanzado.TextoBusquedaRapida = this.BusquedaRapida;
+    this.buscarDocumentos();
   }
 
   eventoLimpiarFiltrosAvanzados() {
