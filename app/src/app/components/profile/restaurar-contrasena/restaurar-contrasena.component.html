@@ -1,5 +1,12 @@
 <div class="container d-flex justify-content-center align-items-center">
-  <div class="reset-card rounded shadow position-relative w-100" style="max-width: 400px;">
+  <div class="row justify-content-center align-items-center h-100">
+    <!-- Image Section -->
+    <div class="col-lg-6 mb-4 mb-lg-0">
+      <img src="https://accesspay.pro/public/img/Step_1_forgotpassword.7ee4df9e.png" class="img-fluid"
+        alt="Password Change Illustration">
+    </div>
+    
+  <div class="reset-card rounded shadow position-relative">
     <button class="btn btn-secundary position-absolute top-0 start-0 m-3" color="primary" (click)="onBack()"
       matTooltip="Regresar">
       <mat-icon>arrow_back</mat-icon>
@@ -9,34 +16,57 @@
         <mat-icon class="key-icon">key</mat-icon>
       </div>
       <h2>Crear Nueva Contraseña</h2>
-      <p class="subtitle">Por favor ingresa y confirma tu nueva contraseña</p>
+      <h3>Por favor ingresa y confirma tu nueva contraseña</h3>
     </div>
     <form *ngIf="Form" [formGroup]="Form" class="reset-form p-3">
+      <!-- Nueva Contraseña -->
       <div class="form-group">
         <label for="password">Nueva Contraseña</label>
-        <div class="input-container position-relative">
+        <div class="input-container position-relative d-flex align-items-center">
           <mat-icon class="input-icon position-absolute">lock</mat-icon>
-          <input formControlName="nuevaContrasena" autocomplete="off" type="password" class="form-control pl-5" id="password" placeholder="Ingresa tu nueva contraseña">
+          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+            formControlName="nuevaContrasena" autocomplete="off" 
+            class="form-control pl-5" id="password" placeholder="Ingresa tu nueva contraseña">
+          <button mat-icon-button matSuffix type="button" 
+            (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </button>
         </div>
       </div>
+    
+      <!-- Confirmar Contraseña -->
       <div class="form-group">
         <label for="confirmPassword">Confirmar Contraseña</label>
-        <div class="input-container position-relative">
+        <div class="input-container position-relative d-flex align-items-center">
           <mat-icon class="input-icon position-absolute">lock_clock</mat-icon>
-          <input formControlName="confirmarContrasena" autocomplete="off" type="password" class="form-control pl-5" id="confirmPassword"
-            placeholder="Confirma tu nueva contraseña">
+          <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" 
+            formControlName="confirmarContrasena" autocomplete="off" 
+            class="form-control pl-5" id="confirmPassword" placeholder="Confirma tu nueva contraseña">
+          <button mat-icon-button matSuffix type="button" 
+            (click)="hideConfirmPassword = !hideConfirmPassword">
+            <mat-icon>{{hideConfirmPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          </button>
         </div>
       </div>
-      <div class="password-requirements">
-        <h4>La contraseña debe contener:</h4>
-        <ul>
-          <li id="lengthCheck">Mínimo 8 caracteres</li>
-        </ul>
-      </div>
-      <button (click)="eventoConfirmar()" mat-raised-button color="primary">
-        <mat-icon>save</mat-icon>
-        <span>Confirmar</span>
+
+      <button (click)="eventoConfirmar()" class="unique-button">
+        <div class="svg-wrap">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              fill="currentColor"
+              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+            ></path>
+          </svg>
+        </div>
+        <span>Restablecer contraseña</span>
       </button>
+      
     </form>
   </div>
 </div>

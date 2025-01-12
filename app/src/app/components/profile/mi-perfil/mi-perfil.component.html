@@ -1,35 +1,89 @@
 <div class="profile-container">
-  <div class="text-end">
-    <button mat-raised-button color="primary" (click)="irACambiarContrasena()" matTooltip="Cambiar Contraseña">
-      <mat-icon>lock</mat-icon>
-      <span>Cambiar Contraseña</span>
-    </button>
-  </div>
+  <!-- Sección Superior del Perfil -->
   <div class="profile-header">
-    <div class="profile-avatar">
-      <mat-icon class="avatar-icon" color="primary">account_circle</mat-icon>
-      <button mat-raised-button color="primary" (click)="eventoMostrarPopupEditar(Usuario)" matTooltip="Editar">
-        <mat-icon>edit</mat-icon>
-        <span>Editar</span>
+    <div class="profile-header-actions">
+      <button mat-icon-button (click)="onBack()" matTooltip="Regresar">
+        <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
+    <div class="profile-avatar-wrapper">
+      <div class="profile-avatar">
+        <img src="../../../assets/img/perfil01.png" class="avatar-img" alt="Avatar">
+        <div class="avatar-badge" [class.online]="true"></div>
+      </div>
+    </div>
+
+    <div class="profile-info">
+      <h1 class="profile-name">{{Usuario.NombreCompleto}}</h1>
+      <h1></h1>
+      <div class="profile-tag">
+        <mat-icon>verified</mat-icon>
+        <span>Usuario Verificado</span>
+      </div>
+      <p class="profile-email">
+        <mat-icon>email</mat-icon>
+        {{Usuario.Correo}}
+      </p>
+    </div>
   </div>
-  <div class="profile-info">
-    <div class="info-group">
-      <label>Nombre</label>
-      <p class="info-value">{{Usuario.Nombre}}</p>
-    </div>
-    <div class="info-group">
-      <label>Apellido Paterno</label>
-      <p class="info-value">{{Usuario.ApellidoPaterno}}</p>
-    </div>
-    <div class="info-group">
-      <label>Apellido Materno</label>
-      <p class="info-value">{{Usuario.ApellidoMaterno}}</p>
-    </div>
-    <div class="info-group">
-      <label>Correo</label>
-      <p class="info-value">{{Usuario.Correo}}</p>
-    </div>
+
+  <!-- Sección de Acciones -->
+  <div class="action-buttons">
+    <button class="Btn" (click)="eventoMostrarPopupEditar(Usuario)">Editar Perfil
+      <svg class="svg" viewBox="0 0 512 512">
+        <path
+          d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+        </path>
+      </svg>
+    </button>
+
+    <button class="Btn1" (click)="irACambiarContrasena()">Cambiar Contraseña
+      <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path
+          d="M400 192h-32V120c0-66.3-53.7-120-120-120s-120 53.7-120 120v72h-32c-35.3 0-64 28.7-64 64v160c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64zM192 120c0-44.2 35.8-80 80-80s80 35.8 80 80v72h-160V120zm160 304H160V256h192v168z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Sección de Detalles -->
+  <div class="profile-content">
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon>person</mat-icon>
+          Información Personal
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Nombre</label>
+            <p>{{Usuario.Nombre}}</p>
+          </div>
+          <div class="info-item">
+            <label>Apellido Paterno</label>
+            <p>{{Usuario.ApellidoPaterno}}</p>
+          </div>
+          <div class="info-item">
+            <label>Apellido Materno</label>
+            <p>{{Usuario.ApellidoMaterno}}</p>
+          </div>
+          <div class="info-item">
+            <label>Correo Electrónico</label>
+            <p>{{Usuario.Correo}}</p>
+          </div>
+          <div class="info-item">
+            <label>Rol del Sistema</label>
+            <p class="role-text"
+              [ngClass]="{'admin': Usuario.Rol === 'Administrador', 'collaborator': Usuario.Rol === 'Colaborador'}">
+              <mat-icon>{{Usuario.Rol === 'Administrador' ? 'admin_panel_settings' : 'people'}}</mat-icon>
+              {{Usuario.Rol}}
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

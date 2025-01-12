@@ -73,4 +73,7 @@ export class MiPerfilComponent extends FormularioBase implements OnInit {
     this.router.navigate(['/restaurar-contrasena']);
   }
 
+  onBack() {
+    this.router.navigate(['bandeja-contratos']);
+  }
 }
