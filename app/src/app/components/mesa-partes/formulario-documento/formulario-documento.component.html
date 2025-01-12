@@ -316,7 +316,7 @@
             <div class="row" *ngIf="mostrarCampoBusquedaAdministrador">
               <mat-form-field class="col-lg-4" appearance="outline">
                 <mat-label>Buscar Usuario</mat-label>
-                <input type="text" aria-label="Number" matInput [(ngModel)]="AdministradorBuscar"
+                <input type="text" aria-label="Number" matInput [(ngModel)]="Registro.AdministradorBuscar"
                   [ngModelOptions]="{ standalone: true }" (keyup)="eventoBuscarAdministrador()"
                   [matAutocomplete]="autoAdministrador" />
                 <mat-autocomplete #autoAdministrador="matAutocomplete">
@@ -326,7 +326,7 @@
                   <ng-container *ngIf="!isLoading">
                     <mat-option (onSelectionChange)="onSeleccionAdministrador(option)"
                       *ngFor="let option of ListaUsuarioAdministradores" [value]="option.NombreCompleto">
-                      {{ option.NombreCompleto }}
+                      {{option.Correo}} | {{option.NombreCompleto}}
                     </mat-option>
                   </ng-container>
                 </mat-autocomplete>
