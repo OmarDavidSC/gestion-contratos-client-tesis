@@ -117,7 +117,7 @@ export class ModalFormularioUsuarioComponent implements OnInit {
       sweet2.question({
         title: '¿Estás seguro de querer actualizar al Usuario?',
         onOk: async () => {
-          sweet2.loading();
+          sweet2.loading({text:'Actualizando datos del usuario'});
           setTimeout(async () => {
             await this.usuarioService.updateItem(datos);
             sweet2.loading(false);

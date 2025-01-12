@@ -8,6 +8,8 @@ import { EArea } from 'src/app/shared/models/entidades/EArea';
 import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 import { v4 as uuidv4 } from 'uuid';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import { sweet2 } from 'src/app/shared/utils/sweet2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-formulario-area',
@@ -21,7 +23,7 @@ export class ModalFormularioAreaComponent implements OnInit {
   idUsuarioResponsable: any;
   public TituloPopup: string;
   public Form: FormGroup;
-  public isLoading = false;  
+  public isLoading = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: EArea,
@@ -72,9 +74,50 @@ export class ModalFormularioAreaComponent implements OnInit {
     this.spinnerService.show();
 
     if (this.data) {
-      await this.areaService.updateItem(datos);
+      sweet2.question({
+        title: '¿Estás seguro de actualizar los datos?',
+        onOk: async () => {
+          sweet2.loading({ text: 'Actualizando datos...!' });
+          setTimeout(async () => {
+            await this.areaService.updateItem(datos);
+            sweet2.loading(false);
+            Swal.fire({
+              text: 'Datos actualizado con éxito',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                confirmButton: 'btn btn-primary',
+              },
+            }).then(() => {
+              location.reload();
+            });
+          }, 3000);
+        }
+      });
     } else {
-      await this.areaService.addItem(datos);
+      sweet2.question({
+        title: '¿Estás seguro de registrar los datos?',
+        onOk: async () => {
+          sweet2.loading();
+          setTimeout(async () => {
+            const response = await this.areaService.addItem(datos);
+            sweet2.loading(false);
+            if (response.message) {
+              Swal.fire({
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                customClass: {
+                  confirmButton: 'btn btn-primary',
+                },
+              }).then(() => {
+                location.reload();
+              });;
+            }
+          }, 3000);
+        }
+      });
+
     }
     this.spinnerService.hide();
     this.dialogRef.close(true);
@@ -86,11 +129,11 @@ export class ModalFormularioAreaComponent implements OnInit {
       this.filteredUsuarioResponsable = [];
       return;
     }
-  
+
     this.isLoading = true;
     this.filteredUsuarioResponsable = await this.usuarioService.getItems(valorBusqueda);
     this.isLoading = false;
-  } 
+  }
 
   onSeleccionUsuarioResponsable(event: any, option: EUsuario) {
     this.Form.get('usuarioResponsable').setValue(option.NombreCompleto);
