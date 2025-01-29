@@ -33,14 +33,23 @@ import { AdministracionMetodoEntregaComponent } from './components/administracio
 import { AdministracionSistemaContratacionComponent } from './components/administracion/administracion-sistema-contratacion/administracion-sistema-contratacion.component';
 import { MiPerfilComponent } from './components/profile/mi-perfil/mi-perfil.component';
 import { RestaurarContrasenaComponent } from './components/profile/restaurar-contrasena/restaurar-contrasena.component';
-import { RecuperarContrasenaComponent } from './components/profile/recuperar-contrasena/recuperar-contrasena.component';
 import { ReporteGeneralComponent } from './components/mesa-partes/reporte-general/reporte-general.component';
 import { DashboardsComponent } from './components/reportes/dashboards/dashboards.component';
+import { ValidaEmailComponent } from './components/res/valida-email/valida-email.component';
+import { RestorePasswordComponent } from './components/res/restore-password/restore-password.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'valida-email',
+    component: ValidaEmailComponent,
+  },
+  {
+    path: 'recuperar-contrasena',
+    component: RestorePasswordComponent
   },
   {
     path: 'administracion',

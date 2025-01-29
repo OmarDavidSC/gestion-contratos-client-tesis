@@ -85,6 +85,8 @@ import { DashboardPorProveedorComponent } from './components/reportes/partials/d
 import { DashboardPorTipoComponent } from './components/reportes/partials/dashboard-por-tipo/dashboard-por-tipo.component';
 import { DashboardPorMesComponent } from './components/reportes/partials/dashboard-por-mes/dashboard-por-mes.component';
 import { PorEstadoModalsComponent } from './components/reportes/modals/por-estado-modals/por-estado-modals.component';
+import { ValidaEmailComponent } from './components/res/valida-email/valida-email.component';
+import { RestorePasswordComponent } from './components/res/restore-password/restore-password.component';
 
 
 @NgModule({
@@ -152,7 +154,9 @@ import { PorEstadoModalsComponent } from './components/reportes/modals/por-estad
     DashboardPorProveedorComponent,
     DashboardPorTipoComponent,
     DashboardPorMesComponent,
-    PorEstadoModalsComponent
+    PorEstadoModalsComponent,
+    ValidaEmailComponent,
+    RestorePasswordComponent
   ],
   imports: [
     ComunModule,

@@ -18,7 +18,9 @@
                         <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
                 </mat-form-field>
-    
+                <div class="forgot-password-container">
+                    <a class="forgot-password" (click)="recuperarContrasena()">¿Olvidaste tu contraseña?</a>
+                </div>
                 <button class="full-width" mat-raised-button color="primary" type="submit">
                     Iniciar Sesión
                     <mat-icon matSuffix>login</mat-icon>

@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { TipoContratoService } from 'src/app/shared/services/tipoContrato.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioTipoContratoComponent } from '../modals/modal-formulario-tipo-contrato/modal-formulario-tipo-contrato.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-tipo-contrato',
@@ -21,7 +22,7 @@ import { ModalFormularioTipoContratoComponent } from '../modals/modal-formulario
 })
 export class AdministracionTipoContratoComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaTipoContrato: ETipoContrato[] = [];
   BusquedaRapida: string = "";
 

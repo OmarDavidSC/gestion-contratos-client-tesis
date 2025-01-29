@@ -14,6 +14,7 @@ import { TipoDocumentoService } from 'src/app/shared/services/tipoDocumento.serv
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioTipoDocumentoComponent } from '../modals/modal-formulario-tipo-documento/modal-formulario-tipo-documento.component';
 import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-tipo-documento',
@@ -22,7 +23,7 @@ import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 })
 export class AdministracionTipoDocumentoComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaTipoDocumento: ETipoDocumento[] = [];
   BusquedaRapida: string = "";
 

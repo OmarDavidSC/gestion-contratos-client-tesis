@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { CompaniaAseguradoraService } from 'src/app/shared/services/companiaAseguradora.service';
 import { ModalFormularioCompaniaAseguradoraComponent } from '../modals/modal-formulario-compania-aseguradora/modal-fomulario-compania-aseguradora.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-compania-aseguradora',
@@ -21,7 +22,7 @@ import { ModalFormularioCompaniaAseguradoraComponent } from '../modals/modal-for
 })
 export class AdministracionCompaniaAseguradoraComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaCompaniaAseguradora: ECompaniaAseguradora[] = [];
   BusquedaRapida: string = "";
 

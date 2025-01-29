@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { ProveedorService } from 'src/app/shared/services/proveedor.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioProveedorComponent } from '../modals/modal-formulario-proveedor/modal-fomulario-proveedor.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-proveedor',
@@ -21,7 +22,7 @@ import { ModalFormularioProveedorComponent } from '../modals/modal-formulario-pr
 })
 export class AdministracionProveedorComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaProveedor: EProveedor[] = [];
   BusquedaRapida: string = "";
 

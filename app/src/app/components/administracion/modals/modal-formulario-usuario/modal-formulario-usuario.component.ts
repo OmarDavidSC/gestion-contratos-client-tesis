@@ -105,12 +105,16 @@ export class ModalFormularioUsuarioComponent implements OnInit {
       rol: item.rol,
       area: { id: item.idArea },
       puesto: { id: item.idPuesto },
-      clave: "123456",
+      clave: null,
       habilitado: item.habilitado,
       usuarioRegistro: this.data.itemUsuario == null ? { id: this.UsuarioActual.Id } : { id: this.data.itemUsuario.UsuarioRegistro.Id },
       fechaRegistro: this.data.itemUsuario == null ? new Date() : this.data.itemUsuario.FechaRegistro,
       usuarioModificacion: { id: this.UsuarioActual.Id },
       fechaModificacion: new Date()
+    }
+
+    if(!this.data.itemUsuario) {
+      datos.clave = "pass2020";
     }
 
     if (this.data.itemUsuario) {

@@ -18,6 +18,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioUsuarioComponent } from '../modals/modal-formulario-usuario/modal-formulario-usuario.component';
 import { environment } from 'src/environments/environment';
 import { Lookup } from 'src/app/shared/models/base/Lookup';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-usuarios',
@@ -26,7 +27,7 @@ import { Lookup } from 'src/app/shared/models/base/Lookup';
 })
 export class AdministracionUsuariosComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaUsuarios: EUsuario[] = [];
   BusquedaRapida: string = "";
   isLoading: boolean = false;

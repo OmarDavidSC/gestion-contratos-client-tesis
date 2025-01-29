@@ -18,6 +18,8 @@ import { HttpClient } from "@angular/common/http";
 import { lastValueFrom } from "rxjs";
 import { ESesion } from "../models/entidades/Sesion";
 import { Lookup } from "../models/base/Lookup";
+import { ApiResponse } from "../utils/response";
+import { EUsuarioLookup } from "../models/entidades/EUsuarioLookup";
 
 @Injectable({
   providedIn: "root"
@@ -66,21 +68,21 @@ export class UsuarioService {
     });
   }
 
-  async getCurrentUser(): Promise<EUsuario> {
+  async getCurrentUser(): Promise<EUsuarioLookup> {
     const valorIdUsuario = localStorage.getItem("IdUsuario");
     const valorUsuario = localStorage.getItem("Usuario");
-    let usuario = new EUsuario();
+    let usuario = new EUsuarioLookup();
 
     if (valorUsuario == null) {
       const idUsuario = JSON.parse(valorIdUsuario);
       const url = this.urlBase + 'obtener-usuario/' + idUsuario;
       const response = await lastValueFrom(this.http.get<any>(url));
       localStorage.setItem("Usuario", JSON.stringify(response));
-      usuario = EUsuario.parseJson(response);
+      usuario = EUsuarioLookup.parseJson(response);
     }
     else {
       const response = JSON.parse(valorUsuario);
-      usuario = EUsuario.parseJson(response);
+      usuario = EUsuarioLookup.parseJson(response);
     }
 
     return usuario;
@@ -101,7 +103,7 @@ export class UsuarioService {
     const url = this.urlBase + 'obtener-usuarios?valorBusqueda=';
     const response = await lastValueFrom(this.http.get<any[]>(url));
     return response.map(EUsuario.parseJsonLookup);
-}
+  }
 
 
   async addItem(datos: any): Promise<any> {
@@ -117,6 +119,18 @@ export class UsuarioService {
   async deleteItem(id: number): Promise<any> {
     const url = `${this.urlBase}eliminar-usuario/${id}`;
     return await lastValueFrom(this.http.post(url, {}));
+  }
+
+  async vemail(datos: any): Promise<ApiResponse<EUsuario>> {
+    const url = this.urlBase + 'vemail';
+    const response = await lastValueFrom(this.http.post<ApiResponse<EUsuario>>(url, datos));
+    response.data = EUsuario.parseJson(response.data);
+    return response
+  }
+
+  async restore(datos: any): Promise<ApiResponse<any>> {
+    const url = this.urlBase + 'restablecer-contrasena';
+    return await lastValueFrom(this.http.post<ApiResponse<any>>(url, datos));
   }
 
   compare(a, b) {

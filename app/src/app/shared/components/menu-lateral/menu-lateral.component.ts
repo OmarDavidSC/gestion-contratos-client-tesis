@@ -11,6 +11,7 @@ import { EModuloSeguridad } from '../../models/entidades/EModuloSeguridad';
 import { EPermisoModulo } from '../../models/entidades/EPermisoModulo';
 import { Funciones } from '../../utils/Funciones';
 import { EUsuario } from '../../models/entidades/EUsuario';
+import { EUsuarioLookup } from '../../models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -28,7 +29,7 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
 
   @ViewChild('notificationsDrawer') notificationsDrawer: MatDrawer;
 
-  public UsuarioActual: EUsuario = new EUsuario();
+  public UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   public ListaModulo: EModuloSeguridad[] = [];
   public ListaPermisos: any[] = [];
   public mostrarMenu: boolean = false;
@@ -64,7 +65,6 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
     else {
       this.mostrarMenu = false;
     }
-
     this.usuarioService.getCurrentUser().then((resultado: any) => {
       this.UsuarioActual = resultado;
       this.getOpcionesMenu();

@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { MetodoEntregaService } from 'src/app/shared/services/metodoEntrega.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioMetodoEntregaComponent } from '../modals/modal-formulario-metodo-entrega/modal-formulario-metodo-entrega.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-metodo-entrega',
@@ -21,7 +22,7 @@ import { ModalFormularioMetodoEntregaComponent } from '../modals/modal-formulari
 })
 export class AdministracionMetodoEntregaComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaMetodoEntrega: EMetodoEntrega[] = [];
   BusquedaRapida: string = "";
 

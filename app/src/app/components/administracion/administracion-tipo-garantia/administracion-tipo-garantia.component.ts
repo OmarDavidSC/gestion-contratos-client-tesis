@@ -14,6 +14,7 @@ import { TipoGarantiaService } from 'src/app/shared/services/tipoGarantia.servic
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ETipoDocumento } from 'src/app/shared/models/entidades/ETipoDocumento';
 import { ModalFormularioTipoGarantiaComponent } from '../modals/modal-formulario-tipo-garantia/modal-fomulario-tipo-garantia.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-tipo-garantia',
@@ -22,7 +23,7 @@ import { ModalFormularioTipoGarantiaComponent } from '../modals/modal-formulario
 })
 export class AdministracionTipoGarantiaComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaTipoGarantia: ETipoGarantia[] = [];
   BusquedaRapida: string = "";
 

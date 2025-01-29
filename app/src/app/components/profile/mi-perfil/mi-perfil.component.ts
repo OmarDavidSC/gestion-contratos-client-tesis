@@ -7,6 +7,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { ProfileService } from 'src/app/shared/services/profile.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { EditarProfileComponent } from '../modals/editar-profile/editar-profile.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -15,7 +16,7 @@ import { EditarProfileComponent } from '../modals/editar-profile/editar-profile.
 })
 export class MiPerfilComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   Usuario: EUsuario = new EUsuario;
 
   constructor(

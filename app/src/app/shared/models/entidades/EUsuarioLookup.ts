@@ -8,12 +8,14 @@ export class EUsuarioLookup {
   Nombre: string;
   Correo: string;
   Area: Lookup;
+  Rol: string;
 
   constructor() {
     this.Id = "";
     this.Nombre = "";
     this.Correo = "";
     this.Area = new Lookup();
+    this.Rol = "";
   }
 
   public static parseJson(element: any): EUsuarioLookup {
@@ -22,7 +24,8 @@ export class EUsuarioLookup {
     objeto.Id = SPParse.getString(element["id"]);
     objeto.Nombre = SPParse.getString(element["nombreCompleto"]);
     objeto.Correo = SPParse.getString(element["correo"]);
-    objeto.Area = element["area"] ? EArea.parseJsonLookup(element["area"]) : null;;
+    objeto.Area = element["area"] ? EArea.parseJsonLookup(element["area"]) : null;
+    objeto.Rol = SPParse.getString(element["rol"]);
     return objeto;
   }
 

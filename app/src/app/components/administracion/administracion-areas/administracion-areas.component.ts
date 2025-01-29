@@ -15,6 +15,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioAreaComponent } from '../modals/modal-formulario-area/modal-formulario-area.component';
 import { environment } from 'src/environments/environment';
 import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-areas',
@@ -23,7 +24,7 @@ import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 })
 export class AdministracionAreasComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaAreas: EArea[] = [];
   BusquedaRapida: string = "";
 

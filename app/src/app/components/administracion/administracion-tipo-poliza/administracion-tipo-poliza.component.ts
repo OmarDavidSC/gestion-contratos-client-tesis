@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { TipoPolizaService } from 'src/app/shared/services/tipoPoliza.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioTipoPolizaComponent } from '../modals/modal-formulario-tipo-poliza/modal-fomulario-tipo-poliza.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { ModalFormularioTipoPolizaComponent } from '../modals/modal-formulario-t
 })
 export class AdministracionTipoPolizaComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaTipoPoliza: ETipoPoliza[] = [];
   BusquedaRapida: string = "";
 

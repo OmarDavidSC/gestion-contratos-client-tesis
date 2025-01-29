@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { MonedaService } from 'src/app/shared/services/moneda.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioMonedaComponent } from '../modals/modal-formulario-moneda/modal-fomulario-moneda.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-monedas',
@@ -21,7 +22,7 @@ import { ModalFormularioMonedaComponent } from '../modals/modal-formulario-moned
 })
 export class AdministracionMonedasComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaMoneda: EMoneda[] = [];
   BusquedaRapida: string = "";
 

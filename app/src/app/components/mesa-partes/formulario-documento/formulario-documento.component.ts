@@ -235,7 +235,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
 
     this.mostrarProgreso();
     this.IdRegistro = this.obtenerParametro('id');
-
     Promise.all([
       this.userService.getCurrentUser(),
       this.tipoContratoService.getItemsMaestro(),

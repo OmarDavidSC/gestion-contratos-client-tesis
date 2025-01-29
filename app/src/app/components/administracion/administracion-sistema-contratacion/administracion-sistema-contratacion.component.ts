@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { SistemaContratacionService } from 'src/app/shared/services/sistemaContratacion.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioSistemaContratacionComponent } from '../modals/modal-formulario-sistema-contratacion/modal-formulario-sistema-contratacion.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-sistema-contratacion',
@@ -21,7 +22,7 @@ import { ModalFormularioSistemaContratacionComponent } from '../modals/modal-for
 })
 export class AdministracionSistemaContratacionComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaSistemContratacion: ESistemaContratacion[] = [];
   BusquedaRapida: string = "";
 

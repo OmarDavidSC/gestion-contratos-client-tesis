@@ -33,7 +33,6 @@ export class ModalFormularioTipoDocumentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.TituloPopup = this.data ?'Editar Tipo de Documento' : 'Registrar Tipo de Documento';
-
     this.usuarioService.getCurrentUser().then((resultado: EUsuario) => {
       this.UsuarioActual = resultado;
 

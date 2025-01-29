@@ -9,6 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FormularioBase } from '../../pages/FormularioBase';
 import { UsuarioService } from '../../services/usuario.service';
 import { EUsuario } from '../../models/entidades/EUsuario';
+import { EUsuarioLookup } from '../../models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-notificaciones',
@@ -18,7 +19,7 @@ import { EUsuario } from '../../models/entidades/EUsuario';
 export class NotificacionesComponent extends FormularioBase implements OnInit {
 
   ListaNotificaciones: ENotificaciones[] = [];
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   intervalId: any;
 
   @Output() closeDrawer = new EventEmitter<void>();
@@ -43,7 +44,6 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
   }
 
   async obtenerMaestros() {
-    this.mostrarProgreso();
     Promise.all([
       this.userService.getCurrentUser(),
     ])

@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { TipoAdendaService } from 'src/app/shared/services/tipoAdenda.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioTipoAdendaComponent } from '../modals/modal-formulario-tipo-adenda/modal-formulario-tipo-adenda.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-tipo-adenda',
@@ -21,7 +22,7 @@ import { ModalFormularioTipoAdendaComponent } from '../modals/modal-formulario-t
 })
 export class AdministracionTipoAdendaComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaTipoAdenda: ETipoAdenda[] = [];
   BusquedaRapida: string = "";
 

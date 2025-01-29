@@ -13,6 +13,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { BancoService } from 'src/app/shared/services/banco.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioBancoComponent } from '../modals/modal-formulario-banco/modal-fomulario-banco.component';
+import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 
 @Component({
   selector: 'app-administracion-banco',
@@ -21,7 +22,7 @@ import { ModalFormularioBancoComponent } from '../modals/modal-formulario-banco/
 })
 export class AdministracionBancoComponent extends FormularioBase implements OnInit {
 
-  UsuarioActual: EUsuario = new EUsuario();
+  UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   ListaBanco: EBanco[] = [];
   BusquedaRapida: string = "";
 

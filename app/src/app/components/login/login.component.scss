@@ -44,4 +44,19 @@ mat-card-content {
     min-height: 100vh;
 }
 
+.forgot-password-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.forgot-password {
+    font-size: 14px;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
 
