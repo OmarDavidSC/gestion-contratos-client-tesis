@@ -36,8 +36,9 @@ import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
 import { ETipoContrato } from 'src/app/shared/models/entidades/ETIpoContrato';
 import { TipoContratoService } from 'src/app/shared/services/tipoContrato.service';
 import { environment } from 'src/environments/environment';
-
-
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import autoTable from 'jspdf-autotable';
 @Component({
   selector: 'app-bandeja-documentos',
   templateUrl: './bandeja-documentos.component.html',
@@ -242,6 +243,92 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
       fecha.getSeconds().toString().padStart(2, "0");
 
     return fechaHora;
-  } 
+  }
 
+  eventoVerContratoPDF(element: EDatosContrato) {
+    const doc = new jsPDF('p', 'mm', 'a4'); // Formato A4 vertical
+    const imgLogo = 'assets/img/adn.png'; // Ruta del logo
+
+    // ** Agregar Logo **
+    const img = new Image();
+    img.src = imgLogo;
+
+    img.onload = () => {
+      doc.addImage(img, 'PNG', 15, 10, 40, 15); // Posición del logo
+
+      // ** Número de Contrato en esquina derecha **
+      doc.setFontSize(12);
+      doc.setTextColor(111, 66, 193); // Naranja
+      doc.text('Código Contrato:', 170, 20);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`${element.CodigoContrato}`, 170, 25);
+
+      // ** Datos generales del contrato **
+      doc.setFontSize(11);
+      doc.setTextColor(0, 0, 0);
+      let startY = 40;
+
+      const datosGenerales = [
+        ['Título:', element.TituloContrato],
+        ['Estado:', element.Estado.Nombre],
+        ['Área:', element.Area.Nombre],
+        ['Proveedor:', element.Proveedor.Nombre],
+        ['Tipo de Contrato:', element.TipoContrato.Nombre],
+        ['Monto:', `${element.MontoContrato} ${element.Moneda.Nombre}`],
+        ['Fecha de Inicio:', element.TextoFechaInicio],
+        ['Fecha de Fin:', element.TextoFechaFin],
+      ];
+
+      datosGenerales.forEach(([label, value]) => {
+        doc.setFont(undefined, 'bold');
+        doc.text(label, 20, startY);
+        doc.setFont(undefined, 'normal');
+        doc.text(value, 80, startY);
+        startY += 7;
+      });
+
+      // ** Sección Detalles del Contrato **
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.text('DETALLES DEL CONTRATO', 20, startY + 6);
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(10);
+      doc.text(element.DetalleContrato, 20, startY + 15, { maxWidth: 170 });
+
+      startY += 25;
+
+      // ** Sección Administradores **
+      doc.setFillColor(111, 66, 193); // Color de fondo
+      doc.rect(15, startY + 5, 180, 8, 'F'); // Rectángulo con color
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.text('ADMINISTRADORES', 20, startY + 11);
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(10);
+      doc.text(element.NombresAdministradores, 20, startY + 18);
+
+      startY += 25;
+
+      // ** Tabla con Fechas Claves **
+      autoTable(doc, {
+        startY: startY,
+        head: [['Fecha', 'Descripción']],
+        body: [
+          [element.TextoFechaRegistro, 'Fecha de Registro'],
+          [element.TextoFechaFin, 'Fecha de Finalización'],
+          [element.TextoFechaCierreContrato || 'N/A', 'Fecha de Cierre'],
+        ],
+        theme: 'grid',
+        styles: { fontSize: 10 },
+        headStyles: { fillColor: [111, 66, 193], textColor: 255 },
+      });
+
+      // ** Abrir en Nueva Pestaña **
+      window.open(doc.output('bloburl'), '_blank');
+    };
+  }
 }

@@ -75,6 +75,14 @@
                                     element.NombresAdministradores}}
                                 </td>
                             </ng-container>
+                            <ng-container matColumnDef="Accion">
+                                <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Accion</th>
+                                <td class="filaTabla" mat-cell *matCellDef="let element">
+                                    <button (click)="eventoVerContratoPDF(element)" mat-icon-button matTooltip="Ver en PDF">
+                                        <mat-icon>visibility</mat-icon>
+                                    </button>
+                                </td>
+                            </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
                         </table>

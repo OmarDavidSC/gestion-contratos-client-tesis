@@ -57,6 +57,9 @@ import { TipoPolizaService } from 'src/app/shared/services/tipoPoliza.service';
 import { TipoAdendaService } from 'src/app/shared/services/tipoAdenda.service';
 import { EAdenda } from 'src/app/shared/models/entidades/EAdenda';
 import { SPParse } from 'src/app/shared/utils/SPParse';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-formulario-documento',
@@ -2075,6 +2078,143 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
       });
 
     }
+  }
+
+  eventoVerContratoPDF(element: EDatosContrato) {
+    const doc = new jsPDF('p', 'mm', 'a4');
+    const imgLogo = 'assets/img/adn.png';
+    const img = new Image();
+    img.src = imgLogo;
+
+    img.onload = () => {
+      doc.addImage(img, 'PNG', 15, 10, 40, 15); // Posición del logo
+
+          // ** Número de Contrato en esquina derecha **
+          doc.setFontSize(12);
+          doc.setTextColor(111, 66, 193); // Naranja
+          doc.text('Código Contrato:', 170, 20);
+          doc.setTextColor(0, 0, 0);
+          doc.text(`${element.CodigoContrato}`, 170, 25);
+
+      let startY = 40;
+      doc.setFontSize(11);
+
+      const datosGenerales = [
+        ['Título:', element.TituloContrato],
+        ['Estado:', element.Estado.Nombre],
+        ['Área:', element.Area.Nombre],
+        ['Proveedor:', element.Proveedor.Nombre],
+        ['Tipo de Contrato:', element.TipoContrato.Nombre],
+        ['Monto:', `${element.MontoContrato} ${element.Moneda.Nombre}`],
+        ['Fecha de Inicio:', element.TextoFechaInicio],
+        ['Fecha de Fin:', element.TextoFechaFin],
+      ];
+
+      datosGenerales.forEach(([label, value]) => {
+        doc.setFont(undefined, 'bold');
+        doc.text(label, 20, startY);
+        doc.setFont(undefined, 'normal');
+        doc.text(value, 80, startY);
+        startY += 7;
+      });
+
+      // Sección Detalles
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.text('DETALLE DEL CONTRATO', 20, startY + 6);
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(10);
+      doc.text(element.DetalleContrato || 'Sin detalles disponibles', 20, startY + 15, { maxWidth: 170 });
+      startY += 25;
+
+      // Administradores
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.text('ADMINISTRADORES', 20, startY + 6);
+
+      if (element.ListaAdministrador.length > 0) {
+        autoTable(doc, {
+          startY: startY + 10,
+          head: [['Nombre', 'Correo']],
+                body: element.ListaAdministrador.map(a => [a.Nombre, a.Correo]),
+          theme: 'grid',
+          styles: { fontSize: 10 },
+          headStyles: { fillColor: [111, 66, 193], textColor: 255 },
+        });
+      } else {
+        doc.setTextColor(0, 0, 0);
+        doc.text('No hay adendas registradas', 20, startY + 15);
+      }
+      startY += 50;
+
+      // Adendas
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.text('ADENDAS', 20, startY + 6);
+
+      if (element.ListaAdenda.length > 0) {
+        autoTable(doc, {
+          startY: startY + 10,
+          head: [['Código', 'Descripción', 'Tipo', 'Inicio', 'Fin', 'Monto']],
+                body: element.ListaAdenda.map(a => [a.CodigoAdenda, a.Descripcion, a.TipoAdenda.Nombre, a.TextoFechaInicio, a.TextoFechaFin, `${a.Monto} ${a.Moneda.Nombre}`]),
+          theme: 'grid',
+          styles: { fontSize: 10 },
+          headStyles: { fillColor: [111, 66, 193], textColor: 255 },
+        });
+      } else {
+        doc.setTextColor(0, 0, 0);
+        doc.text('No hay adendas registradas', 20, startY + 15);
+      }
+      startY += 50;
+
+      // Garantías
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.text('GARANTÍAS', 20, startY + 6);
+
+      if (element.ListaArchivosGarantia.length > 0) {
+        autoTable(doc, {
+          startY: startY + 10,
+          head: [['Número', 'Banco', 'Tipo', 'Inicio', 'Fin', 'Monto']],
+          body: element.ListaArchivosGarantia.map(g => [g.NumeroGarantia, g.Banco.Nombre, g.TipoGarantia.Nombre, g.TextoFechaInicio, g.TextoFechaFin, `${g.Monto} ${g.Moneda.Nombre}`]),
+          theme: 'grid',
+          styles: { fontSize: 10 },
+          headStyles: { fillColor: [111, 66, 193], textColor: 255 },
+        });
+      } else {
+        doc.setTextColor(0, 0, 0);
+        doc.text('No hay garantías registradas', 20, startY + 15);
+      }
+      startY += 50;
+
+      // Pólizas
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.text('PÓLIZAS', 20, startY + 6);
+
+      if (element.ListaArchivosPoliza.length > 0) {
+        autoTable(doc, {
+          startY: startY + 10,
+          head: [['Número', 'Aseguradora', 'Tipo', 'Inicio', 'Fin', 'Monto']],
+          body: element.ListaArchivosPoliza.map(p => [p.NumeroPoliza, p.CompaniaAseguradora.Nombre, p.TipoPoliza.Nombre, p.TextoFechaInicio, p.TextoFechaFin, `${p.Monto} ${p.Moneda.Nombre}`]),
+          theme: 'grid',
+          styles: { fontSize: 10 },
+          headStyles: { fillColor: [111, 66, 193], textColor: 255 },
+        });
+      } else {
+        doc.setTextColor(0, 0, 0);
+        doc.text('No hay pólizas registradas', 20, startY + 15);
+      }
+
+      window.open(doc.output('bloburl'), '_blank');
+    };
   }
 
 }
