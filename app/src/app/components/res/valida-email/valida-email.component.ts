@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthEmailService } from 'src/app/shared/services/auth-email.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { FormHelper } from 'src/app/shared/utils/form-helper';
 import { sweet2 } from 'src/app/shared/utils/sweet2';
@@ -22,7 +22,7 @@ export class ValidaEmailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private spinnerService: NgxSpinnerService,
     private usuarioService: UsuarioService,
-    private authService: AuthEmailService
+    private authService: AuthService
   ) {
 
   }

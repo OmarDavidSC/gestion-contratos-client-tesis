@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthEmailService {
+export class AuthService {
 
     private emailValidated: boolean = false;
 

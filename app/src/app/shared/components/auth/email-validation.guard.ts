@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthEmailService } from '../../services/auth-email.service';
+import { AuthService } from '../../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { AuthEmailService } from '../../services/auth-email.service';
 export class EmailValidationGuard implements CanActivate {
 
   constructor(
-    private authService: AuthEmailService,
+    private authService: AuthService,
     private router: Router
   ) {
 
