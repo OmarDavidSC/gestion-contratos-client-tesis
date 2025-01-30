@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthEmailService } from 'src/app/shared/services/auth-email.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { FormHelper } from 'src/app/shared/utils/form-helper';
 import { sweet2 } from 'src/app/shared/utils/sweet2';
@@ -20,7 +21,8 @@ export class ValidaEmailComponent implements OnInit {
     public router: Router,
     private formBuilder: FormBuilder,
     private spinnerService: NgxSpinnerService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private authService: AuthEmailService
   ) {
 
   }
@@ -60,6 +62,7 @@ export class ValidaEmailComponent implements OnInit {
                 confirmButton: 'btn btn-primary',
               }
             }).then(() => {
+              this.authService.validateEmail();
               this.irARestaurar();
             });
           } else {

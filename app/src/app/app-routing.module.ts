@@ -37,6 +37,7 @@ import { ReporteGeneralComponent } from './components/mesa-partes/reporte-genera
 import { DashboardsComponent } from './components/reportes/dashboards/dashboards.component';
 import { ValidaEmailComponent } from './components/res/valida-email/valida-email.component';
 import { RestorePasswordComponent } from './components/res/restore-password/restore-password.component';
+import { EmailValidationGuard } from './shared/components/auth/email-validation.guard';
 
 const routes: Routes = [
   {
@@ -49,7 +50,8 @@ const routes: Routes = [
   },
   {
     path: 'recuperar-contrasena',
-    component: RestorePasswordComponent
+    component: RestorePasswordComponent,
+    canActivate: [EmailValidationGuard]
   },
   {
     path: 'administracion',
@@ -60,7 +62,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'mi-perfil',
     component: MiPerfilComponent,
@@ -100,7 +102,7 @@ const routes: Routes = [
     path: 'bandeja-actividades',
     component: BandejaactividadesComponent,
     canActivate: [AuthGuard]
-  },  
+  },
   {
     path: 'administracion',
     component: BandejaAdministracionComponent,
