@@ -124,7 +124,11 @@ export class UsuarioService {
   async vemail(datos: any): Promise<ApiResponse<EUsuario>> {
     const url = this.urlBase + 'vemail';
     const response = await lastValueFrom(this.http.post<ApiResponse<EUsuario>>(url, datos));
-    response.data = EUsuario.parseJson(response.data);
+    if (!response.success) {
+      response.data = new EUsuario();
+    } else {
+      response.data = EUsuario.parseJson(response.data);
+    }
     return response
   }
 

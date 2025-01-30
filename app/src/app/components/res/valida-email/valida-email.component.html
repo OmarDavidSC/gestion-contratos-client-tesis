@@ -1,11 +1,19 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="container-fluid contenedor d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow-lg rounded" style="max-width: 400px; width: 100%;">
+        <button (click)="onBack()" class="btn btn-link position-absolute top-0 start-0 m-2 p-2">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
         <div class="text-center mb-3">
             <img src="../../../../assets/img/correo.png" alt="Email Icon" width="80">
-            <h5 class="mt-2 text-bold">Valida tu Email</h5>
+            <h5 class="mt-2 text-bold">Valida tu Correo Electronico</h5>
             <p class="text-muted">Ingresa tu correo electrónico para restaurar tu contraseña.</p>
+            <mat-card class="mt-2 p-2 bg-warning text-dark">
+                <mat-card-content>
+                    <strong>¡Importante!</strong> Una vez tu correo sea validado, se te redireccionará a la página para
+                    restaurar tu contraseña.
+                </mat-card-content>
+            </mat-card>
         </div>
-
         <form [formGroup]="Form" (ngSubmit)="eventoConfirmar()">
             <div class="mb-3">
                 <mat-form-field appearance="outline" class="w-100">
@@ -18,7 +26,7 @@
                 </mat-form-field>
             </div>
             <button type="submit" class="btn btn-secondary w-100" [disabled]="Form.invalid">
-                Validar Email
+                Validar
             </button>
         </form>
     </div>

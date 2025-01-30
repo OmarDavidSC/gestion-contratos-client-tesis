@@ -44,15 +44,14 @@ export class ValidaEmailComponent implements OnInit {
     const datos = {
       email: item.email
     };
-
     sweet2.question({
-      title: `¿Estas Seguro que es tu email?`,
-      text: 'Después de cambiar tu contraseña, deberás iniciar sesión.',
+      title: `¿Estas seguro que es tu Correo Electronico?`,
+      // text: 'Después de cambiar tu contraseña, deberás iniciar sesión.',
       onOk: async () => {
-        sweet2.loading({ text: 'Cargando...!' });
+        sweet2.loading({ text: 'Validando Correo Electronico...!' });
         setTimeout(async () => {
           const response = await this.usuarioService.vemail(datos);
-          if (!response.success) {
+          if (response.success) {
             Swal.fire({
               text: response.message,
               icon: 'success',
@@ -61,7 +60,7 @@ export class ValidaEmailComponent implements OnInit {
                 confirmButton: 'btn btn-primary',
               }
             }).then(() => {
-              // this.onBack();
+              this.irARestaurar();
             });
           } else {
             Swal.fire({
@@ -79,11 +78,11 @@ export class ValidaEmailComponent implements OnInit {
     this.spinnerService.hide();
   }
 
-  validarEmail() {
-    if (this.Form.valid) {
-      alert('Correo válido. Puedes continuar.');
-    } else {
-      alert('Por favor, ingresa un correo válido.');
-    }
+  onBack() {
+    this.router.navigate(['/login']);
+  }
+
+  irARestaurar() {
+    this.router.navigate(['/recuperar-contrasena']);
   }
 }

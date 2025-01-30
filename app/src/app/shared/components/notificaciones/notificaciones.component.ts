@@ -40,7 +40,7 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
 
   ngOnInit(): void {
     this.obtenerMaestros();
-    this.startAutoRefresh();
+    // this.startAutoRefresh();
   }
 
   async obtenerMaestros() {
@@ -62,11 +62,11 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
     }
   }
 
-  startAutoRefresh() {
-    this.intervalId = setInterval(() => {
-      this.initalize();
-    }, 60000);
-  }
+  // startAutoRefresh() {
+  //   this.intervalId = setInterval(() => {
+  //     this.initalize();
+  //   }, 60000);
+  // }
 
   ngOnDestroy(): void {
     if (this.intervalId) {
