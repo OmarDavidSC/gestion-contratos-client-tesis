@@ -85,6 +85,6 @@ export class LoginComponent implements OnInit {
   }
 
   recuperarContrasena() {
-    this.router.navigate(['/recuperar-contrasena']);
+    this.router.navigate(['/valida-email']);
   }
 }

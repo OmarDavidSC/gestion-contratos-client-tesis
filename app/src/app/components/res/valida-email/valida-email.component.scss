@@ -1,0 +1,15 @@
+.container {
+    background-color: #f8f9fa;
+}
+
+.card {
+    text-align: center;
+}
+
+button {
+    transition: 0.3s;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
