@@ -77,6 +77,8 @@ export class RestaurarContrasenaComponent implements OnInit {
               customClass: {
                 confirmButton: 'btn btn-primary',
               }
+            }).then(() => {
+              this.resetForm();
             });
           }
         }, 3000);
@@ -87,6 +89,14 @@ export class RestaurarContrasenaComponent implements OnInit {
 
   onBack() {
     this.router.navigate(['mi-perfil']);
+  }
+
+  resetForm() {
+    this.Form.reset({
+      id: this.IdUsuarioActual,
+      nuevaContrasena: '',
+      confirmarContrasena: ''
+    });
   }
 
 }

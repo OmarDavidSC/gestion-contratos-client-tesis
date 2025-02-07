@@ -1,17 +1,36 @@
-.container {
-    background-color: #f8f9fa;
+.bg-light-warning {
+    background-color: #fff3cd;
 }
 
-.card {
-    text-align: center;
+.btn-primary {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+    transition: background-color 0.3s ease;
 }
 
-button {
-    transition: 0.3s;
+.btn-primary:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
-button:disabled {
-    opacity: 0.5;
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-card {
+    border-radius: 8px;
+}
+
+.shadow-lg {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rounded {
+    border-radius: 12px;
+}
+
+.text-bold {
+    font-weight: 600;
 }
 
 .contenedor {
