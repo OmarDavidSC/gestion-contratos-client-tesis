@@ -1,26 +1,21 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card shadow-lg">
-            <div class="card-header text-center">
-                <h4 class="titulo">Contratos Por Proveedor</h4>
-            </div>
-            <div class="card-body">
-                <div [ngClass]="{ 'table-loading': loading }">
-                    <div class="table-loading-message" *ngIf="loading">Cargando...</div>
-                    <div class="row mt-2">
-                        <div class="col-12 text-center">
-                            <canvas #detallePorProveedorChart height="50px"></canvas>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <div class="row">
-                                <div class="col-12 col-md-6 sm-text text-start"
-                                    *ngFor="let item of detallePorProveedorLeyenda">
-                                    <div class="d-flex cursor-pointer">
-                                        <div class="box" [style.background-color]="item.color"></div>
-                                        <div class="w-25 text-end">{{item.total}}</div>
-                                        <div class="col"> {{item.nombre}}</div>
-                                    </div>
-                                </div>
+<div class="card shadow-lg">
+    <div class="card-header text-center">
+        <h4 class="titulo">Contratos Por Proveedor</h4>
+    </div>
+    <div class="card-body">
+        <div [ngClass]="{ 'table-loading': loading }">
+            <div class="table-loading-message" *ngIf="loading">Cargando...</div>
+            <div class="row mt-2">
+                <div class="col-12 text-center">
+                    <canvas #detallePorProveedorChart height="50px"></canvas>
+                </div>
+                <div class="col-12 mt-2">
+                    <div class="row">
+                        <div class="col-12 col-md-6 sm-text text-start" *ngFor="let item of detallePorProveedorLeyenda">
+                            <div class="d-flex cursor-pointer">
+                                <div class="box" [style.background-color]="item.color"></div>
+                                <div class="w-25 text-end">{{item.total}}</div>
+                                <div class="col"> {{item.nombre}}</div>
                             </div>
                         </div>
                     </div>
