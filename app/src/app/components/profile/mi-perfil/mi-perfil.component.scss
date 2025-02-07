@@ -96,6 +96,8 @@
 .profile-tag mat-icon {
   font-size: 18px;
   margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .profile-email {
@@ -218,7 +220,6 @@
   }
 }
 
-/* From Uiverse.io by vinodjangid07 */
 .Btn {
   position: relative;
   display: -webkit-box;

@@ -2,7 +2,7 @@
   <div class="row justify-content-center align-items-center h-100">
     <!-- Image Section -->
     <div class="col-lg-6 mb-4 mb-lg-0">
-      <img src="https://accesspay.pro/public/img/Step_1_forgotpassword.7ee4df9e.png" class="img-fluid"
+      <img src="../../../assets/img/resetpassword.png" class="img-fluid"
         alt="Password Change Illustration">
     </div>
     
@@ -24,7 +24,7 @@
         <label for="password">Nueva Contraseña</label>
         <div class="input-container position-relative d-flex align-items-center">
           <mat-icon class="input-icon position-absolute">lock</mat-icon>
-          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+          <input autofocus matInput [type]="hidePassword ? 'password' : 'text'" 
             formControlName="nuevaContrasena" autocomplete="off" 
             class="form-control pl-5" id="password" placeholder="Ingresa tu nueva contraseña">
           <button mat-icon-button matSuffix type="button" 
@@ -64,7 +64,7 @@
             ></path>
           </svg>
         </div>
-        <span>Restablecer contraseña</span>
+        <span> Restablecer contraseña</span>
       </button>
       
     </form>
