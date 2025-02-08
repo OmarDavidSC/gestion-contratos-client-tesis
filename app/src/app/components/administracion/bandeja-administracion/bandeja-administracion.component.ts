@@ -10,6 +10,7 @@ import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { sweet2 } from 'src/app/shared/utils/sweet2';
 import { environment } from 'src/environments/environment';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-bandeja-administracion',
@@ -21,7 +22,6 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
   UsuarioActual: User = new User();
 
   panelsState: { [key: string]: boolean } = {};
-
 
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
@@ -39,12 +39,65 @@ export class BandejaAdministracionComponent extends FormularioBase implements On
 
   ngOnInit(): void {
     this.obtenerMaestros();
-    this.panelsState = {
-      'panel1': false,
-      'panel2': false,
-      'panel3': false,
-      'panel4': false
-    };
+    $('.button2').click(function () {
+      var buttonId = $(this).attr('id');
+      console.log(buttonId);
+      if (buttonId === "areas") {
+        $('#modal-container1').removeAttr('class').addClass(buttonId);
+      }
+      if (buttonId === "usuarios") {
+        $('#modal-container2').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "scontratacion") {
+        $('#modal-container3').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "proveedores") {
+        $('#modal-container4').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "moneda") {
+        $('#modal-container5').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "mentregas") {
+        $('#modal-container6').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "saseguradora") {
+        $('#modal-container7').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "bancos") {
+        $('#modal-container8').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "tpolizas") {
+        $('#modal-container9').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "tgarantias") {
+        $('#modal-container10').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "tdocumentos") {
+        $('#modal-container11').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "tcontratos") {
+        $('#modal-container12').removeAttr('class').addClass(buttonId);
+      };
+      if (buttonId === "tadendas") {
+        $('#modal-container13').removeAttr('class').addClass(buttonId);
+      };
+
+      $('body').addClass('modal-active');
+    })
+
+    $('#modal-container1,#modal-container2,#modal-container3,#modal-container4,#modal-container5,#modal-container6,#modal-container7,#modal-container8,#modal-container9,#modal-container10,#modal-container11,#modal-container12,#modal-container13').click(function () {
+      $(this).addClass('out');
+      $('body').removeClass('modal-active');
+    });
+
+    $(function () {
+      // info button transitions
+      $(".menureloj").on("click", function () {
+        // $(".menureloj > i").toggleClass("fa-bars fa-close", 300);
+        $(".sidebar-wrapper").toggleClass("show-sidebar", true);
+        // $("body").toggleClass("push-body", 400);
+      });
+    });
   }
 
   async obtenerMaestros() {
