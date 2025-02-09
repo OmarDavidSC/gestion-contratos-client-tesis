@@ -1,265 +1,610 @@
 <div class="container">
-    <div class="row mt-3">
-        <div class="col-lg-12">
-            <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title> <mat-icon color="primary">settings</mat-icon> Configuraciones Generales
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Áreas</h5>
-                                        <p class="card-text descripcion">
-                                        </p>
-                                        <a (click)="Navegar('/administracion-areas')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+    <!-- titulo elysium -->
+    <div class="row">
+        <div id="slider2" class="col-lg-12 col-xs-12 text-center mbt">
+            <div class="titulo-sistema">Administración</div>
+        </div>
+    </div>
+    <!--fin titulo elysium -->
+    <!-- items home dsk -->
+    <div id="animate">
+        <!-- fila 1 -->
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="areas">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/icon-doc-consulta.png" width="48" height="48" alt="">
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Usuarios</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-usuarios')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                                <div>
+                                    <p class="p-interna">Áreas</p>
                                 </div>
+                                <span class="barra-1"></span>
                             </div>
                         </div>
                     </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-lg-12">
-            <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title> <mat-icon color="primary">assignment</mat-icon> Gestión de Proveedores y
-                            Contratos
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Sistame de Contratación </h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-sistema-contratacion')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="usuarios">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/icon-documento.png" width="48" height="48" alt="">
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Proveedores </h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-proveedores')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                                <div>
+                                    <p class="p-interna">Usuarios</p>
                                 </div>
+                                <span class="barra-2"></span>
                             </div>
                         </div>
                     </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-lg-12">
-            <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title><mat-icon color="primary">account_balance</mat-icon> Gestión
-                            Financiera</mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Monedas</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-monedas')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="scontratacion">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/icon-documento.png" width="48" height="48" alt="">
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Metodos de Entregas</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-metodo-entrega')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                                <div>
+                                    <p class="p-interna">Sistema Contratación</p>
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Compañias Aseguradoras</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-compania-aseguradoras')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Bancos</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-bancos')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                <span class="barra-3"></span>
                             </div>
                         </div>
                     </div>
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-lg-12">
-            <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title><mat-icon color="primary">folder</mat-icon> Catálogos de
-                            Contratación</mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Tipo Polizas</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-tipo-poliza')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="proveedores">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/icon-documento.png" width="48" height="48" alt="">
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Tipo Garantias</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-tipo-garantia')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
+                                <div>
+                                    <p class="p-interna">Proveedores</p>
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Tipo Documentos</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-tipo-documento')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Tipo Contratos</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-tipo-contrato')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <div class="card-body more text-center">
-                                        <h5 class="card-title black">Tipo Adendas</h5>
-                                        <p class="card-text descripcion">
-
-                                        </p>
-                                        <a (click)="Navegar('/administracion-tipo-adenda')"
-                                            class="btn btn1 btn-nuevo mb10 mt10 btn-align">
-                                            <mat-icon>play_arrow</mat-icon>
-                                            <span>Empezar</span>
-                                        </a>
-                                    </div>
-                                </div>
+                                <span class="barra-4"></span>
                             </div>
                         </div>
                     </div>
-                </mat-expansion-panel>
-            </mat-accordion>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="moneda">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/sobre-nosotros.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Moneda</p>
+                                </div>
+                                <span class="barra-5"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="mentregas">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/reporte.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Metodo de Entregas</p>
+                                </div>
+                                <span class="barra-6"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="saseguradora">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/reporte.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Compañia Aseguradora</p>
+                                </div>
+                                <span class="barra-7"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="bancos">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/reporte.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Bancos</p>
+                                </div>
+                                <span class="barra-8"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="tpolizas">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/sobre-nosotros.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Tipo Polizas</p>
+                                </div>
+                                <span class="barra-9"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="tgarantias">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/reporte.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Tipo Garantias </p>
+                                </div>
+                                <span class="barra-10"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="tdocumentos">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/reporte.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Tipo Documentos</p>
+                                </div>
+                                <span class="barra-11"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="tcontratos">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/reporte.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Tipo Contratos</p>
+                                </div>
+                                <span class="barra-12"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-4 col-xs-12">
+                <div class="content">
+                    <div class="buttons2">
+                        <div class="button2" id="tadendas">
+                            <div class="item-home">
+                                <div>
+                                    <img src="../../../assets/img/sobre-nosotros.png" width="48" height="48" alt="">
+                                </div>
+                                <div>
+                                    <p class="p-interna">Tipo Adendas</p>
+                                </div>
+                                <span class="barra-13"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- contenedores modales -->
+    <div id="modal-container1">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src="../../../assets/img/icon-doc-consulta.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-dash">Áreas</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra y organiza las distintas áreas de la empresa de manera eficiente.
+                        Desde esta sección, podrás visualizar, crear, modificar y eliminar áreas,
+                        garantizando un mantenimiento adecuado y actualizado de la estructura interna.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-areas')" class="btn-dash" style="cursor: pointer;">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                    <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container2">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src="../../../assets/img/icon-documento.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-plans">Usuarios</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra los usuarios del sistema de forma eficiente. Desde esta sección,
+                        podrás crear, actualizar, asignar roles y gestionar permisos para garantizar
+                        un acceso seguro y controlado a la plataforma.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-usuarios')" style="cursor: pointer;" class="btn-plans">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container3">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src="../../../assets/img/sobre-nosotros.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-base">Sistema Contratación</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Gestiona y administra los distintos tipos de contratación de manera eficiente.
+                        Desde esta
+                        plataforma, podrás visualizar, registrar y actualizar contratos bajo modalidades
+                        como Llave en Mano,
+                        Precios Unitarios y Suma Alzada.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-sistema-contratacion')" style="cursor: pointer;" class="btn-base">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container4">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-myelisium">Proveedores</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra de manera eficiente la información de los proveedores.
+                        Desde esta sección, podrás registrar, actualizar y eliminar proveedores,
+                        asegurando un control preciso y actualizado de los datos en el sistema.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-proveedores')" style="cursor: pointer;" class="btn-myelysium">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container5">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-programs">Moneda</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra las monedas utilizadas en tu sistema. Desde esta sección,
+                        podrás registrar, actualizar y eliminar monedas, asegurando que la información de
+                        divisas esté siempre actualizada y correctamente gestionada en todos los procesos.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-monedas')" style="cursor: pointer;" class="btn-program">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container6">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-sample">Metodo de Entregas</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra los diferentes métodos de entrega utilizados en tus contratos. Desde esta sección,
+                        podrás registrar, actualizar y eliminar métodos de entrega, asegurando una gestión adecuada y
+                        flexible para todas las transacciones y acuerdos establecidos.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-metodo-entrega')" style="cursor: pointer;" class="btn-sample">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container7">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-product">Compañia Aseguradora</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra las compañías aseguradoras relacionadas con tus contratos. Desde esta sección,
+                        podrás registrar, actualizar y eliminar aseguradoras, manteniendo siempre actualizada
+                        la información sobre los proveedores de seguros vinculados a tus procesos.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-compania-aseguradoras')" style="cursor: pointer" class="btn-product">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container8">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-8">Bancos</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra los bancos relacionados con tus contratos y operaciones.
+                        Desde esta sección, podrás registrar, actualizar y eliminar bancos,
+                        garantizando que toda la información financiera esté actualizada y correctamente gestionada.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-bancos')" style="cursor: pointer;" class="btn-8">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container9">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-9">Tipo Pólizas</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Gestiona los diferentes tipos de pólizas utilizadas en los contratos.
+                        Podrás registrar, actualizar y eliminar tipos de pólizas, asegurando
+                        una administración adecuada de las condiciones y coberturas de seguros en tu sistema.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-tipo-poliza')" style="cursor: pointer" class="btn-9">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container10">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-10">Tipo Garantias</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra los distintos tipos de garantías relacionadas con los contratos.
+                        Desde aquí, podrás registrar, actualizar y eliminar tipos de garantías,
+                        manteniendo un control adecuado sobre los términos y condiciones de cada acuerdo.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-tipo-garantia')" style="cursor: pointer;" class="btn-10">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container11">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-11">Tipo documentos</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Gestiona los distintos tipos de documentos utilizados en el sistema de contratación.
+                        Puedes registrar, actualizar y eliminar tipos de documentos, asegurando que toda la
+                        documentación esté correctamente organizada y actualizada.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-tipo-documento')" style="cursor: pointer;" class="btn-11">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container12">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-12">Tipo Contratos</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Administra los tipos de contratos que se manejan en tu sistema. Desde esta sección, podrás
+                        registrar, actualizar y eliminar tipos de contratos, permitiendo una gestión eficiente y
+                        flexible de los acuerdos firmados.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-tipo-contrato')" style="cursor: pointer;" class="btn-12">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-container13">
+        <div class="modal-background2">
+            <div class="modal2 info-interna">
+                <!-- info-interna -->
+                <div class="img-item">
+                    <img src=".../../../../../assets/img/reporte.png" width="100" alt="">
+                </div>
+                <div>
+                    <h2 class="t-13">Tipo Adendas</h2>
+                </div>
+                <div class="info-item">
+                    <p>
+                        Gestiona las adendas relacionadas con los contratos. Podrás registrar, actualizar y eliminar
+                        tipos de adendas, manteniendo la flexibilidad necesaria para gestionar modificaciones a los
+                        acuerdos previos.
+                    </p>
+                </div>
+                <div>
+                    <a (click)="Navegar('/administracion-tipo-adenda')" style="cursor: pointer;" class="btn-13">
+                        ingresar</a>
+                </div>
+                <div class="closeBtn" style="padding-top: 40px;">
+                     <img src="../../../../assets/img/svg/close.svg" width="24" alt="">
+                </div>
+                <!--fin info-interna -->
+            </div>
+        </div>
+    </div>
+    <!--fin contenedores modales -->
 </div>
