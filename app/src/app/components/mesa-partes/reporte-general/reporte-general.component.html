@@ -6,7 +6,7 @@
                     <span class="titulo-p">Reporte General</span>
                 </div>
                 <div class="col-lg-6 text-end">
-                    <button class="mt-2 active mr-3" mat-raised-button (click)="onClickExportar()">Exportar
+                    <button class="mt-2 active mr-3" mat-raised-button (click)="onClickExportar()">Exportar a Excel
                         <mat-icon>get_app</mat-icon></button>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="Accion">
-                                <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>Accion</th>
+                                <th class="cabeceraTabla" mat-header-cell *matHeaderCellDef>PDF</th>
                                 <td class="filaTabla" mat-cell *matCellDef="let element">
                                     <button (click)="eventoVerContratoPDF(element)" mat-icon-button matTooltip="Ver en PDF">
                                         <mat-icon>visibility</mat-icon>
