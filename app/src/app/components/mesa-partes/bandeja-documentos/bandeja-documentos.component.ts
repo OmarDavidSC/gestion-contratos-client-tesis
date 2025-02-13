@@ -9,35 +9,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Lookup } from 'src/app/shared/models/base/Lookup';
-import { EArea } from 'src/app/shared/models/entidades/EArea';
-import { EDatosDocumento } from 'src/app/shared/models/entidades/EDatosDocumento';
-import { ERemitente } from 'src/app/shared/models/entidades/ERemitente';
-import { ETipoDocumento } from 'src/app/shared/models/entidades/ETipoDocumento';
 import { FormularioBase } from 'src/app/shared/pages/FormularioBase';
 import { AreaService } from 'src/app/shared/services/area.service';
 import { DatosDocumentosService } from 'src/app/shared/services/datosDocumento.service';
 import { RemitenteService } from 'src/app/shared/services/remitente.service';
 import { MasterService } from 'src/app/shared/services/master.service';
-import { TipoDocumentoService } from 'src/app/shared/services/tipoDocumento.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { Constantes } from 'src/app/shared/utils/Constantes';
-import { EMotivo } from 'src/app/shared/models/entidades/EMotivo';
 import { MotivoService } from 'src/app/shared/services/motivo.service';
 import { ParametroService } from 'src/app/shared/services/parametro.service';
-import { User } from 'src/app/shared/models/base/User';
-import { tsXLXS } from 'ts-xlsx-export';
-import { SPParse } from 'src/app/shared/utils/SPParse';
-import { EParametro } from 'src/app/shared/models/entidades/EParametro';
 import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
-import { Funciones } from 'src/app/shared/utils/Funciones';
 import { EDatosContrato } from 'src/app/shared/models/entidades/EDatosContrato';
 import { DatosContratoService } from 'src/app/shared/services/datosContrato.service';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
-import { ETipoContrato } from 'src/app/shared/models/entidades/ETIpoContrato';
 import { TipoContratoService } from 'src/app/shared/services/tipoContrato.service';
 import { environment } from 'src/environments/environment';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import autoTable from 'jspdf-autotable';
 @Component({
   selector: 'app-bandeja-documentos',
@@ -115,6 +102,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
 
   ngOnInit(): void {
     this.obtenerMaestros();
+    console.dir(this.Vista);
   }
 
   async obtenerMaestros() {
@@ -173,7 +161,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
       TextoBusquedaRapida: ''
     }
 
-    this.mostrarCampoFiltroEstado = this.Vista === "Todos";
+    this.mostrarCampoFiltroEstado = this.Vista === "Pendientes";
   }
 
   eventoBuscarConFiltrosAvanzados() {

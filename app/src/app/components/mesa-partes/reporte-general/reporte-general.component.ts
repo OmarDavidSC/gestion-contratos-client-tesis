@@ -26,8 +26,9 @@ import { Constantes } from 'src/app/shared/utils/Constantes';
 import { SPParse } from 'src/app/shared/utils/SPParse';
 import { tsXLXS } from 'ts-xlsx-export';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import autoTable from 'jspdf-autotable';
+import * as ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-reporte-general',
@@ -227,47 +228,83 @@ export class ReporteGeneralComponent extends FormularioBase implements OnInit {
   }
 
   onClickExportar() {
-    const fechahora = this.obtenerFechaHoraDocumento();
-    const ItemsExportar = this.ListaContratos.map(elemento => {
-      return {
-        'Codigo': elemento.CodigoContrato,
-        'Tipo Tramite': elemento.TipoContrato.Nombre,
-        'Descripcion': elemento.DetalleContrato,
-        'Area': elemento.Area.Nombre,
-        'Razón Social': elemento.Proveedor.Nombre,
-        'Estado': elemento.Estado.Nombre,
-        'Fecha Inicio': SPParse.getDateReporte(elemento.FechaInicio),
-        'Fecha Fin': SPParse.getDateReporte(elemento.FechaFin),
-        'Monto': elemento.MontoContrato,
-        'Moneda': elemento.Moneda.Nombre,
-        'Administradores': elemento.NombresAdministradores,
-        'Fecha Registro': SPParse.getDateReporte(elemento.FechaRegistro),
-        'Registrador': elemento.UsuarioRegistro.Nombre
-      };
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Reporte de Contratos');
+
+    worksheet.columns = [
+      { header: 'Código', key: 'Codigo', width: 15 },
+      { header: 'Título', key: 'Titulo', width: 30 },
+      { header: 'Tipo Contrato', key: 'TipoContrato', width: 20 },
+      { header: 'Área', key: 'Area', width: 20 },
+      { header: 'Razón Social', key: 'RazonSocial', width: 30 },
+      { header: 'Estado', key: 'Estado', width: 15 },
+      { header: 'Fecha Inicio', key: 'FechaInicio', width: 15 },
+      { header: 'Fecha Fin', key: 'FechaFin', width: 15 },
+      { header: 'Monto', key: 'Monto', width: 15 },
+      { header: 'Moneda', key: 'Moneda', width: 10 },
+    ];
+
+    worksheet.getRow(1).font = { bold: true, color: { argb: 'FFFFFF' } };
+    worksheet.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: '0073e6' } };
+    worksheet.getRow(1).alignment = { horizontal: 'center' };
+
+    this.ListaContratos.forEach((elemento) => {
+      worksheet.addRow({
+        Codigo: elemento.CodigoContrato,
+        Titulo: elemento.TituloContrato,
+        TipoContrato: elemento.TipoContrato.Nombre,
+        Area: elemento.Area.Nombre,
+        RazonSocial: elemento.Proveedor.Nombre,
+        Estado: elemento.Estado.Nombre,
+        FechaInicio: SPParse.getDateReporte(elemento.FechaInicio),
+        FechaFin: SPParse.getDateReporte(elemento.FechaFin),
+        Monto: elemento.MontoContrato,
+        Moneda: elemento.Moneda.Nombre,
+      });
     });
 
-    if (ItemsExportar.length > 0) {
-      const nombreArchivo = 'Reporte General ' + fechahora;
-      tsXLXS()
-        .exportAsExcelFile(ItemsExportar)
-        .saveAsExcelFile(nombreArchivo);
-    }
+    worksheet.eachRow((row, rowNumber) => {
+      row.eachCell((cell) => {
+        cell.border = {
+          top: { style: 'thin' },
+          left: { style: 'thin' },
+          bottom: { style: 'thin' },
+          right: { style: 'thin' },
+        };
+      });
+    });
+
+    const estadoCounts = this.ListaContratos.reduce((acc, contrato) => {
+      acc[contrato.Estado.Nombre] = (acc[contrato.Estado.Nombre] || 0) + 1;
+      return acc;
+    }, {});
+
+    const chartSheet = workbook.addWorksheet('Gráficos');
+    chartSheet.addRow(['Estado', 'Cantidad']);
+    Object.entries(estadoCounts).forEach(([estado, cantidad]) => {
+      chartSheet.addRow([estado, cantidad]);
+    });
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, `Reporte_General_${this.obtenerFechaHoraDocumento()}.xlsx`);
+    });
   }
 
   eventoVerContratoPDF(element: EDatosContrato) {
-    const doc = new jsPDF('p', 'mm', 'a4'); // Formato A4 vertical
-    const imgLogo = 'assets/img/adn.png'; // Ruta del logo
+    const doc = new jsPDF('p', 'mm', 'a4');
+    const imgLogo = 'assets/img/adn.png';
 
     // ** Agregar Logo **
     const img = new Image();
     img.src = imgLogo;
 
     img.onload = () => {
-      doc.addImage(img, 'PNG', 15, 10, 40, 15); // Posición del logo
+      doc.addImage(img, 'PNG', 15, 10, 40, 15);
 
       // ** Número de Contrato en esquina derecha **
       doc.setFontSize(12);
-      doc.setTextColor(111, 66, 193); // Naranja
+      doc.setTextColor(111, 66, 193);
       doc.text('Código Contrato:', 170, 20);
       doc.setTextColor(0, 0, 0);
       doc.text(`${element.CodigoContrato}`, 170, 25);
@@ -310,8 +347,8 @@ export class ReporteGeneralComponent extends FormularioBase implements OnInit {
       startY += 25;
 
       // ** Sección Administradores **
-      doc.setFillColor(111, 66, 193); // Color de fondo
-      doc.rect(15, startY + 5, 180, 8, 'F'); // Rectángulo con color
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY + 5, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(12);
       doc.text('ADMINISTRADORES', 20, startY + 11);
