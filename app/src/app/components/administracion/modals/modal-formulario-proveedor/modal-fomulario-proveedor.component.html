@@ -11,7 +11,7 @@
         </mat-form-field>  
         <mat-form-field class="col-12" appearance="outline">
             <mat-label>Ruc <span style="color:red;">(*)</span></mat-label>
-            <input matInput formControlName="ruc" autocomplete="off" [maxlength]="255">
+            <input matInput type="number" maxlength="11" [maxlength]="11" formControlName="ruc" autocomplete="off" [maxlength]="255">
             <mat-error>
                 <app-error-validation-display [FormControl]="Form.get('ruc')">
                 </app-error-validation-display>

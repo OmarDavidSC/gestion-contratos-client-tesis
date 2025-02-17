@@ -7,6 +7,8 @@ import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 import { TipoAdendaService } from 'src/app/shared/services/tipoAdenda.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { FormHelper } from 'src/app/shared/utils/form-helper';
+import { sweet2 } from 'src/app/shared/utils/sweet2';
+import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -31,7 +33,7 @@ export class ModalFormularioTipoAdendaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.TituloPopup = this.data ?'Editar Tipo de Adenda' : 'Registrar Tipo de Adenda';
+    this.TituloPopup = this.data ? 'Editar Tipo de Adenda' : 'Registrar Tipo de Adenda';
     this.usuarioService.getCurrentUser().then((resultado: EUsuario) => {
       this.UsuarioActual = resultado;
 
@@ -44,7 +46,7 @@ export class ModalFormularioTipoAdendaComponent implements OnInit {
   }
 
   public async eventoGuardar(): Promise<void> {
-    if(!this.Form.valid){
+    if (!this.Form.valid) {
       FormHelper.ValidarFormGroup(this.Form);
       return;
     }
@@ -62,11 +64,51 @@ export class ModalFormularioTipoAdendaComponent implements OnInit {
     }
 
     this.spinnerService.show();
-    if(this.data){
-      await this.tipoAdendaService.updateItem(datos);
+    if (this.data) {
+      sweet2.question({
+        title: '¿Estás seguro de actualizar los datos?',
+        onOk: async () => {
+          sweet2.loading({ text: 'Actualizando datos...!' });
+          setTimeout(async () => {
+            await this.tipoAdendaService.updateItem(datos);
+            sweet2.loading(false);
+            Swal.fire({
+              text: 'Datos actualizado con éxito',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                confirmButton: 'btn btn-primary',
+              },
+            }).then(() => {
+              location.reload();
+            });
+          }, 3000);
+        }
+      });
     }
     else {
-      await this.tipoAdendaService.addItem(datos);
+      sweet2.question({
+        title: '¿Estás seguro de registrar los datos?',
+        onOk: async () => {
+          sweet2.loading();
+          setTimeout(async () => {
+            const response = await this.tipoAdendaService.addItem(datos);
+            sweet2.loading(false);
+            if (response.message) {
+              Swal.fire({
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                customClass: {
+                  confirmButton: 'btn btn-primary',
+                },
+              }).then(() => {
+                location.reload();
+              });;
+            }
+          }, 3000);
+        }
+      });
     }
     this.spinnerService.hide();
     this.dialogRef.close(true);

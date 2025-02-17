@@ -117,7 +117,6 @@ export class ModalFormularioAreaComponent implements OnInit {
           }, 3000);
         }
       });
-
     }
     this.spinnerService.hide();
     this.dialogRef.close(true);

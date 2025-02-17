@@ -7,6 +7,8 @@ import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 import { CompaniaAseguradoraService } from 'src/app/shared/services/companiaAseguradora.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { FormHelper } from 'src/app/shared/utils/form-helper';
+import { sweet2 } from 'src/app/shared/utils/sweet2';
+import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -20,7 +22,7 @@ export class ModalFormularioCompaniaAseguradoraComponent implements OnInit {
   public TituloPopup: string;
   public Form: FormGroup;
   public isLoading = false;
-  
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ECompaniaAseguradora,
     private formBuilder: FormBuilder,
@@ -31,7 +33,7 @@ export class ModalFormularioCompaniaAseguradoraComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.TituloPopup = this.data ?'Editar Compañia Aseguradora' : 'Registrar Compañia Aseguradora';
+    this.TituloPopup = this.data ? 'Editar Compañia Aseguradora' : 'Registrar Compañia Aseguradora';
 
     this.usuarioService.getCurrentUser().then((resultado: EUsuario) => {
       this.UsuarioActual = resultado;
@@ -45,7 +47,7 @@ export class ModalFormularioCompaniaAseguradoraComponent implements OnInit {
   }
 
   public async eventoGuardar(): Promise<void> {
-    if(!this.Form.valid){
+    if (!this.Form.valid) {
       FormHelper.ValidarFormGroup(this.Form);
       return;
     }
@@ -63,11 +65,51 @@ export class ModalFormularioCompaniaAseguradoraComponent implements OnInit {
     }
 
     this.spinnerService.show();
-    if(this.data){
-      await this.companiaAseguradorService.updateItem(datos);
+    if (this.data) {
+      sweet2.question({
+        title: '¿Estás seguro de actualizar los datos?',
+        onOk: async () => {
+          sweet2.loading({ text: 'Actualizando datos...!' });
+          setTimeout(async () => {
+            await this.companiaAseguradorService.updateItem(datos);
+            sweet2.loading(false);
+            Swal.fire({
+              text: 'Datos actualizado con éxito',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                confirmButton: 'btn btn-primary',
+              },
+            }).then(() => {
+              location.reload();
+            });
+          }, 3000);
+        }
+      });
     }
     else {
-      await this.companiaAseguradorService.addItem(datos);
+      sweet2.question({
+        title: '¿Estás seguro de registrar los datos?',
+        onOk: async () => {
+          sweet2.loading();
+          setTimeout(async () => {
+            const response = await this.companiaAseguradorService.addItem(datos);
+            sweet2.loading(false);
+            if (response.message) {
+              Swal.fire({
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                customClass: {
+                  confirmButton: 'btn btn-primary',
+                },
+              }).then(() => {
+                location.reload();
+              });;
+            }
+          }, 3000);
+        }
+      });
     }
     this.spinnerService.hide();
     this.dialogRef.close(true);

@@ -7,6 +7,8 @@ import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 import { TipoContratoService } from 'src/app/shared/services/tipoContrato.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { FormHelper } from 'src/app/shared/utils/form-helper';
+import { sweet2 } from 'src/app/shared/utils/sweet2';
+import Swal from 'sweetalert2';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -31,7 +33,7 @@ export class ModalFormularioTipoContratoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.TituloPopup = this.data ?'Editar Tipo de Contrato' : 'Registrar Tipo de Contrato';
+    this.TituloPopup = this.data ? 'Editar Tipo de Contrato' : 'Registrar Tipo de Contrato';
 
     this.usuarioService.getCurrentUser().then((resultado: EUsuario) => {
       this.UsuarioActual = resultado;
@@ -45,7 +47,7 @@ export class ModalFormularioTipoContratoComponent implements OnInit {
   }
 
   public async eventoGuardar(): Promise<void> {
-    if(!this.Form.valid){
+    if (!this.Form.valid) {
       FormHelper.ValidarFormGroup(this.Form);
       return;
     }
@@ -63,11 +65,51 @@ export class ModalFormularioTipoContratoComponent implements OnInit {
     }
 
     this.spinnerService.show();
-    if(this.data){
-      await this.tipoContratoService.updateItem(datos);
+    if (this.data) {
+      sweet2.question({
+        title: '¿Estás seguro de actualizar los datos?',
+        onOk: async () => {
+          sweet2.loading({ text: 'Actualizando datos...!' });
+          setTimeout(async () => {
+            await this.tipoContratoService.updateItem(datos);
+            sweet2.loading(false);
+            Swal.fire({
+              text: 'Datos actualizado con éxito',
+              icon: 'success',
+              confirmButtonText: 'OK',
+              customClass: {
+                confirmButton: 'btn btn-primary',
+              },
+            }).then(() => {
+              location.reload();
+            });
+          }, 3000);
+        }
+      });
     }
     else {
-      await this.tipoContratoService.addItem(datos);
+      sweet2.question({
+        title: '¿Estás seguro de registrar los datos?',
+        onOk: async () => {
+          sweet2.loading();
+          setTimeout(async () => {
+            const response = await this.tipoContratoService.addItem(datos);
+            sweet2.loading(false);
+            if (response.message) {
+              Swal.fire({
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                customClass: {
+                  confirmButton: 'btn btn-primary',
+                },
+              }).then(() => {
+                location.reload();
+              });;
+            }
+          }, 3000);
+        }
+      });
     }
     this.spinnerService.hide();
     this.dialogRef.close(true);
