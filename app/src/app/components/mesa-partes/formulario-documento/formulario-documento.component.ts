@@ -2087,11 +2087,11 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
     img.src = imgLogo;
 
     img.onload = () => {
-      doc.addImage(img, 'PNG', 15, 10, 40, 15); // Posición del logo
+      doc.addImage(img, 'PNG', 15, 10, 40, 15);
 
           // ** Número de Contrato en esquina derecha **
           doc.setFontSize(12);
-          doc.setTextColor(111, 66, 193); // Naranja
+          doc.setTextColor(111, 66, 193);
           doc.text('Código Contrato:', 170, 20);
           doc.setTextColor(0, 0, 0);
           doc.text(`${element.CodigoContrato}`, 170, 25);
@@ -2118,7 +2118,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
         startY += 7;
       });
 
-      // Sección Detalles
       doc.setFillColor(111, 66, 193);
       doc.rect(15, startY, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
