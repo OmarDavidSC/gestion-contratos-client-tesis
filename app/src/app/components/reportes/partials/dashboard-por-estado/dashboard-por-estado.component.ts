@@ -35,6 +35,7 @@ export class DashboardPorEstadoComponent implements OnInit {
   openContratoModal(item: any): void {
     const dialogRef = this.dialog.open(PorEstadoModalsComponent, {
       width: '1000px',
+      height: '1000px',
       data: {
         estado: item.Estado,
         contratos: item.Contratos
