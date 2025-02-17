@@ -85,6 +85,7 @@ export class DashboardPorTipoComponent implements OnInit {
 
       this.detallePorTipoChartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: false

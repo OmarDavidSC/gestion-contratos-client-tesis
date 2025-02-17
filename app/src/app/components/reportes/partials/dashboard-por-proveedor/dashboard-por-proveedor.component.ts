@@ -96,6 +96,7 @@ export class DashboardPorProveedorComponent implements OnInit {
 
       this.detallePorProveedorChartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
         indexAxis: 'y',
         plugins: {
           legend: {

@@ -70,6 +70,7 @@ export class DashboardPorMesComponent implements OnInit {
 
       this.detallePorMesChartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: false,
@@ -80,7 +81,7 @@ export class DashboardPorMesComponent implements OnInit {
               label: (context) => `Cantidad: ${context.raw}`
             }
           },
-          zoom: { 
+          zoom: {
             zoom: {
               wheel: {
                 enabled: true,
@@ -88,10 +89,10 @@ export class DashboardPorMesComponent implements OnInit {
               pinch: {
                 enabled: true,
               },
-              mode: 'x', 
+              mode: 'x',
             },
             pan: {
-              enabled: true, 
+              enabled: true,
               mode: 'x',
             }
           }
