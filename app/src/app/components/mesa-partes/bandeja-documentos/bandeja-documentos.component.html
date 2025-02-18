@@ -97,8 +97,7 @@
                 <div class="col-lg-7 filtros-pg">
                     <mat-form-field class="col-lg-6" appearance="outline">
                         <mat-label>Buscar...</mat-label>
-                        <input matInput placeholder="Buscar por código o Detalle"
-                            [(ngModel)]="BusquedaRapida"
+                        <input matInput placeholder="Buscar por código o Detalle" [(ngModel)]="BusquedaRapida"
                             (keydown.enter)="eventoBusquedaRapida()">
                         <mat-icon matSuffix (click)="eventoBusquedaRapida()" style="cursor: pointer;">search</mat-icon>
                     </mat-form-field>
@@ -112,13 +111,19 @@
         <div class="col-lg-12 scroll-container">
             <div class="mat-elevation-z3 div-container" [hidden]="ListaContratos.length <= 0">
                 <mat-card *ngFor="let element of ListaContratos" class="mt-3">
-                    <div class="estado-c3">C</div>
+                    <div class="estado-c3" [ngClass]="{
+                        'estado-c6': element.Estado.Nombre === 'En Registro' || element.Estado.Nombre === 'Cerrado' ,
+                        'estado-c3': element.Estado.Nombre === 'Vigente',
+                        'estado-c8': element.Estado.Nombre === 'Observado' || element.Estado.Nombre === 'Rechazado' || element.Estado.Nombre === 'Anulado'
+                        || element.Estado.Nombre === 'Vencido',
+                        'estado-c7': element.Estado.Nombre === 'En Aprobación'
+                    }">C</div>
                     <div class="row pl-15">
                         <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
                             <div class="col-lg-7 d-flex flex-wrap justify-content-start align-items-center">
                                 <div class="col-lg-3 col-12 d-flex align-items-center mb-mob-8 flex-between">
                                     <span class="ml-3 number-card">{{ element.CodigoContrato }}</span>
-                                    <mat-icon class="c-purple">circle</mat-icon>
+                                    <mat-icon class="{{element.ColorIndicador}}">circle</mat-icon>
                                 </div>
                                 <div
                                     class="col-lg-9 col-12 mb-mob-8 coment-card d-flex align-items-center justify-content-center">
@@ -128,7 +133,7 @@
                             </div>
                             <div class="col-lg-5 col-12 d-flex justify-content-end align-items-center">
                                 <div class="col-lg-3 col-6 text-end">
-                                    <h2 class="mb-0"><span class="badge-c3">{{element.Estado.Nombre}}</span></h2>
+                                    <h2 class="mb-0"><span class="badge-c8">{{element.Estado.Nombre}}</span></h2>
                                 </div>
                                 <div class="">
                                     <button mat-icon-button aria-label="ingresar" (click)="eventoVerDetalle(element)"
@@ -139,7 +144,8 @@
                                         matTooltip="Abrir en Otra Pestaña">
                                         <mat-icon>open_in_new</mat-icon>
                                     </button>
-                                    <button (click)="eventoVerContratoPDF(element)" mat-icon-button matTooltip="Ver en PDF">
+                                    <button (click)="eventoVerContratoPDF(element)" mat-icon-button
+                                        matTooltip="Ver en PDF">
                                         <mat-icon>visibility</mat-icon>
                                     </button>
                                 </div>
@@ -147,7 +153,7 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-md-2 col-6">
+                                <div class="col-md-2 col-12">
                                     <dt>Área </dt>
                                     <dd>{{ element.Area.Nombre }}</dd>
                                 </div>
@@ -161,15 +167,19 @@
                                 </div>
                                 <div class="col-md-2 col-6">
                                     <dt>Fecha Fin</dt>
-                                    <dd>{{element.TextoFechaFin}}</dd>
+                                    <dd>{{element.TextoFechaFinReal}}</dd>
                                 </div>
-                                <div class="col-md-2 col-6">
+                                <!-- <div class="col-md-2 col-6">
                                     <dt>Monto</dt>
                                     <dd>{{ element.MontoContrato }}</dd>
-                                </div>
+                                </div> -->
                                 <div class="col-md-2 col-6">
                                     <dt>Tipo de Contrato</dt>
                                     <dd>{{ element.TipoContrato.Nombre }}</dd>
+                                </div>
+                                <div class="col-md-2 col-6">
+                                    <dt>Tiempo Restante</dt>
+                                    <dd>{{element.TextoFechaPlazoDiasPendientes}}</dd>
                                 </div>
                             </div>
                         </div>

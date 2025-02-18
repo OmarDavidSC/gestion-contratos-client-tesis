@@ -74,7 +74,11 @@
         </div>
         <div class="col-md-12 mb-3">
           <mat-card class="mb-3">
-            <div class="estado-c3-detalle">C</div>
+            <div class="estado-c3" [ngClass]="{
+              'estado-c6': Registro.Estado.Nombre === 'En Registro' || Registro.Estado.Nombre === 'Cerrado' ,
+              'estado-c3': Registro.Estado.Nombre === 'Vigente',
+              'estado-c7': Registro.Estado.Nombre === 'En Aprobación' || Registro.Estado.Nombre === 'Observado' || Registro.Estado.Nombre === 'Rechazado'
+          }">C</div>
             <div class=" pl-15">
               <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
                 <div class="col-lg-7 d-flex flex-wrap justify-content-start align-items-center">

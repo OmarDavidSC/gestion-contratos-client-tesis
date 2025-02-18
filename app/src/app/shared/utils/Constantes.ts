@@ -8,7 +8,7 @@ export class Constantes {
   };
 
   static readonly estadoRegistro = {
-    IdEnRegistro: 'FD4668DA-0F09-4810-A13E-9E85B50693EA',
+    IdEnRegistro: 'fd4668da-0f09-4810-a13e-9e85b50693ea',
     IdEnAprobacion: '51A3BEB9-0D7F-4147-9E24-6604E7E682D5',
     IdVigente: '3155E7A5-ADC1-4D29-BA81-83FD95DD7ED5',
     IdVencido: '72301DAC-FDF1-473C-9F6A-B6192C7F67D5',

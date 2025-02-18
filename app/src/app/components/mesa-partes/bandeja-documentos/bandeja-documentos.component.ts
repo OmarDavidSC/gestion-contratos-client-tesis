@@ -307,13 +307,15 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
         head: [['Fecha', 'Descripción']],
         body: [
           [element.TextoFechaRegistro, 'Fecha de Registro'],
-          [element.TextoFechaFin, 'Fecha de Finalización'],
+          [element.TextoFechaModificacion, 'Fecha de Modificación'],
           [element.TextoFechaCierreContrato || 'N/A', 'Fecha de Cierre'],
         ],
         theme: 'grid',
         styles: { fontSize: 10 },
         headStyles: { fillColor: [111, 66, 193], textColor: 255 },
       });
+
+      startY += 25;
 
       // ** Abrir en Nueva Pestaña **
       window.open(doc.output('bloburl'), '_blank');

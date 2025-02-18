@@ -34,7 +34,7 @@ export class EDatosContrato {
     Proveedor: Lookup;
     TipoContrato: Lookup;
 
-    
+
     DetalleContrato: string;
     FechaInicio: any;
     TextoFechaInicio: string;
@@ -44,6 +44,7 @@ export class EDatosContrato {
     TextoFechaFinReal: string;
     MontoContrato: string;
     DiasFaltanParaVencimiento: number;
+    TextoFechaPlazoDiasPendientes: string;
 
     MontoTotal: string;
 
@@ -73,18 +74,21 @@ export class EDatosContrato {
     TextoFechaModificacion: string;
 
     ListaAdenda: EAdenda[];
- 
+
     AdministradorBuscar: string;
     ListaAdministrador: EAdministradorContrato[];
     NombresAdministradores: string;
     ListaArchivosContrato: EArchivoContrato[];
     ListaArchivosAdiconales: EDocumentoAdiconal[];
     ListaArchivosGarantia: EGarantia[];
-    ListaArchivosPoliza: EPoliza[]; 
-   
+    ListaArchivosPoliza: EPoliza[];
+
     Comentarios: string;
     ListaComentario: EComentario[];
     ListaHistorial: EHistorial[];
+
+    ColorIndicador: string;
+    DiasPendientes: any;
 
     constructor() {
         this.Id = "";
@@ -102,6 +106,7 @@ export class EDatosContrato {
         this.MontoContrato = "";
         this.MontoTotal = "";
         this.DiasFaltanParaVencimiento = 0;
+        this.TextoFechaPlazoDiasPendientes = "";
         this.Moneda = new Lookup;
         this.MetodoEntrega = new Lookup;
         this.SistemaContratacion = new Lookup;
@@ -135,7 +140,10 @@ export class EDatosContrato {
 
         this.Comentarios = "";
         this.ListaComentario = [];
-        this.ListaHistorial = [];      
+        this.ListaHistorial = [];
+
+        this.ColorIndicador = "";
+        this.DiasPendientes = "";
     }
 
     public static parseJson(element: any): EDatosContrato {
@@ -169,14 +177,14 @@ export class EDatosContrato {
         objeto.SistemaContratacion = ESistemaContratacion.parseJsonLookup(element["sistemaContratacion"]);
         objeto.FechaCierreContrato = SPParse.getDate(element["fechaCierreContrato"]);
         objeto.TextoFechaCierreContrato = Funciones.ConvertirDateFechaHoraToString(objeto.FechaCierreContrato);
-        
+
         if (!Funciones.esUndefinedNullOrEmpty(element["usuarioAprobadorContrato"])) {
             objeto.UsuarioAprobadorContrato = EUsuarioLookup.parseJson(element["usuarioAprobadorContrato"])
         }
 
         if (!Funciones.esUndefinedNullOrEmpty(element["usuarioAprobadorCierre"])) {
             objeto.UsuarioAprobadorCierre = EUsuarioLookup.parseJson(element["usuarioAprobadorCierre"])
-        }        
+        }
 
         objeto.FechaAnulacion = SPParse.getDate(element["fechaAnulacion"]);
         objeto.TextoFechaAnulacion = Funciones.ConvertirDateFechaHoraToString(objeto.FechaAnulacion);
@@ -219,7 +227,7 @@ export class EDatosContrato {
         }
 
         if (!Funciones.esUndefinedNullOrEmpty(element["documentosAdicionales"]) && element["documentosAdicionales"].length > 0) {
-            
+
             for (const item of element["documentosAdicionales"]) {
                 const datos = EDocumentoAdiconal.parseJson(item);
                 objeto.ListaArchivosAdiconales.push(datos);
@@ -246,7 +254,7 @@ export class EDatosContrato {
                 objeto.ListaHistorial.push(datos);
             }
         }
-        
+
         return objeto;
     }
 
@@ -283,13 +291,19 @@ export class EDatosContrato {
         objeto.FechaCierreContrato = SPParse.getDate(element["fechaCierreContrato"]);
         objeto.TextoFechaCierreContrato = Funciones.ConvertirDateToString(objeto.FechaCierreContrato);
 
+        objeto.FechaRegistro = SPParse.getDate(element["fechaRegistro"]);
+        objeto.TextoFechaRegistro = Funciones.ConvertirDateToString(objeto.FechaRegistro);
+
+        objeto.FechaModificacion = SPParse.getDate(element["fechaModificacion"]);
+        objeto.TextoFechaModificacion = Funciones.ConvertirDateToString(objeto.FechaModificacion);
+
         if (!Funciones.esUndefinedNullOrEmpty(element["usuarioAprobadorContrato"])) {
             objeto.UsuarioAprobadorContrato = EUsuarioLookup.parseJson(element["usuarioAprobadorContrato"])
         }
 
         if (!Funciones.esUndefinedNullOrEmpty(element["usuarioAprobadorCierre"])) {
             objeto.UsuarioAprobadorCierre = EUsuarioLookup.parseJson(element["usuarioAprobadorCierre"])
-        }  
+        }
 
         objeto.FechaAnulacion = SPParse.getDate(element["fechaAnulacion"]);
         objeto.TextoFechaAnulacion = Funciones.ConvertirDateToString(objeto.FechaAnulacion);
@@ -330,25 +344,66 @@ export class EDatosContrato {
                 objeto.ListaArchivosContrato.push(datos);
             }
         }
-       
+
+        if (objeto.Estado.Id === Constantes.estadoRegistro.IdEnRegistro || objeto.Estado.Id === Constantes.estadoRegistro.IdVencido ||
+            objeto.Estado.Id === Constantes.estadoRegistro.IdCerrado) {
+            objeto.ColorIndicador = "c-grey";
+            objeto.DiasPendientes = "";
+        }
+        else if (!Funciones.esUndefinedNullOrEmpty(objeto.FechaRegistro) && !Funciones.esUndefinedNullOrEmpty(objeto.FechaFinReal)) {
+           
+            //const { diasTotales, diasRestantes } = this.obtenerDiferenciaDeDias(objeto.FechaRegistro, objeto.FechaPlazo);
+            //const { porcentajeTranscurrido, porcentajeRestante } = this.obtenerPorcentajeDias(diasTotales, diasRestantes);
+           
+            const fechaRegistro = new Date(objeto.FechaRegistro.getFullYear(), objeto.FechaRegistro.getMonth(), objeto.FechaRegistro.getDate());
+            const diferenciaEnMilisegundos = objeto.FechaFinReal.getTime() - fechaRegistro.getTime();
+            const diasTotales = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));          
+            const fechaActual = new Date();
+            const fechaHoy = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), fechaActual.getDate());
+            const diasRestantes = Math.floor((objeto.FechaFinReal.getTime() - fechaHoy.getTime()) / (1000 * 60 * 60 * 24));
+
+            const porcentajeTranscurrido = (diasTotales - diasRestantes) / diasTotales * 100;
+            const porcentajeRestante = diasRestantes / diasTotales * 100;
+
+            if (diasRestantes < 0) {
+                objeto.ColorIndicador = "c-red";
+                objeto.DiasPendientes = 0;
+            }
+            else {
+                if (porcentajeRestante >= 40) {
+                    objeto.ColorIndicador = "c-green";
+                }
+                else if (porcentajeRestante >= 30) {
+                    objeto.ColorIndicador = "c-yellow";
+                }
+                else {
+                    objeto.ColorIndicador = "c-red";
+                }
+
+                objeto.DiasPendientes = diasRestantes;                
+            }
+
+            objeto.TextoFechaPlazoDiasPendientes = objeto.TextoFechaFinReal + " (" + objeto.DiasPendientes + " días restantes)";
+        }
+
         return objeto;
     }
 
     public static calcularMontoTotalYFechaFinReal(objeto: EDatosContrato): void {
         let montoTotal = objeto.MontoContrato;
         let fechaFinReal = objeto.FechaFin;
-      
+
         if (objeto.ListaAdenda.length > 0) {
-          for (const adenda of objeto.ListaAdenda) {
-            montoTotal += adenda.Monto;
-            fechaFinReal = adenda.FechaFin;
-          }
+            for (const adenda of objeto.ListaAdenda) {
+                montoTotal += adenda.Monto;
+                fechaFinReal = adenda.FechaFin;
+            }
         }
-      
+
         objeto.MontoTotal = montoTotal.toString();
         objeto.FechaFinReal = fechaFinReal;
         objeto.TextoFechaFinReal = Funciones.ConvertirDateToString(fechaFinReal);
-      }
+    }
 
     public static parseJsonList(elements: any): EDatosContrato[] {
 

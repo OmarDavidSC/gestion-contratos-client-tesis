@@ -3,12 +3,12 @@
 
 @font-face {
   font-family: "HelveticaNeueLTPro-BlkCn";
-  src: url('/assets/fonts/HelveticaNeueLTPro-BlkCn.woff') format('woff');
+  src: url('../../HelveticaNeueLTPro-BlkCn.woff') format('woff');
 }
 
 @font-face {
   font-family: "HelveticaNeueLTPro-LtCn";
-  src: url('/assets/fonts/HelveticaNeueLTPro-LtCn.woff') format('woff');
+  src: url('../../HelveticaNeueLTPro-LtCn.woff') format('woff');
 }
 
 .mat-typography {
@@ -255,7 +255,7 @@ ul {
 }
 
 .c-grey {
-  color: #8d8d8d;
+  color: #6d6d6d;
 }
 
 .c-yellow {
@@ -288,10 +288,10 @@ ul {
 .number-card {
   font-weight: 500;
   font-size: 15px;
-  border: 2px solid #6f42c1;
+  border: 2px solid #c3c1c3;
   padding: 2px 10px;
   border-radius: 2px;
-  color: #6f42c1;
+  color: black;
 }
 
 .sort {
@@ -590,6 +590,38 @@ th {
   border-radius: 8px 0px 0px 8px;
 }
 
+.estado-c7 {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background: #6fb450;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  color: #050000;
+  padding: 0px 7px;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.estado-c8 {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background: #c67777;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  color: #050000;
+  padding: 0px 7px;
+  border-radius: 8px 0px 0px 8px;
+}
+
 .badge-c2 {
   display: block;
   width: 120px;
@@ -659,6 +691,18 @@ th {
   font-weight: 500;
   background: $pendiente;
   color: $blanco;
+  padding: 0px 8px;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.badge-c8 {
+  display: block;
+  width: 120px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #c3c1c3;
+  color: black;
   padding: 0px 8px;
   text-align: center;
   border-radius: 2px;
