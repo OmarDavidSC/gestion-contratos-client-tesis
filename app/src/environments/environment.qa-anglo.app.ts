@@ -1,11 +1,12 @@
 export const environment = {
   production: true,
-  appPage: "/SitePages/App.aspx/",
-  proxyTenant: "https://angloamericanacompe.sharepoint.com",
-  proxyUrl: "https://angloamericanacompe.sharepoint.com/sites/mesadepartespre",
-  webRelativeUrl: "/sites/mesadepartespre",
-  webAbsoluteUrl: "https://angloamericanacompe.sharepoint.com/sites/mesadepartespre",
-  urlLogo: "https://clinicaangloamericana.pe/wp-content/uploads/2018/09/Logo-CAA.png",
+  appPage: "/App.aspx/",
+  proxyTenant: "",
+  proxyUrl: "",
+  webRelativeUrl: "",
+  webAbsoluteUrl: "",
+  urlLogo: "https://www.adp.com.pe/contents/images/logo.png",
+  uriApiBack: "https://api-contratos.azurewebsites.net/api/",
 
   getRutaBase() {
     return `${environment.proxyUrl}`;

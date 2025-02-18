@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build-dev-app": "ng build --base-href /sites/angloamericana_mesapartes/SitePages/App.aspx --configuration=dev-app",
-    "build-anglo-qa-app": "ng build --base-href /sites/mesadepartespre/SitePages/App.aspx --configuration=anglo-qa-app",
+    "build-anglo-qa-app": "ng build --base-href / --configuration=anglo-qa-app",
     "build-anglo-prd-app": "ng build --base-href /sites/mesadepartes/SitePages/App.aspx --configuration=anglo-prd-app",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
