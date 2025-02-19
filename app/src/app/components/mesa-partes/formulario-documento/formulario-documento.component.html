@@ -66,8 +66,8 @@
                 (click)="eventoGuardar()">Guardar</button>
               <button mat-raised-button class="mr-3" color="primary" *ngIf="mostrarBotonGuardar"
                 (click)="eventoCerrarContrato()">Cerrar Contrato</button>
-                <button (click)="eventoVerContratoPDF(Registro)" mat-icon-button matTooltip="Ver en PDF">
-                  <mat-icon>visibility</mat-icon>
+              <button (click)="eventoVerContratoPDF(Registro)" mat-icon-button matTooltip="Ver en PDF">
+                <mat-icon>visibility</mat-icon>
               </button>
             </div>
           </div>
@@ -77,7 +77,9 @@
             <div class="estado-c3" [ngClass]="{
               'estado-c6': Registro.Estado.Nombre === 'En Registro' || Registro.Estado.Nombre === 'Cerrado' ,
               'estado-c3': Registro.Estado.Nombre === 'Vigente',
-              'estado-c7': Registro.Estado.Nombre === 'En Aprobación' || Registro.Estado.Nombre === 'Observado' || Registro.Estado.Nombre === 'Rechazado'
+              'estado-c8': Registro.Estado.Nombre === 'Observado' || Registro.Estado.Nombre === 'Rechazado' || Registro.Estado.Nombre === 'Anulado'
+              || Registro.Estado.Nombre === 'Vencido',
+              'estado-c7': Registro.Estado.Nombre === 'En Aprobación'
           }">C</div>
             <div class=" pl-15">
               <div class="col-lg-12 d-flex flex-wrap justify-content-between barra-bandeja-titulo">
@@ -530,8 +532,8 @@
                       <mat-form-field class="col-lg-2" appearance="outline">
                         <mat-label>Código de Adenda <span style="color: red">
                             (*)</span></mat-label>
-                        <input matInput [disabled]="ItemArchivo.bloquearCampoAdenda" [(ngModel)]="ItemArchivo.CodigoAdenda"
-                          maxlength="250" autocomplete="off">
+                        <input matInput [disabled]="ItemArchivo.bloquearCampoAdenda"
+                          [(ngModel)]="ItemArchivo.CodigoAdenda" maxlength="250" autocomplete="off">
                       </mat-form-field>
                       <mat-form-field class="col-lg-2" appearance="outline">
                         <mat-label>Descripción <span style="color: red">
