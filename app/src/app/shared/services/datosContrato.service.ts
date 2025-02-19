@@ -61,9 +61,9 @@ export class DatosContratoService {
     return await lastValueFrom(this.http.post(url, datos));
   }
 
-  async notifications(): Promise<ApiResponse<ENotificaciones[]>> {
+  async notifications(datos: any): Promise<ApiResponse<ENotificaciones[]>> {
     const url = `${this.urlBase}notifications`;
-    const response = await lastValueFrom(this.http.get<ApiResponse<ENotificaciones[]>>(url));
+    const response = await lastValueFrom(this.http.post<ApiResponse<ENotificaciones[]>>(url, datos));
     response.data = ENotificaciones.parseJsonList(response.data);
     return response;
   }

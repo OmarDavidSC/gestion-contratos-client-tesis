@@ -21,9 +21,16 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
   ListaNotificaciones: ENotificaciones[] = [];
   UsuarioActual: EUsuarioLookup = new EUsuarioLookup();
   intervalId: any;
+  Vista: string = "Mis Notificaciones";
+  mostrarCampoFiltroEstado: boolean = false;
 
   @Output() closeDrawer = new EventEmitter<void>();
   @Output() notificacionesCount = new EventEmitter<number>();
+
+  CampoFiltro: any = {
+    Vista: '',
+    IdUsuarioRegistro: ''
+  }
 
   constructor(
     public dialog: MatDialog,
@@ -49,18 +56,88 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
     ])
       .then(([resultadoUsuario]) => {
         this.UsuarioActual = resultadoUsuario;
-        this.initalize();
+        this.eventoBuscarPorVista('Mis Notificaciones');
       });
   }
 
+  limpiarFiltros() {
+    this.CampoFiltro = {
+      Vista: '',
+      IdUsuarioRegistro: null
+    }
+    this.mostrarCampoFiltroEstado = this.Vista === "Mis Notificaciones";
+  }
+
+  eventoBuscarPorVista(vista: string) {
+    this.Vista = vista;
+    this.limpiarFiltros();
+    this.CampoFiltro.Vista = this.Vista;
+    this.CampoFiltro.IdUsuarioRegistro = this.UsuarioActual.Id;
+    this.initalize();
+  }
+
   async initalize() {
-    const response = await this.contratoSevice.notifications();
+    const response = await this.contratoSevice.notifications(this.CampoFiltro);
     if (response.success) {
       this.ListaNotificaciones = response.data;
       this.notificacionesCount.emit(this.ListaNotificaciones.length)
       this.ocultarProgreso();
     }
   }
+
+  cambiarVista(index: number) {
+    const vistas = ['Mis Notificaciones', 'Administrativa', 'Todas',];
+    this.eventoBuscarPorVista(vistas[index]);
+  }
+
+  getIcono(tipo: string): string {
+    switch (tipo) {
+      case 'ContratoRegistro':
+      case 'ContratoVigente':
+      case 'ContratoCerrado':
+        return 'description';
+      case 'AprobacionPendiente':
+        return 'check_circle';
+      case 'ContratoRechazado':
+      case 'ContratoAnulado':
+        return 'cancel';
+      case 'ContratoVencido':
+      case 'ProximoVencimiento':
+      case 'VencimientoPasado':
+        return 'warning';
+      case 'ContratoObservado':
+        return 'visibility';
+      case 'Administrador':
+        return 'supervisor_account';
+      default:
+        return 'notifications';
+    }
+  }
+
+  getIconoClase(tipo: string): string {
+    switch (tipo) {
+      case 'ContratoRegistro':
+      case 'ContratoVigente':
+      case 'ContratoCerrado':
+        return 'text-primary';
+      case 'AprobacionPendiente':
+        return 'text-success';
+      case 'ContratoRechazado':
+      case 'ContratoAnulado':
+        return 'text-danger';
+      case 'ContratoVencido':
+      case 'ProximoVencimiento':
+      case 'VencimientoPasado':
+        return 'text-warning';
+      case 'ContratoObservado':
+        return 'text-info';
+      case 'Administrador':
+        return 'text-secondary';
+      default:
+        return 'text-muted'
+    }
+  }
+
 
   // startAutoRefresh() {
   //   this.intervalId = setInterval(() => {
@@ -75,7 +152,6 @@ export class NotificacionesComponent extends FormularioBase implements OnInit {
   }
 
   verContrato(idContrato: string) {
-    // this.router.navigate([`/detalle-contrato/${idContrato}`]);
     this.router.navigateByUrl('/');
     setTimeout(() => {
       this.router.navigate([`/detalle-contrato/${idContrato}`]);
