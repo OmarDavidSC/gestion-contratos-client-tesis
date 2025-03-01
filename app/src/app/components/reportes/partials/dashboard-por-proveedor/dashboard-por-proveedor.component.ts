@@ -115,7 +115,7 @@ export class DashboardPorProveedorComponent implements OnInit {
               const percentage = ((value / cantidadTotal) * 100).toFixed(2);
               return `${percentage}%`;
             },
-            color: '#fff',
+            color: '#000',
             font: {
               weight: 'bold',
             }

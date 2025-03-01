@@ -1,0 +1,10 @@
+.scroll-container {
+    max-height: 800px;
+    overflow-y: scroll;
+    padding-right: 10px;
+    scrollbar-width: none;
+  }
+  
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
