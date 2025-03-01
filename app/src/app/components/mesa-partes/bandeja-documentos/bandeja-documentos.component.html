@@ -74,15 +74,15 @@
                 <div class="col-lg-7 filtros-pg d-flex flex-mob-button mb-3 mt-3 estado-combo">
                     <button mat-raised-button class="{{Vista == 'Pendientes' ? 'active mr-3' : 'mr-3'}}"
                         (click)="eventoBuscarPorVista('Pendientes')">Mis Pendientes<span
-                            class="contador-r"> ({{ListaContratos.length}})</span></button>
+                            class="contador-l"> ({{ListaContratos.length}})</span></button>
                     <!--<button mat-raised-button class="{{Vista == 'Derivados' ? 'active mr-3' : 'mr-3'}}" (click)="eventoBuscarPorVista('Derivados')">Derivados</button> -->
                     <!-- <button mat-raised-button class="{{Vista == 'Devueltos' ? 'active mr-3' : 'mr-3'}}" (click)="eventoBuscarPorVista('Devueltos')">Devueltos</button> -->
                     <button mat-raised-button class="{{Vista == 'Administrativa' ? 'active mr-3' : 'mr-3'}}"
                         (click)="eventoBuscarPorVista('Administrativa')">Administrativos<span
-                            class="contador-r"> ({{ListaContratos.length}})</span></button>
+                            class="contador-l"> ({{ListaContratos.length}})</span></button>
                     <button mat-raised-button class="{{Vista == 'Todos' ? 'active mr-3' : 'mr-3'}}"
                         (click)="eventoBuscarPorVista('Todos')">Todos<span
-                            class="contador-r"> ({{ListaContratos.length}})</span></button>
+                            class="contador-l"> ({{ListaContratos.length}})</span></button>
                 </div>
                 <div class="col-lg-5 text-end">
                     <button class="mt-2 mr-3" mat-icon-button matTooltip="Nuevo Contrato"
