@@ -3,12 +3,12 @@
 
 @font-face {
   font-family: "HelveticaNeueLTPro-BlkCn";
-  src: url('../fonts/HelveticaNeueLTPro-BlkCn.woff') format('woff');
+  src: url('/assets/fonts/HelveticaNeueLTPro-BlkCn.woff') format('woff');
 }
 
 @font-face {
   font-family: "HelveticaNeueLTPro-LtCn";
-  src: url('../fonts/HelveticaNeueLTPro-LtCn.woff') format('woff');
+  src: url('/assets/fonts/HelveticaNeueLTPro-LtCn.woff') format('woff');
 }
 
 .mat-typography {
@@ -748,7 +748,7 @@ th {
 
 .contador-r {
   font: 500;
-  color: $negro;
+  color: whitesmoke;
 }
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {

@@ -45,6 +45,10 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
   ListaAdmArea: Lookup[] = [];
   ListaAdmEstado: Lookup[] = [];
 
+  CantidadPendientes: number = 0;
+  CantidadAdministrativa: number = 0;
+  CantidadTodos: number = 0;
+
   CampoFiltroAvanzado: any = {
     Vista: '',
     Codigo: '',
@@ -129,7 +133,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
           { Id: Constantes.estadoRegistro.IdAnulado, Nombre: 'Anulado' },
           { Id: Constantes.estadoRegistro.IdRechazado, Nombre: 'Rechazado' },
           { Id: Constantes.estadoRegistro.IdObservado, Nombre: 'Observado' },
-        ]
+        ];
         this.eventoBuscarPorVista("Pendientes");
       });
   }
@@ -234,7 +238,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
   }
 
   eventoVerContratoPDF(element: EDatosContrato) {
-    const doc = new jsPDF('p', 'mm', 'a4'); 
+    const doc = new jsPDF('p', 'mm', 'a4');
     const imgLogo = 'assets/img/adn.png';
 
     // ** Agregar Logo **
@@ -246,7 +250,7 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
 
       // ** Número de Contrato en esquina derecha **
       doc.setFontSize(12);
-      doc.setTextColor(111, 66, 193); 
+      doc.setTextColor(111, 66, 193);
       doc.text('Código Contrato:', 170, 20);
       doc.setTextColor(0, 0, 0);
       doc.text(`${element.CodigoContrato}`, 170, 25);
@@ -289,8 +293,8 @@ export class BandejaDocumentosComponent extends FormularioBase implements OnInit
       startY += 25;
 
       // ** Sección Administradores **
-      doc.setFillColor(111, 66, 193); 
-      doc.rect(15, startY + 5, 180, 8, 'F'); 
+      doc.setFillColor(111, 66, 193);
+      doc.rect(15, startY + 5, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(12);
       doc.text('ADMINISTRADORES', 20, startY + 11);

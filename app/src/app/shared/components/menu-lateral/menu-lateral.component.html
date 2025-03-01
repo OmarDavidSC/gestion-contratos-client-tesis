@@ -47,7 +47,7 @@
           </button>
         </div>
         <div class="col-12 mt-1 mb-1">
-          <button mat-button class="w-100 menu-button" (click)="IrADashboard()" >
+          <button mat-button class="w-100 menu-button" (click)="IrADashboard()">
             <div class="d-flex w-100">
               <mat-icon class="mt-1">grid_view</mat-icon>
               <div class="col text-start ps-3">Dashboard</div>
@@ -72,7 +72,7 @@
         <span class="example-spacer"></span>
         <div class="d-flex">
           <button mat-raised-button [matBadgeHidden]="hidden" (click)="toggleNotificationsDrawer()">
-            <mat-icon >notifications</mat-icon>
+            <mat-icon>notifications</mat-icon>
           </button>
           <mat-divider [vertical]="true" class="d-none d-sm-block ms-3"></mat-divider>
           <button mat-button [matMenuTriggerFor]="userMenu" class="d-none d-sm-block">
@@ -97,5 +97,6 @@
 </mat-drawer-container>
 
 <mat-drawer class="" #notificationsDrawer mode="side" [opened]="false" position="end">
-  <app-notificaciones (closeDrawer)="toggleNotificationsDrawer()"  (notificacionesCount)="onNotificationsCountChange($event)"></app-notificaciones>
+  <app-notificaciones (closeDrawer)="toggleNotificationsDrawer()"
+    (notificacionesCount)="onNotificationsCountChange($event)"></app-notificaciones>
 </mat-drawer>

@@ -29,11 +29,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-                {
-                  "glob": "**/*",
-                  "input": "src/assets/fonts",
-                  "output": "/assets/fonts"
-                }
+              {
+                "glob": "**/*",
+                "input": "src/assets/fonts",
+                "output": "/assets/fonts"
+              }
             ],
             "styles": [
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -47,6 +47,14 @@
           },
           "configurations": {
             "production": {
+              "assets": [
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "src/assets/fonts",
+                  "output": "/assets/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -85,6 +93,7 @@
               "deployUrl": "https://consultoriaysistemas.sharepoint.com/sites/angloamericana_mesapartes/_catalogs/masterpage/App/"
             },
             "anglo-qa-app": {
+              "deployUrl": "./",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -101,7 +110,7 @@
               "assets": [
                 "src/assets",
                 {
-                  "glob": "**/*",
+                  "glob": "*.woff",
                   "input": "src/assets/fonts",
                   "output": "/assets/fonts"
                 }
