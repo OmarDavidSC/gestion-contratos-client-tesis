@@ -1708,7 +1708,6 @@ export class FormularioDocumentoComponent extends FormularioBase implements OnIn
           });
         }
       }
-
       Promise.all([this.datosContratoService.updateItem(datos)]).then(([resultado]) => {
 
         this.toastr.success(mensajeFinal, "Exito", {
