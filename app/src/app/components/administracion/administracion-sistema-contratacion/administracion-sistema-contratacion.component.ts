@@ -14,6 +14,7 @@ import { SistemaContratacionService } from 'src/app/shared/services/sistemaContr
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioSistemaContratacionComponent } from '../modals/modal-formulario-sistema-contratacion/modal-formulario-sistema-contratacion.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-sistema-contratacion',
@@ -65,7 +66,14 @@ export class AdministracionSistemaContratacionComponent extends FormularioBase i
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if(this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+                setTimeout(() => {
+                  window.location.href = environment.webAbsoluteUrl;
+                }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 

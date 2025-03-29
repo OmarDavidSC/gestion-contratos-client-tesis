@@ -14,6 +14,7 @@ import { MonedaService } from 'src/app/shared/services/moneda.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioMonedaComponent } from '../modals/modal-formulario-moneda/modal-fomulario-moneda.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-monedas',
@@ -65,7 +66,14 @@ export class AdministracionMonedasComponent extends FormularioBase implements On
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if(this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+                setTimeout(() => {
+                  window.location.href = environment.webAbsoluteUrl;
+                }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 

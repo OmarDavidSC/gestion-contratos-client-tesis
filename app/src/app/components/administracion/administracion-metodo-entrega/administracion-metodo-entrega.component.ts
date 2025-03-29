@@ -14,6 +14,7 @@ import { MetodoEntregaService } from 'src/app/shared/services/metodoEntrega.serv
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioMetodoEntregaComponent } from '../modals/modal-formulario-metodo-entrega/modal-formulario-metodo-entrega.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-metodo-entrega',
@@ -65,7 +66,14 @@ export class AdministracionMetodoEntregaComponent extends FormularioBase impleme
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if(this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+                setTimeout(() => {
+                  window.location.href = environment.webAbsoluteUrl;
+                }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 

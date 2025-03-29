@@ -15,6 +15,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioTipoDocumentoComponent } from '../modals/modal-formulario-tipo-documento/modal-formulario-tipo-documento.component';
 import { EUsuario } from 'src/app/shared/models/entidades/EUsuario';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-tipo-documento',
@@ -28,11 +29,11 @@ export class AdministracionTipoDocumentoComponent extends FormularioBase impleme
   BusquedaRapida: string = "";
 
   dataSource: MatTableDataSource<ETipoDocumento> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado',  "Acciones"];
+  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado', "Acciones"];
 
   paginator: MatPaginator;
-  @ViewChild(MatPaginator, {static: true})
-  set appPaginator(paginator: MatPaginator){
+  @ViewChild(MatPaginator, { static: true })
+  set appPaginator(paginator: MatPaginator) {
     this.paginator = paginator;
     this.dataSource.paginator = this.paginator;
   }
@@ -55,18 +56,25 @@ export class AdministracionTipoDocumentoComponent extends FormularioBase impleme
     public tipoDocumentoService: TipoDocumentoService
   ) {
     super('administracion-tipo-documento', dialog, route, router, spinner, usuarioService)
-   }
+  }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.obtenerMaestros()
   }
 
-  async obtenerMaestros(){
+  async obtenerMaestros() {
     this.mostrarProgreso();
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if (this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+        setTimeout(() => {
+          window.location.href = environment.webAbsoluteUrl;
+        }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 
@@ -78,40 +86,40 @@ export class AdministracionTipoDocumentoComponent extends FormularioBase impleme
     this.buscarMaestros();
   }
 
-  async buscarMaestros(){
+  async buscarMaestros() {
     this.mostrarProgreso();
     this.ListaTipoDocumento = await this.tipoDocumentoService.getItems(this.BusquedaRapida);
     this.dataSource.data = this.ListaTipoDocumento;
     this.ocultarProgreso();
   }
 
-  async eventoMostrarPopupRegistrar(): Promise<void>{
+  async eventoMostrarPopupRegistrar(): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioTipoDocumentoComponent, {
       width: '600px',
       disableClose: true,
       data: null
     });
     const respuesta = await dialogRef.afterClosed().toPromise();
-    if(respuesta){
+    if (respuesta) {
       await this.buscarMaestros();
     }
   }
 
 
-  async eventoMostrarPopupEditar(item: ETipoDocumento): Promise<void>{
-    const dialogRef = this.dialog.open(ModalFormularioTipoDocumentoComponent,{
+  async eventoMostrarPopupEditar(item: ETipoDocumento): Promise<void> {
+    const dialogRef = this.dialog.open(ModalFormularioTipoDocumentoComponent, {
       width: '600px',
       disableClose: true,
       data: item
     });
     const respuesta = await dialogRef.afterClosed().toPromise();
-    if(respuesta){
+    if (respuesta) {
       await this.buscarMaestros();
     }
 
   }
 
-  async eventoEliminar(item: ETipoDocumento): Promise<void>{
+  async eventoEliminar(item: ETipoDocumento): Promise<void> {
 
     this.mostrarModalConfirmacion('Va a eliminar el Tipo Documento. ¿Desea continuar?',
       async (isConfirm: boolean) => {
@@ -125,8 +133,8 @@ export class AdministracionTipoDocumentoComponent extends FormularioBase impleme
         await this.buscarMaestros();
 
       }, "Sí", "No");
-    
-    
+
+
   }
 
 }

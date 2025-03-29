@@ -29,7 +29,7 @@ export class AdministracionAreasComponent extends FormularioBase implements OnIn
   BusquedaRapida: string = "";
 
   dataSource: MatTableDataSource<EArea> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Nombre','UsuarioResponsable', 'Habilitado', 'ModificadoPor', 'Modificado',  "Acciones"];
+  displayedColumns: string[] = ['Nombre', 'UsuarioResponsable', 'Habilitado', 'ModificadoPor', 'Modificado', "Acciones"];
 
   paginator: MatPaginator;
   @ViewChild(MatPaginator, { static: true })
@@ -66,13 +66,19 @@ export class AdministracionAreasComponent extends FormularioBase implements OnIn
 
     this.mostrarProgreso();
 
-    Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
+    Promise.all([
+      this.usuarioService.getCurrentUser()]
+    ).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();      
-      // if (resultadoAdmUsuario.Rol.Title !== "Administrador") {
-      //   window.location.href = environment.webAbsoluteUrl;
-      //   return;
-      // }     
+
+      if (this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+        setTimeout(() => {
+          window.location.href = environment.webAbsoluteUrl;
+        }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 

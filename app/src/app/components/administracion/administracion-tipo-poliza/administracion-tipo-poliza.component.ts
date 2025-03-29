@@ -14,6 +14,7 @@ import { TipoPolizaService } from 'src/app/shared/services/tipoPoliza.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioTipoPolizaComponent } from '../modals/modal-formulario-tipo-poliza/modal-fomulario-tipo-poliza.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class AdministracionTipoPolizaComponent extends FormularioBase implements
   BusquedaRapida: string = "";
 
   dataSource: MatTableDataSource<ETipoPoliza> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado',  "Acciones"];
+  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado', "Acciones"];
 
   paginator: MatPaginator;
   @ViewChild(MatPaginator, { static: true })
@@ -53,7 +54,7 @@ export class AdministracionTipoPolizaComponent extends FormularioBase implements
     public sanitizer: DomSanitizer,
     public usuarioService: UsuarioService,
     public tipoPolizaService: TipoPolizaService
-  ) { 
+  ) {
     super('administracion-tipo-polizas', dialog, route, router, spinner, usuarioService);
   }
 
@@ -61,12 +62,19 @@ export class AdministracionTipoPolizaComponent extends FormularioBase implements
     this.obtenerMaestros()
   }
 
-  async obtenerMaestros(){
+  async obtenerMaestros() {
     this.mostrarProgreso();
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if (this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+        setTimeout(() => {
+          window.location.href = environment.webAbsoluteUrl;
+        }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 
@@ -78,14 +86,14 @@ export class AdministracionTipoPolizaComponent extends FormularioBase implements
     this.buscarMaestros();
   }
 
-  async buscarMaestros(){
+  async buscarMaestros() {
     this.mostrarProgreso();
     this.ListaTipoPoliza = await this.tipoPolizaService.getItems(this.BusquedaRapida);
     this.dataSource.data = this.ListaTipoPoliza;
     this.ocultarProgreso();
   }
 
-  async eventoMostrarPopupRegistrar(): Promise<void>{
+  async eventoMostrarPopupRegistrar(): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioTipoPolizaComponent, {
       width: '600px',
       disableClose: true,
@@ -97,7 +105,7 @@ export class AdministracionTipoPolizaComponent extends FormularioBase implements
     }
   }
 
-  async eventoMostrarPopupEditar(item: ETipoPoliza): Promise<void>{
+  async eventoMostrarPopupEditar(item: ETipoPoliza): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioTipoPolizaComponent, {
       width: '600px',
       disableClose: true,

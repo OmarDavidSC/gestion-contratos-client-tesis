@@ -14,6 +14,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { CompaniaAseguradoraService } from 'src/app/shared/services/companiaAseguradora.service';
 import { ModalFormularioCompaniaAseguradoraComponent } from '../modals/modal-formulario-compania-aseguradora/modal-fomulario-compania-aseguradora.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-compania-aseguradora',
@@ -27,7 +28,7 @@ export class AdministracionCompaniaAseguradoraComponent extends FormularioBase i
   BusquedaRapida: string = "";
 
   dataSource: MatTableDataSource<ECompaniaAseguradora> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado',  "Acciones"];
+  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado', "Acciones"];
 
   paginator: MatPaginator;
   @ViewChild(MatPaginator, { static: true })
@@ -52,7 +53,7 @@ export class AdministracionCompaniaAseguradoraComponent extends FormularioBase i
     public sanitizer: DomSanitizer,
     public usuarioService: UsuarioService,
     public companiaAseguradoraService: CompaniaAseguradoraService
-  ) { 
+  ) {
     super('administracion-areas', dialog, route, router, spinner, usuarioService);
   }
 
@@ -60,12 +61,20 @@ export class AdministracionCompaniaAseguradoraComponent extends FormularioBase i
     this.obtenerMaestros()
   }
 
-  async obtenerMaestros(){
+  async obtenerMaestros() {
     this.mostrarProgreso();
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if (this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+        setTimeout(() => {
+          window.location.href = environment.webAbsoluteUrl;
+        }, 500);
+      } else {
+        this.buscarMaestros();
+      }
+
     });
   }
 
@@ -77,14 +86,14 @@ export class AdministracionCompaniaAseguradoraComponent extends FormularioBase i
     this.buscarMaestros();
   }
 
-  async buscarMaestros(){
+  async buscarMaestros() {
     this.mostrarProgreso();
     this.ListaCompaniaAseguradora = await this.companiaAseguradoraService.getItems(this.BusquedaRapida);
     this.dataSource.data = this.ListaCompaniaAseguradora;
     this.ocultarProgreso();
   }
 
-  async eventoMostrarPopupRegistrar(): Promise<void>{
+  async eventoMostrarPopupRegistrar(): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioCompaniaAseguradoraComponent, {
       width: '600px',
       disableClose: true,
@@ -96,7 +105,7 @@ export class AdministracionCompaniaAseguradoraComponent extends FormularioBase i
     }
   }
 
-  async eventoMostrarPopupEditar(item: ECompaniaAseguradora): Promise<void>{
+  async eventoMostrarPopupEditar(item: ECompaniaAseguradora): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioCompaniaAseguradoraComponent, {
       width: '600px',
       disableClose: true,

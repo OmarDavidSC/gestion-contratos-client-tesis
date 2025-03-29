@@ -14,6 +14,7 @@ import { BancoService } from 'src/app/shared/services/banco.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioBancoComponent } from '../modals/modal-formulario-banco/modal-fomulario-banco.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-banco',
@@ -27,7 +28,7 @@ export class AdministracionBancoComponent extends FormularioBase implements OnIn
   BusquedaRapida: string = "";
 
   dataSource: MatTableDataSource<EBanco> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado',  "Acciones"];
+  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado', "Acciones"];
 
   paginator: MatPaginator;
   @ViewChild(MatPaginator, { static: true })
@@ -52,7 +53,7 @@ export class AdministracionBancoComponent extends FormularioBase implements OnIn
     public sanitizer: DomSanitizer,
     public usuarioService: UsuarioService,
     public bancoService: BancoService
-  ) { 
+  ) {
     super('administracion-bancos', dialog, route, router, spinner, usuarioService);
   }
 
@@ -60,12 +61,19 @@ export class AdministracionBancoComponent extends FormularioBase implements OnIn
     this.obtenerMaestros()
   }
 
-  async obtenerMaestros(){
+  async obtenerMaestros() {
     this.mostrarProgreso();
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if (this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+        setTimeout(() => {
+          window.location.href = environment.webAbsoluteUrl;
+        }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 
@@ -77,14 +85,14 @@ export class AdministracionBancoComponent extends FormularioBase implements OnIn
     this.buscarMaestros();
   }
 
-  async buscarMaestros(){
+  async buscarMaestros() {
     this.mostrarProgreso();
     this.ListaBanco = await this.bancoService.getItems(this.BusquedaRapida);
     this.dataSource.data = this.ListaBanco;
     this.ocultarProgreso();
   }
 
-  async eventoMostrarPopupRegistrar(): Promise<void>{
+  async eventoMostrarPopupRegistrar(): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioBancoComponent, {
       width: '600px',
       disableClose: true,
@@ -96,7 +104,7 @@ export class AdministracionBancoComponent extends FormularioBase implements OnIn
     }
   }
 
-  async eventoMostrarPopupEditar(item: EBanco): Promise<void>{
+  async eventoMostrarPopupEditar(item: EBanco): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioBancoComponent, {
       width: '600px',
       disableClose: true,

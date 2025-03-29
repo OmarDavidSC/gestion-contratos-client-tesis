@@ -14,6 +14,7 @@ import { ProveedorService } from 'src/app/shared/services/proveedor.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ModalFormularioProveedorComponent } from '../modals/modal-formulario-proveedor/modal-fomulario-proveedor.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-proveedor',
@@ -65,7 +66,14 @@ export class AdministracionProveedorComponent extends FormularioBase implements 
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if(this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+                setTimeout(() => {
+                  window.location.href = environment.webAbsoluteUrl;
+                }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 

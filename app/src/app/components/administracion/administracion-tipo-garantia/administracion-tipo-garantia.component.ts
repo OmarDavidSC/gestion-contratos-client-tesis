@@ -15,6 +15,7 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import { ETipoDocumento } from 'src/app/shared/models/entidades/ETipoDocumento';
 import { ModalFormularioTipoGarantiaComponent } from '../modals/modal-formulario-tipo-garantia/modal-fomulario-tipo-garantia.component';
 import { EUsuarioLookup } from 'src/app/shared/models/entidades/EUsuarioLookup';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-administracion-tipo-garantia',
@@ -28,7 +29,7 @@ export class AdministracionTipoGarantiaComponent extends FormularioBase implemen
   BusquedaRapida: string = "";
 
   dataSource: MatTableDataSource<ETipoGarantia> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado',  "Acciones"];
+  displayedColumns: string[] = ['Nombre', 'Habilitado', 'ModificadoPor', 'Modificado', "Acciones"];
 
   paginator: MatPaginator;
   @ViewChild(MatPaginator, { static: true })
@@ -53,7 +54,7 @@ export class AdministracionTipoGarantiaComponent extends FormularioBase implemen
     public sanitizer: DomSanitizer,
     public usuarioService: UsuarioService,
     public tipoGarantiaService: TipoGarantiaService
-  ) { 
+  ) {
     super('administracion-tipo-garantia', dialog, route, router, spinner, usuarioService);
   }
 
@@ -61,12 +62,19 @@ export class AdministracionTipoGarantiaComponent extends FormularioBase implemen
     this.obtenerMaestros()
   }
 
-  async obtenerMaestros(){
+  async obtenerMaestros() {
     this.mostrarProgreso();
 
     Promise.all([this.usuarioService.getCurrentUser()]).then(([resultadoUsuario]) => {
       this.UsuarioActual = resultadoUsuario;
-      this.buscarMaestros();
+      if (this.UsuarioActual.Rol !== "Administrador") {
+        this.mostrarModalInformativo("Validación de Acceso", "Su usuario no tiene acceso a esta página.")
+        setTimeout(() => {
+          window.location.href = environment.webAbsoluteUrl;
+        }, 500);
+      } else {
+        this.buscarMaestros();
+      }
     });
   }
 
@@ -78,14 +86,14 @@ export class AdministracionTipoGarantiaComponent extends FormularioBase implemen
     this.buscarMaestros();
   }
 
-  async buscarMaestros(){
+  async buscarMaestros() {
     this.mostrarProgreso();
     this.ListaTipoGarantia = await this.tipoGarantiaService.getItems(this.BusquedaRapida);
     this.dataSource.data = this.ListaTipoGarantia;
     this.ocultarProgreso();
   }
 
-  async eventoMostrarPopupRegistrar(): Promise<void>{
+  async eventoMostrarPopupRegistrar(): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioTipoGarantiaComponent, {
       width: '600px',
       disableClose: true,
@@ -97,7 +105,7 @@ export class AdministracionTipoGarantiaComponent extends FormularioBase implemen
     }
   }
 
-  async eventoMostrarPopupEditar(item: ETipoDocumento): Promise<void>{
+  async eventoMostrarPopupEditar(item: ETipoDocumento): Promise<void> {
     const dialogRef = this.dialog.open(ModalFormularioTipoGarantiaComponent, {
       width: '600px',
       disableClose: true,
