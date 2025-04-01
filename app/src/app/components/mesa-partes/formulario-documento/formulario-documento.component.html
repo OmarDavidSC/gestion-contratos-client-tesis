@@ -542,7 +542,7 @@
                           [(ngModel)]="ItemArchivo.Descripcion" maxlength="250" autocomplete="off">
                       </mat-form-field>
                       <mat-form-field class="col-lg-2" appearance="outline">
-                        <mat-label> TipoAdenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
+                        <mat-label> Tipo Adenda <span style="color: red" *ngIf="!ItemArchivo.bloquearCampoAdenda">
                             (*)</span></mat-label>
                         <mat-select [value]="ItemArchivo.TipoAdenda.Id" [disabled]="ItemArchivo.bloquearCampoAdenda">
                           <mat-option *ngFor="let value of ListaAdmTipoAdenda"
@@ -767,7 +767,6 @@
                             value.Nombre}}</mat-option>
                         </mat-select>
                       </mat-form-field>
-
                       <div class="col-lg-3">
                         <div class="row">
                           <mat-form-field class="col-lg-6" appearance="outline">
@@ -816,7 +815,6 @@
               </div>
             </div>
           </mat-card>
-
           <div class="mb-3" *ngIf="mostrarSeccionComentarios">
             <mat-accordion>
               <!--<mat-expansion-panel [expanded]="true" (opened)="panelOpenComentarios = true" (closed)="panelOpenComentarios = false"></mat-expansion-panel>-->
@@ -826,7 +824,6 @@
                     <div class="subtitulo-accordion">Comentarios</div>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-
                 <div class="row" *ngIf="mostrarCampoComentarioContrato">
                   <mat-form-field class="col-lg-12 col-12" appearance="outline">
                     <mat-label>Comentario</mat-label>
@@ -853,7 +850,6 @@
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-
           <div class="mb-3" *ngIf="Registro.ListaHistorial.length > 0" id="historial">
             <mat-accordion>
               <mat-expansion-panel (opened)="panelOpenHistorial = true" (closed)="panelOpenHistorial = false">
@@ -862,7 +858,6 @@
                     <div class="subtitulo-accordion">Historial de Eventos</div>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-
                 <div class="row">
                   <div class="col-lg-12">
                     <table class="table">
