@@ -295,23 +295,19 @@ export class ReporteGeneralComponent extends FormularioBase implements OnInit {
     const doc = new jsPDF('p', 'mm', 'a4');
     const imgLogo = 'assets/img/adn.png';
 
-    // ** Agregar Logo **
     const img = new Image();
     img.src = imgLogo;
-
     img.onload = () => {
       doc.addImage(img, 'PNG', 15, 10, 40, 15);
 
-      // ** Número de Contrato en esquina derecha **
+      doc.setFont('helvetica', 'bold');
       doc.setFontSize(12);
       doc.setTextColor(111, 66, 193);
       doc.text('Código Contrato:', 170, 20);
       doc.setTextColor(0, 0, 0);
       doc.text(`${element.CodigoContrato}`, 170, 25);
 
-      // ** Datos generales del contrato **
       doc.setFontSize(11);
-      doc.setTextColor(0, 0, 0);
       let startY = 40;
 
       const datosGenerales = [
@@ -326,14 +322,14 @@ export class ReporteGeneralComponent extends FormularioBase implements OnInit {
       ];
 
       datosGenerales.forEach(([label, value]) => {
-        doc.setFont(undefined, 'bold');
+        doc.setFont('helvetica', 'bold');
         doc.text(label, 20, startY);
-        doc.setFont(undefined, 'normal');
+        doc.setFont('helvetica', 'normal');
         doc.text(value, 80, startY);
         startY += 7;
       });
 
-      // ** Sección Detalles del Contrato **
+      // Detalles del contrato
       doc.setFillColor(111, 66, 193);
       doc.rect(15, startY, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
@@ -342,24 +338,43 @@ export class ReporteGeneralComponent extends FormularioBase implements OnInit {
 
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(10);
-      doc.text(element.DetalleContrato, 20, startY + 15, { maxWidth: 170 });
+      let detalleY = startY + 15;
+      doc.text(element.DetalleContrato, 20, detalleY, { maxWidth: 170 });
 
-      startY += 25;
+      let detalleHeight = doc.splitTextToSize(element.DetalleContrato, 170).length * 5;
+      startY = detalleY + detalleHeight + 10;
 
-      // ** Sección Administradores **
+      // Administradores
+      if (startY > 260) {
+        doc.addPage();
+        startY = 10;
+      }
+
       doc.setFillColor(111, 66, 193);
-      doc.rect(15, startY + 5, 180, 8, 'F');
+      doc.rect(15, startY, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(12);
-      doc.text('ADMINISTRADORES', 20, startY + 11);
+      doc.text('ADMINISTRADORES', 20, startY + 6);
 
       doc.setTextColor(0, 0, 0);
       doc.setFontSize(10);
-      doc.text(element.NombresAdministradores, 20, startY + 18);
+      let adminsText = doc.splitTextToSize(element.NombresAdministradores, 170);
+      let adminsHeight = adminsText.length * 5;
 
-      startY += 25;
+      if (startY + adminsHeight > 280) {
+        doc.addPage();
+        startY = 20;
+      }
 
-      // ** Tabla con Fechas Claves **
+      doc.text(adminsText, 20, startY + 15);
+      startY += adminsHeight + 20;
+
+      // Tabla de Fechas Claves
+      if (startY > 260) {
+        doc.addPage();
+        startY = 20;
+      }
+
       autoTable(doc, {
         startY: startY,
         head: [['Fecha', 'Descripción']],
@@ -373,9 +388,7 @@ export class ReporteGeneralComponent extends FormularioBase implements OnInit {
         headStyles: { fillColor: [111, 66, 193], textColor: 255 },
       });
 
-      // ** Abrir en Nueva Pestaña **
       window.open(doc.output('bloburl'), '_blank');
     };
   }
-
 }
